@@ -8,7 +8,7 @@ export function Hero() {
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
-      flutterScrollTo(href);
+      flutterScrollTo(href.replace(/^#/, ''));
     }
   };
 
@@ -16,7 +16,7 @@ export function Hero() {
     <section id="home" className={styles.hero}>
       <div className={styles.glow} aria-hidden="true" />
       <h1 className={styles.title}>
-        Cybersecurity &amp; Full Stack Developer
+        Cybersecurity &amp; Full-Stack Engineer
       </h1>
       <div className={styles.copy}>
         <p className={styles.description}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import styles from './ThemeToggle.module.css';
 
 export function ThemeToggle() {
@@ -8,7 +8,7 @@ export function ThemeToggle() {
     return saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '../../data/navLinks';
+import { contactInfo } from '../../data/contact';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { flutterScrollTo } from '../../utils/flutterScroll';
 import { assetUrl } from '../../utils/assets';
@@ -94,18 +95,21 @@ export function Navbar() {
     ];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 140;
-
       if (window.scrollY < 200) {
         setActiveSection('home');
         return;
       }
 
+      // Use getBoundingClientRect() + window.scrollY for document-relative
+      // position — el.offsetTop is relative to offsetParent (<main>) and
+      // will always be exceeded once user scrolls past the hero zone.
+      const triggerLine = window.scrollY + 160;
+
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (triggerLine >= top) {
             setActiveSection(id);
             return;
           }
@@ -192,7 +196,7 @@ export function Navbar() {
           <div className={styles.rightActions}>
             {/* Resume Button */}
             <a
-              href={assetUrl('Dhiraj_Rajput_Resume.pdf')}
+              href={assetUrl(contactInfo.resumeFile)}
               target="_blank"
               rel="noreferrer"
               className={styles.resumeButton}
@@ -207,7 +211,7 @@ export function Navbar() {
             <div className={styles.desktopSocials}>
               {/* GitHub */}
               <a
-                href="https://github.com/dhiraj-rajput"
+                href={contactInfo.github.url}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.expandableButton}
@@ -220,7 +224,7 @@ export function Navbar() {
 
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com/in/dhiraj-rajput-"
+                href={contactInfo.linkedin.url}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.expandableButton}
@@ -233,7 +237,7 @@ export function Navbar() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/917972742879"
+                href={contactInfo.whatsapp.href}
                 target="_blank"
                 rel="noreferrer"
                 className={`${styles.expandableButton} ${styles.whatsappExpandable}`}
@@ -298,7 +302,7 @@ export function Navbar() {
               <p className={styles.mobileDrawerTitle}>Get In Touch</p>
               <div className={styles.mobileSocialGrid}>
                 <a
-                  href="https://github.com/dhiraj-rajput"
+                  href={contactInfo.github.url}
                   target="_blank"
                   rel="noreferrer"
                   className={styles.mobileSocialCard}
@@ -309,7 +313,7 @@ export function Navbar() {
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/dhiraj-rajput-"
+                  href={contactInfo.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
                   className={styles.mobileSocialCard}
@@ -320,7 +324,7 @@ export function Navbar() {
                 </a>
 
                 <a
-                  href="https://wa.me/917972742879"
+                  href={contactInfo.whatsapp.href}
                   target="_blank"
                   rel="noreferrer"
                   className={`${styles.mobileSocialCard} ${styles.mobileWhatsappCard}`}
@@ -331,7 +335,7 @@ export function Navbar() {
                 </a>
 
                 <a
-                  href={assetUrl('Dhiraj_Rajput_Resume.pdf')}
+                  href={assetUrl(contactInfo.resumeFile)}
                   target="_blank"
                   rel="noreferrer"
                   className={styles.mobileSocialCard}

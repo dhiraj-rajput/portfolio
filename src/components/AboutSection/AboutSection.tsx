@@ -93,7 +93,7 @@ export function AboutSection() {
                 </div>
                 <div className={styles.educationTimeline}>
                   {education.map((item, idx) => (
-                    <div key={idx} className={styles.eduItem}>
+                    <div key={`${item.institution}-${item.period}`} className={styles.eduItem}>
                       <div className={styles.eduGutter}>
                         <div className={styles.eduDot} />
                         {idx < education.length - 1 && <div className={styles.eduLine} />}
@@ -131,8 +131,12 @@ export function AboutSection() {
               {profile.avatarUrl && !imgError ? (
                 <img
                   src={assetUrl(profile.avatarUrl)}
-                  alt={profile.name}
+                  alt="Dhiraj Rajput — Cybersecurity and Full-Stack Engineer"
                   className={styles.avatarImage}
+                  width={280}
+                  height={280}
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setImgError(true)}
                 />
               ) : (
@@ -151,8 +155,8 @@ export function AboutSection() {
             </div>
 
             <div className={styles.quickSpecsList}>
-              {quickFacts.map((fact, index) => (
-                <div key={index} className={styles.specRow}>
+              {quickFacts.map((fact) => (
+                <div key={fact.label} className={styles.specRow}>
                   <span className={styles.specLabel}>{fact.label}</span>
                   <span
                     className={`${styles.specValue} ${
@@ -206,8 +210,8 @@ export function AboutSection() {
 
                 {area.tags && area.tags.length > 0 && (
                   <div className={styles.focusTags}>
-                    {area.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className={styles.tagChip}>
+                    {area.tags.map((tag) => (
+                      <span key={tag} className={styles.tagChip}>
                         {tag}
                       </span>
                     ))}

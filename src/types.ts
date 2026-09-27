@@ -1,18 +1,11 @@
 export interface NavLink {
   label: string;
   href: string;
-  active?: boolean;
 }
 
 export interface TechItem {
   name: string;
   icon: string;
-}
-
-export interface StatItem {
-  value: string;
-  label: string;
-  description: string;
 }
 
 export type ProjectCategory =
@@ -30,30 +23,13 @@ export interface Project {
   description: string;
   category: ProjectCategory;
   tags: string[];
-  /** Optional hand-made cover image. When omitted, ProjectCard renders a
-   *  generated cover from `category` so new projects never need custom art. */
   image?: string;
   videoUrl?: string;
   highlights?: string[];
   githubUrl?: string;
   liveUrl?: string;
   toolsUsed?: string[];
-  /** Optional placeholder for upcoming project media (image or video) */
   mediaPlaceholder?: boolean;
-}
-
-export interface Testimonial {
-  id: string;
-  quote: string;
-  authorName: string;
-  authorRole: string;
-  authorPhoto: string;
-}
-
-export interface FAQ {
-  id: string;
-  question: string;
-  answer?: string;
 }
 
 export interface QuickFact {
@@ -117,5 +93,35 @@ export interface ResearchEntry {
   actionLabel?: string;
   image?: string;
   videoUrl?: string;
+  videoCaption?: string;
+  videoPoster?: string;
 }
 
+export interface ExperienceEntry {
+  id: string;
+  role: string;
+  company: string;
+  website?: string;
+  location: string;
+  period: string;
+  type: string;
+  responsibilities: Array<{
+    heading: string;
+    detail: string;
+  }>;
+}
+
+export interface TechDomain {
+  id: string;
+  category: string;
+  stack: string;
+  description: string;
+}
+
+export interface LeadershipEntry {
+  id: string;
+  category: string;
+  title: string;
+  year: string;
+  link?: string;
+}

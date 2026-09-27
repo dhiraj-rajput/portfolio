@@ -44,12 +44,15 @@ export function ResearchSection() {
                 <div className={styles.mediaWrap}>
                   <video
                     src={assetUrl(entry.videoUrl)}
+                    poster={entry.videoPoster ? assetUrl(entry.videoPoster) : undefined}
                     controls
                     playsInline
                     preload="metadata"
                     className={styles.mediaVideo}
                   />
-                  <span className={styles.mediaCaption}>Live Demonstration Video: Assistive Blind Navigation</span>
+                  {entry.videoCaption && (
+                    <span className={styles.mediaCaption}>{entry.videoCaption}</span>
+                  )}
                 </div>
               ) : entry.image ? (
                 <div className={styles.mediaWrap}>

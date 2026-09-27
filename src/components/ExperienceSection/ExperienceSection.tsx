@@ -47,8 +47,8 @@ export function ExperienceSection() {
 
             {/* Responsibilities */}
             <div className={styles.responsibilities}>
-              {exp.responsibilities.map((r, i) => (
-                <div key={i} className={styles.responsibility}>
+              {exp.responsibilities.map((r) => (
+                <div key={r.heading} className={styles.responsibility}>
                   <h4 className={styles.respHeading}>{r.heading}</h4>
                   <p className={styles.respDetail}>{r.detail}</p>
                 </div>

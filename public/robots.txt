@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dhiraj-rajput.github.io/portfolio/sitemap.xml

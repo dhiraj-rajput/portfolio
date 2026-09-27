@@ -1,19 +1,6 @@
-/**
- * Professional Experience entries
- */
-export interface ExperienceEntry {
-  id: string;
-  role: string;
-  company: string;
-  website?: string;
-  location: string;
-  period: string;
-  type: string;
-  responsibilities: Array<{
-    heading: string;
-    detail: string;
-  }>;
-}
+import type { ExperienceEntry, TechDomain, LeadershipEntry } from '../types';
+
+export type { ExperienceEntry, TechDomain, LeadershipEntry };
 
 export const experiences: ExperienceEntry[] = [
   {
@@ -44,16 +31,7 @@ export const experiences: ExperienceEntry[] = [
   },
 ];
 
-/**
- * Technical Expertise domains
- */
-export interface TechDomain {
-  id: string;
-  category: string;
-  stack: string;
-  description: string;
-}
-
+/** Technical Expertise domains */
 export const techDomains: TechDomain[] = [
   {
     id: 'cybersecurity',
@@ -102,14 +80,6 @@ export const techDomains: TechDomain[] = [
 /**
  * Leadership & Recognition entries (excluding RenAIssance 2025 and Patent ID entry)
  */
-export interface LeadershipEntry {
-  id: string;
-  category: string;
-  title: string;
-  year: string;
-  link?: string;
-}
-
 export const leadershipEntries: LeadershipEntry[] = [
   {
     id: 'springer-nature-pub',

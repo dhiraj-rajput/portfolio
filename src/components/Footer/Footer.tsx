@@ -1,4 +1,5 @@
 import { navLinks } from '../../data/navLinks';
+import { contactInfo } from '../../data/contact';
 import { flutterScrollTo } from '../../utils/flutterScroll';
 import { assetUrl } from '../../utils/assets';
 import styles from './Footer.module.css';
@@ -150,25 +151,25 @@ export function Footer() {
           <ul className={styles.linkList} role="list">
             <li>
               <a
-                href="mailto:rajputdhiraj1010@gmail.com"
+                href={contactInfo.email.href}
                 className={styles.footerLink}
               >
-                rajputdhiraj1010@gmail.com
+                {contactInfo.email.address}
               </a>
             </li>
             <li>
               <a
-                href="https://wa.me/917972742879"
+                href={contactInfo.whatsapp.href}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footerLink}
               >
-                WhatsApp (+91 79727 42879) ↗
+                WhatsApp ({contactInfo.whatsapp.display}) ↗
               </a>
             </li>
             <li>
               <a
-                href="https://linkedin.com/in/dhiraj-rajput-"
+                href={contactInfo.linkedin.url}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footerLink}
@@ -178,7 +179,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="https://github.com/dhiraj-rajput"
+                href={contactInfo.github.url}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footerLink}
@@ -188,7 +189,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={assetUrl('Dhiraj_Rajput_Resume.pdf')}
+                href={assetUrl(contactInfo.resumeFile)}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footerLink}

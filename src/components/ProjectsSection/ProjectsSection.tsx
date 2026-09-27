@@ -27,6 +27,19 @@ export function ProjectsSection() {
   // Keyboard navigation with ArrowLeft and ArrowRight
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+
+      const sectionEl = document.getElementById('projects');
+      if (sectionEl) {
+        const rect = sectionEl.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) {
+          return;
+        }
+      }
+
       if (e.key === 'ArrowRight') {
         handleNext();
       } else if (e.key === 'ArrowLeft') {
@@ -121,8 +134,8 @@ export function ProjectsSection() {
             <div className={styles.highlightsSection}>
               <h4 className={styles.highlightsHeading}>Architecture &amp; Key Highlights</h4>
               <ul className={styles.highlightsList}>
-                {currentProject.highlights.map((item, idx) => (
-                  <li key={idx} className={styles.highlightItem}>
+                {currentProject.highlights.map((item) => (
+                  <li key={item} className={styles.highlightItem}>
                     <span className={styles.highlightBullet}>▹</span>
                     <span>{item}</span>
                   </li>

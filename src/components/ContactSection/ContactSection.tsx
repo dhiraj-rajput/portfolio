@@ -1,32 +1,5 @@
+import { contactInfo, contactDetailsList } from '../../data/contact';
 import styles from './ContactSection.module.css';
-
-const contactDetails = [
-  {
-    label: 'Email',
-    value: 'rajputdhiraj1010@gmail.com',
-    href: 'mailto:rajputdhiraj1010@gmail.com',
-  },
-  {
-    label: 'WhatsApp',
-    value: '+91 79727 42879',
-    href: 'https://wa.me/917972742879',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/dhiraj-rajput-',
-    href: 'https://linkedin.com/in/dhiraj-rajput-',
-  },
-  {
-    label: 'GitHub',
-    value: 'github.com/dhiraj-rajput',
-    href: 'https://github.com/dhiraj-rajput',
-  },
-  {
-    label: 'Location',
-    value: 'Pune, India',
-    href: null,
-  },
-];
 
 /**
  * Contact Section
@@ -46,7 +19,7 @@ export function ContactSection() {
           </p>
 
           <a
-            href="mailto:rajputdhiraj1010@gmail.com"
+            href={contactInfo.email.href}
             className={styles.ctaBtn}
             aria-label="Send me an email"
           >
@@ -56,7 +29,7 @@ export function ContactSection() {
 
         <div className={styles.right}>
           <ul className={styles.detailList} role="list">
-            {contactDetails.map((d) => (
+            {contactDetailsList.map((d) => (
               <li key={d.label} className={styles.detailItem}>
                 <span className={styles.detailLabel}>{d.label}</span>
                 {d.href ? (

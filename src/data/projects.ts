@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: 'neo-analytics',
     title: 'Neo-Analytics',
-    year: 'Jan 2023 - Present',
+    year: '2023 - Present',
     description:
       'Real-time data streaming and distributed analytics platform processing near-Earth astronomical telemetry with live dashboarding.',
     category: 'Data Engineering',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
   {
     id: 'omniscient',
     title: 'Omniscient',
-    year: 'Jan 2023 - Present',
+    year: '2023 - Present',
     description:
       'AI-powered task and workflow orchestration platform with LLaMA LLM integration, role-based access control, and real-time WebSockets.',
     category: 'Full-Stack & AI',
@@ -93,7 +93,7 @@ export const projects: Project[] = [
   {
     id: 'rift',
     title: 'RIFT - Remote Intrusion Framework',
-    year: 'Jan 2023 - Present',
+    year: '2023 - Present',
     description:
       'Security operations and remote intrusion framework engineered in Go and Django REST with asynchronous execution loops, Celery worker nodes, and Redis queues.',
     category: 'Cybersecurity',

@@ -45,3 +45,6 @@ lerna-debug.log*
 
 # Internal tool generated
 .system_generated/
+
+# npm lockfile — this project uses Bun (bun.lock is authoritative)
+package-lock.json

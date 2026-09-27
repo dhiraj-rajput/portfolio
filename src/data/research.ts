@@ -18,6 +18,7 @@ export const researchEntries: ResearchEntry[] = [
     link: 'https://doi.org/10.7759/s44389-026-00265-x',
     actionLabel: 'Read Paper ↗',
     videoUrl: '/vacars.mp4',
+    videoCaption: 'Live Demonstration Video: Assistive Blind Navigation',
   },
   {
     id: 'rakshanetra',
