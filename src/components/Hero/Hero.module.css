@@ -1,0 +1,60 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 20px);
+  max-width: 1178px;
+  margin: 0 auto;
+  padding: clamp(24px, 3.5vw, 42px) clamp(16px, 3vw, 24px) 0;
+  text-align: center;
+}
+
+.glow {
+  position: absolute;
+  top: -160px;
+  right: -220px;
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 102, 0, var(--glow-opacity, 0.35)) 0%, rgba(255, 102, 0, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 58px);
+  line-height: 1.15;
+  background: linear-gradient(85deg, var(--hero-gradient-start, #ffffff) 56%, var(--color-orange-500) 98%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  max-width: 900px;
+  letter-spacing: -0.025em;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 980px;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.68;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

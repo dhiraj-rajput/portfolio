@@ -1,0 +1,624 @@
+.section {
+  position: relative;
+  max-width: 1372px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 24px);
+}
+
+/* Outer Section Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+[data-theme="light"] .title {
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Bento Grid System */
+.bentoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Row 1: Top Hero Bento (Story Card + Profile Card) */
+.heroRow {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Card 1: Narrative Story Card */
+.storyCard {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease;
+}
+
+.storyCard:hover {
+  border-color: var(--border-hover);
+}
+
+.storyHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.storyBadge {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.storyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.paragraph {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--text-secondary);
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+/* Clean bold text for keywords without any box or highlight */
+.bioHighlight {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+/* Education Journey Timeline inside Story Card */
+.educationBlock {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.educationHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.educationBadge {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.educationTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.eduItem {
+  display: flex;
+  gap: 16px;
+  position: relative;
+}
+
+.eduGutter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 14px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.eduDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-subtle);
+  flex-shrink: 0;
+}
+
+.eduLine {
+  width: 2px;
+  flex: 1;
+  background: var(--border-subtle);
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+.eduContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 20px;
+}
+
+.eduItem:last-child .eduContent {
+  padding-bottom: 4px;
+}
+
+.eduRowTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eduInstitution {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.eduPeriod {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.eduDegree {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eduMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.eduGrade {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.eduLocation {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* Card 2: Profile & Identity Card */
+.profileCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease;
+}
+
+.profileCard:hover {
+  border-color: var(--border-hover);
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.statusIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.photoStage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+[data-theme="light"] .photoStage {
+  background: var(--bg-surface-elevated);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.fallbackAvatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 102, 0, 0.12) 0%, transparent 70%);
+}
+
+.fallbackRing {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--color-accent-subtle);
+}
+
+.fallbackMonogram {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.fallbackNameTag {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.role {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.quickSpecsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 14px;
+}
+
+.specRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.specLabel {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+}
+
+.specValue {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.specAccent {
+  color: var(--color-accent);
+}
+
+.specLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.specLink:hover {
+  text-decoration: underline;
+}
+
+/* Row 2: Core Engineering Principles Block */
+.principlesSection {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.sectionBlockTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.principleCard {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.principleCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+}
+
+.principleNumber {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  padding: 3px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.principleTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.principleText {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.62;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Row 3: Focus & Research Grid */
+.focusSection {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.focusGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.focusCard {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.focusCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .focusCard:hover {
+  box-shadow: 0 8px 20px rgba(60, 45, 30, 0.05);
+}
+
+.focusTop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.focusCategory {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.focusHeading {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.focusDesc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.focusTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tagChip {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .tagChip {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1080px) {
+  .heroRow {
+    grid-template-columns: 1fr;
+  }
+
+  .principlesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .focusGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .storyCard,
+  .profileCard,
+  .principlesSection,
+  .focusSection {
+    padding: clamp(18px, 4vw, 24px);
+    border-radius: 18px;
+  }
+
+  .photoStage {
+    max-width: 260px;
+    max-height: 260px;
+  }
+
+  .eduRowTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .focusGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .header .title {
+    font-size: 26px;
+  }
+}

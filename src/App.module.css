@@ -1,0 +1,35 @@
+.page {
+  position: relative;
+  overflow-x: clip;
+}
+
+.backgroundGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 800px;
+  background-image:
+    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+  background-size: 240px 160px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Sections are stacked ABOVE the meteor canvas */
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  padding: 0 0 var(--section-gap);
+  position: relative;
+  z-index: 1;
+}
+
+/* Wrapper that holds the meteor shower canvas behind all sections from About onwards */
+.meteorZone {
+  position: relative;
+  overflow: hidden;
+}

@@ -1,0 +1,29 @@
+.section {
+  max-width: 1207px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--color-white);
+}
+
+.title {
+  font-weight: 700;
+  font-size: clamp(40px, 9vw, 100px);
+  color: var(--color-orange-500);
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.title:hover {
+  opacity: 0.85;
+}

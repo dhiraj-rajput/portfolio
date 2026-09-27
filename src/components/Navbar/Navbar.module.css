@@ -1,0 +1,243 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(9, 9, 11, 0.85);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="light"] .wrapper {
+  background: rgba(237, 238, 242, 0.88);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1372px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px clamp(16px, 3vw, 24px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.logoImg {
+  height: 42px;
+  width: auto;
+  max-width: 90px;
+  display: block;
+  object-fit: contain;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13.5px;
+  flex: 1;
+  justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  color: var(--text-secondary);
+  transition: color 0.15s ease;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--text-primary);
+}
+
+.linkActive {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* 1. Resume Button - 40px height, 12px radius */
+.resumeButton {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated, #161618);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.resumeButton:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px var(--color-accent-subtle);
+}
+
+/* 2. Expandable buttons: GitHub, LinkedIn, WhatsApp (40px square by default, expands on hover) */
+.expandableButton {
+  height: 40px;
+  width: 40px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated, #161618);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.2s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.actionIcon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.expandLabel {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  transition: max-width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.2s ease,
+              margin-left 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.expandableButton:hover {
+  width: 110px;
+  padding: 0 12px;
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-accent-subtle);
+}
+
+.expandableButton:hover .expandLabel {
+  opacity: 1;
+  max-width: 72px;
+  margin-left: 8px;
+}
+
+/* WhatsApp Specific hover and image styling */
+.whatsappExpandable:hover {
+  width: 124px;
+  background: rgba(37, 211, 102, 0.12);
+  border-color: #25d366;
+  color: #25d366;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+}
+
+.whatsappExpandable:hover .expandLabel {
+  max-width: 86px;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: 8px;
+    padding: 6px 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 0 clamp(12px, 3vw, 20px);
+    gap: 12px;
+  }
+
+  .logoImg {
+    height: 36px;
+  }
+
+  .rightActions {
+    gap: 6px;
+  }
+
+  .resumeButton {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .expandableButton {
+    height: 36px;
+    width: 36px;
+    padding: 0 8px;
+  }
+
+  .expandableButton:hover {
+    width: 36px; /* Do not expand on mobile touch */
+    padding: 0 8px;
+  }
+
+  .expandableButton:hover .expandLabel {
+    display: none;
+  }
+}

@@ -1,0 +1,39 @@
+.section {
+  border: 1px solid rgba(232, 93, 0, 0.81);
+  border-radius: 32px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 16px;
+  padding: 24px;
+  max-width: 1372px;
+  margin: 0 auto;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.topRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.wide {
+  flex: 1;
+}
+
+.right {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+  .topRow {
+    grid-template-columns: 1fr;
+  }
+}

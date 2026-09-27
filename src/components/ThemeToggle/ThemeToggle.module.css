@@ -1,0 +1,27 @@
+.toggleBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated, #161616);
+  border: 1px solid var(--border-subtle, #282828);
+  color: var(--text-primary, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toggleBtn:hover {
+  background: var(--color-accent-subtle, rgba(255, 102, 0, 0.1));
+  border-color: var(--color-accent, #ff6600);
+  color: var(--color-accent, #ff6600);
+  transform: translateY(-2px);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}

@@ -1,0 +1,23 @@
+.section {
+  max-width: 1178px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--color-orange-50);
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}

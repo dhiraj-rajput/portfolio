@@ -1,0 +1,72 @@
+.marqueeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: visible;
+  padding: 6px 0;
+}
+
+.itemWrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 0.85rem;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+
+/* Prominent tech stack card with noticeable border and elevation */
+.techCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-surface-elevated, #161618);
+  border: 1.5px solid var(--border-subtle, #33333b);
+  border-radius: 14px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+[data-theme="light"] .techCard {
+  background: #fbf9f5;
+  border-color: #d5cdc0;
+  box-shadow: 0 4px 12px rgba(60, 45, 30, 0.08);
+}
+
+/* Hover stays safely inside padded marquee bounds without clipping */
+.techCard:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--color-accent, #ff6600);
+  box-shadow: 0 6px 20px var(--color-accent-subtle, rgba(255, 102, 0, 0.18));
+}
+
+.techLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+/* In dark theme, invert black/dark monochrome logos so they appear crisp white */
+:root:not([data-theme="light"]) .darkInvert,
+[data-theme="dark"] .darkInvert {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .darkInvert {
+  filter: none;
+}
+
+.techName {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}

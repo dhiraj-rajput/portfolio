@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Default: Dark Theme */
+  --bg-canvas: #09090b;
+  --bg-surface: #111113;
+  --bg-surface-elevated: #161618;
+  --border-subtle: #27272a;
+  --border-hover: #3f3f46;
+  
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --color-accent: #ff6600;
+  --color-accent-hover: #ff771a;
+  --color-accent-subtle: rgba(255, 102, 0, 0.12);
+
+  --hero-gradient-start: #ffffff;
+  --card-bg: #111113;
+  --card-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  --glow-opacity: 0.35;
+
+  /* Legacy design tokens compatibility */
+  --color-orange-500: var(--color-accent);
+  --color-orange-50: #fff0e6;
+  --color-grey-100: var(--text-secondary);
+  --color-grey-200: var(--text-muted);
+  --color-grey-300: var(--text-muted);
+  --color-grey-400: #3f3f46;
+  --color-black-900: var(--bg-canvas);
+  --color-black-400: var(--border-subtle);
+  --color-black-200: var(--text-secondary);
+  --color-black-100: var(--text-muted);
+  --color-black-50: #ffffff;
+  --color-white: var(--text-primary);
+  --color-border-subtle: var(--border-subtle);
+
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  --content-max-width: 1372px;
+  --section-gap: clamp(64px, 8vw, 100px);
+}
+
+[data-theme="light"] {
+  /*
+   * Modern Soft & Eye-Friendly Light Mode:
+   * - Soft calm neutral canvas (#EDEEF2) that eliminates harsh white glare
+   * - Crisp card surfaces (#FFFFFF) with refined borders (#D6DBE3) for comfortable depth
+   * - Soft elevated components (#E4E7EE)
+   * - Deep obsidian text (#111827) for razor-sharp legibility
+   * - Energetic orange accent (#EA580C)
+   */
+  --bg-canvas: #edeef2;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #e4e7ee;
+  --border-subtle: #d6dbe3;
+  --border-hover: #b8c2d0;
+
+  --text-primary: #111827;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --color-accent: #ea580c;
+  --color-accent-hover: #c2410c;
+  --color-accent-subtle: rgba(234, 88, 12, 0.12);
+
+  --hero-gradient-start: #111827;
+  --card-bg: #ffffff;
+  --card-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --glow-opacity: 0.14;
+
+  /* Legacy design tokens mapped for Soft Light Theme */
+  --color-orange-500: var(--color-accent);
+  --color-orange-50: #fff7ed;
+  --color-grey-100: var(--text-secondary);
+  --color-grey-200: var(--text-muted);
+  --color-grey-300: var(--text-muted);
+  --color-grey-400: #d6dbe3;
+  --color-black-900: var(--bg-canvas);
+  --color-black-400: var(--border-subtle);
+  --color-black-200: var(--text-secondary);
+  --color-black-100: var(--text-muted);
+  --color-black-50: #111827;
+  --color-white: var(--text-primary);
+  --color-border-subtle: var(--border-subtle);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+section[id],
+header[id] {
+  scroll-margin-top: 80px;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.68;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+p, span, li {
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 24px);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --content-max-width: 100%;
+  }
+}
+
+/* Utilities for Marquee Logos */
+.fill-cyan-500 {
+  fill: #06b6d4;
+}
+
+.fill-primary {
+  fill: var(--color-accent);
+}
+
+.fill-gray-900,
+.dark\:fill-white {
+  fill: var(--text-primary);
+}
+
+.h-\[20px\] {
+  height: 20px;
+}
+
+.h-\[22px\] {
+  height: 22px;
+}
+
+.h-\[24px\] {
+  height: 24px;
+}
+
+.h-\[28px\] {
+  height: 28px;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[40px\] {
+  height: 40px;
+}
+
+.w-\[120px\] {
+  width: 120px;
+}
+
+.w-\[140px\] {
+  width: 140px;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.relative {
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.mx-\[4rem\] {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+@media (min-width: 640px) {
+  .sm\:w-auto {
+    width: auto;
+  }
+}

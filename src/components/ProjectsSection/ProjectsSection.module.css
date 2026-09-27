@@ -1,0 +1,534 @@
+.section {
+  max-width: 1372px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.5px;
+}
+
+[data-theme="light"] .heading {
+  color: var(--text-primary);
+}
+
+.subheading {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Header Navigation Controls (Counter + Arrow buttons) */
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.counter {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.counterActive {
+  color: var(--color-accent);
+}
+
+.arrowGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated, #161618);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.navBtn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px var(--color-accent-subtle);
+}
+
+/* Single Project Showcase Card */
+.showcaseCard {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 28px;
+  padding: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.showcaseCard:hover {
+  border-color: var(--border-hover);
+}
+
+/* Ambient glow in background */
+.cardGlow {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--color-accent-subtle) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card Header (Meta tags + project indicator pills) */
+.cardHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 18px;
+}
+
+.metaGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.categoryBadge {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.yearBadge {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Step Dots */
+.stepDots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stepDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.stepDot:hover {
+  border-color: var(--color-accent);
+}
+
+.stepDotActive {
+  width: 26px;
+  border-radius: 100px;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent-subtle);
+}
+
+/* Media Container for Real Images / Videos */
+.mediaContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-height: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaElement {
+  width: 100%;
+  height: 100%;
+  max-height: 440px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Media Placeholder (for future image / video) */
+.mediaPlaceholder {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  background: var(--bg-surface-elevated);
+  border: 1.5px dashed var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.mediaPlaceholder:hover {
+  border-color: var(--color-accent);
+}
+
+.mediaInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.mediaIcon {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.mediaLabel {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.mediaHint {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Card Body */
+.cardBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.8vw, 38px);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.projectDescription {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  letter-spacing: -0.005em;
+  max-width: 960px;
+  margin: 0;
+}
+
+/* Highlights & Architecture */
+.highlightsSection {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: clamp(18px, 2.5vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.highlightsHeading {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.highlightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  letter-spacing: -0.005em;
+}
+
+.highlightBullet {
+  color: var(--color-accent);
+  font-size: 14px;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+/* Technologies Used */
+.toolsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toolsLabel {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.toolsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toolTag {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.toolTag:hover {
+  border-color: var(--color-accent);
+}
+
+/* Card Footer (Actions + Direct links) */
+.cardFooter {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+}
+
+.linksGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionBtnPrimary {
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  color: #ffffff;
+}
+
+.actionBtnPrimary:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px var(--color-accent-subtle);
+}
+
+.actionBtnSecondary {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.actionBtnSecondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Bottom Pagination & Prev/Next within Card */
+.cardNavGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottomNavBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bottomNavBtn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .navControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .showcaseCard {
+    padding: clamp(18px, 4vw, 28px);
+    border-radius: 20px;
+    gap: 20px;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .linksGroup {
+    width: 100%;
+  }
+
+  .actionBtn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .cardNavGroup {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .bottomNavBtn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navBtn {
+    height: 38px;
+    padding: 0 12px;
+    font-size: 12.5px;
+  }
+
+  .projectTitle {
+    font-size: 24px;
+  }
+}
