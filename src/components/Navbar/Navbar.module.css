@@ -219,10 +219,11 @@
 .mobileBackdrop {
   position: fixed;
   inset: 0;
-  top: 59px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  top: 54px;
+  height: calc(100dvh - 54px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 49;
   animation: fadeIn 0.2s ease;
 }
@@ -232,38 +233,40 @@
   top: 0;
   left: 0;
   right: 0;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100dvh - 54px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   background: var(--bg-canvas, #09090b);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 16px 20px 28px;
+  padding: 12px 18px clamp(24px, 5vh, 44px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="light"] .mobileDrawer {
   background: #edeef2;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.14);
 }
 
 /* Mobile Nav List */
 .mobileNavList {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .mobileNavLink {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
   color: var(--text-secondary);
   text-decoration: none;
@@ -281,8 +284,8 @@
 }
 
 .activeDot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--color-accent);
 }
@@ -290,45 +293,47 @@
 .mobileDivider {
   height: 1px;
   background: var(--border-subtle);
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 /* Mobile Drawer Footer */
 .mobileDrawerFooter {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .mobileDrawerTitle {
   font-family: var(--font-heading);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--text-muted);
 }
 
+/* Always 2-column grid so WhatsApp & Resume sit side-by-side on Row 2 */
 .mobileSocialGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .mobileSocialCard {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 11px 14px;
-  border-radius: 10px;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 9px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
+  min-height: 40px;
 }
 
 .mobileSocialCard:hover {
@@ -337,10 +342,15 @@
   background: var(--color-accent-subtle);
 }
 
+.mobileWhatsappCard {
+  border-color: rgba(37, 211, 102, 0.35);
+  color: #25d366;
+}
+
 .mobileWhatsappCard:hover {
   border-color: #25d366;
   color: #25d366;
-  background: rgba(37, 211, 102, 0.12);
+  background: rgba(37, 211, 102, 0.14);
 }
 
 /* Keyframe Animations */
@@ -356,7 +366,7 @@
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-12px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -403,9 +413,5 @@
   .hamburgerBtn {
     width: 36px;
     height: 36px;
-  }
-
-  .mobileSocialGrid {
-    grid-template-columns: 1fr;
   }
 }
