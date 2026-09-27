@@ -1,4 +1,5 @@
 import { researchEntries } from '../../data/research';
+import { assetUrl } from '../../utils/assets';
 import styles from './ResearchSection.module.css';
 
 /**
@@ -42,7 +43,7 @@ export function ResearchSection() {
               {entry.videoUrl ? (
                 <div className={styles.mediaWrap}>
                   <video
-                    src={entry.videoUrl}
+                    src={assetUrl(entry.videoUrl)}
                     controls
                     playsInline
                     preload="metadata"
@@ -53,7 +54,7 @@ export function ResearchSection() {
               ) : entry.image ? (
                 <div className={styles.mediaWrap}>
                   <img
-                    src={entry.image}
+                    src={assetUrl(entry.image)}
                     alt={`${entry.title} Preview`}
                     className={styles.mediaImg}
                     loading="lazy"

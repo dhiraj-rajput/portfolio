@@ -1,4 +1,5 @@
 import { Marquee } from '@/components/ui/marquee';
+import { assetUrl } from '@/utils/assets';
 import styles from './MarqueeDemo.module.css';
 
 /**
@@ -53,19 +54,12 @@ export function MarqueeDemo() {
           <div key={tech.id} className={styles.itemWrapper}>
             <div className={styles.techCard}>
               <img
-                src={`/tech/${tech.id}.png`}
+                src={assetUrl(`tech/${tech.id}.svg`)}
                 alt={`${tech.name} logo`}
                 className={`${styles.techLogo} ${tech.darkInvert ? styles.darkInvert : ''}`}
                 width={28}
                 height={28}
                 loading="lazy"
-                onError={(e) => {
-                  // Fall back to SVG if PNG is not present
-                  const img = e.currentTarget;
-                  if (!img.src.endsWith('.svg')) {
-                    img.src = `/tech/${tech.id}.svg`;
-                  }
-                }}
               />
               <span className={styles.techName}>{tech.name}</span>
             </div>

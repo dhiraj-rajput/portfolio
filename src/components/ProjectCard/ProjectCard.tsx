@@ -1,5 +1,6 @@
 import type { Project, ProjectCategory } from '../../types';
 import { LinkIcon, CodeIcon, ShieldIcon, PulseIcon, CpuIcon, LayersIcon } from '../icons';
+import { assetUrl } from '../../utils/assets';
 import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
@@ -50,7 +51,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
     >
       <div className={styles.cover}>
         {project.image ? (
-          <img src={project.image} alt={project.title} className={styles.coverImage} />
+          <img src={assetUrl(project.image)} alt={project.title} className={styles.coverImage} />
         ) : (
           <GeneratedCover project={project} />
         )}

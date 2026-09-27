@@ -1,5 +1,6 @@
 import { navLinks } from '../../data/navLinks';
 import { flutterScrollTo } from '../../utils/flutterScroll';
+import { assetUrl } from '../../utils/assets';
 import styles from './Footer.module.css';
 
 const ArrowUpIcon = () => (
@@ -49,7 +50,7 @@ export function Footer() {
               className={styles.logoLink}
               aria-label="Scroll to home"
             >
-              <img src="/logo.svg" alt="DJ Logo" className={styles.logoImg} />
+              <img src={assetUrl('logo.svg')} alt="DJ Logo" className={styles.logoImg} />
             </a>
             <div className={styles.brandText}>
               <h3 className={styles.brandName}>Dhiraj Rajput</h3>
@@ -187,7 +188,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="/Dhiraj_Rajput_Resume.pdf"
+                href={assetUrl('Dhiraj_Rajput_Resume.pdf')}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footerLink}

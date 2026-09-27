@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import type { Project, ProjectCategory } from '../../types';
 import { CloseIcon, CodeIcon, LinkIcon, ShieldIcon, PulseIcon, CpuIcon, LayersIcon } from '../icons';
 import { Button } from '../Button/Button';
+import { assetUrl } from '../../utils/assets';
 import styles from './ProjectModal.module.css';
 
 const CATEGORY_BANNER: Record<ProjectCategory, { className: string; Icon: typeof ShieldIcon }> = {
@@ -57,7 +58,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         <div className={styles.imageContainer}>
           {project.image ? (
-            <img src={project.image} alt={project.title} className={styles.bannerImg} />
+            <img src={assetUrl(project.image)} alt={project.title} className={styles.bannerImg} />
           ) : (
             (() => {
               const { className, Icon } = CATEGORY_BANNER[project.category] ?? CATEGORY_BANNER['Full-Stack & AI'];

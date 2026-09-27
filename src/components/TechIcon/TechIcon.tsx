@@ -1,5 +1,6 @@
 import { GenericTechGlyph } from '../icons';
 import type { TechItem } from '../../types';
+import { assetUrl } from '../../utils/assets';
 import styles from './TechIcon.module.css';
 
 interface TechIconProps {
@@ -14,7 +15,7 @@ export function TechIcon({ item }: TechIconProps) {
   return (
     <div className={styles.wrapper} title={item.name}>
       {item.icon ? (
-        <img src={item.icon} alt={item.name} className={styles.image} />
+        <img src={assetUrl(item.icon)} alt={item.name} className={styles.image} />
       ) : (
         <GenericTechGlyph className={styles.glyph} />
       )}

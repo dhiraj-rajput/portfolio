@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { navLinks } from '../../data/navLinks';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { flutterScrollTo } from '../../utils/flutterScroll';
+import { assetUrl } from '../../utils/assets';
 import styles from './Navbar.module.css';
 
 const GithubIcon = () => (
@@ -122,7 +123,7 @@ export function Navbar() {
           className={styles.logo}
           aria-label="Home"
         >
-          <img src="/logo.svg" alt="DJ Logo" className={styles.logoImg} />
+          <img src={assetUrl('logo.svg')} alt="DJ Logo" className={styles.logoImg} />
         </a>
 
         <nav className={styles.nav} aria-label="Main navigation">
@@ -145,7 +146,7 @@ export function Navbar() {
         <div className={styles.rightActions}>
           {/* 1. Resume Button (First in action order) */}
           <a
-            href="/Dhiraj_Rajput_Resume.pdf"
+            href={assetUrl('Dhiraj_Rajput_Resume.pdf')}
             target="_blank"
             rel="noreferrer"
             className={styles.resumeButton}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { engineerData } from '../../data/about';
+import { assetUrl } from '../../utils/assets';
 import styles from './AboutSection.module.css';
 
 function escapeRegExp(string: string) {
@@ -129,7 +130,7 @@ export function AboutSection() {
             <div className={styles.photoStage}>
               {profile.avatarUrl && !imgError ? (
                 <img
-                  src={profile.avatarUrl}
+                  src={assetUrl(profile.avatarUrl)}
                   alt={profile.name}
                   className={styles.avatarImage}
                   onError={() => setImgError(true)}
