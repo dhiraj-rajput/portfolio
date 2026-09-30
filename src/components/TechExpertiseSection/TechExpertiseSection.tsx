@@ -43,6 +43,7 @@ export function TechExpertiseSection() {
 
   return (
     <section id="expertise" className={styles.section} aria-label="Technical Expertise">
+      <span id="tech" style={{ position: 'absolute', top: '-80px', pointerEvents: 'none' }} aria-hidden="true" />
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <h2 className={styles.title}>Technical Expertise</h2>

@@ -19,6 +19,19 @@
   background: radial-gradient(circle, rgba(255, 102, 0, var(--glow-opacity, 0.35)) 0%, rgba(255, 102, 0, 0) 70%);
   pointer-events: none;
   z-index: -1;
+  animation: glowBreathe 6s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes glowBreathe {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1.15;
+    transform: scale(1.06);
+  }
 }
 
 .title {
