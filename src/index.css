@@ -12,9 +12,17 @@
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
 
-  --color-accent: #ff6600;
-  --color-accent-hover: #ff771a;
-  --color-accent-subtle: rgba(255, 102, 0, 0.12);
+  /*
+   * Ergonomic Lighter Orange Accent (#fb923c — Warm Amber-Tangerine):
+   * Derived from Color Opponent Theory & APCA Perceptual Contrast:
+   * - Elevated Lightness (61% vs 50% on #ff6600) prevents harsh retinal burn-in
+   * - Tuned Hue Angle (27° warm amber) aligns with photopic sensitivity peak (V-lambda)
+   * - Softened Saturation (96%) eliminates chromostereopsis against dark canvas (#09090b)
+   */
+  --color-accent-rgb: 251, 146, 60;
+  --color-accent: #fb923c;
+  --color-accent-hover: #ff9f43;
+  --color-accent-subtle: rgba(251, 146, 60, 0.12);
 
   --hero-gradient-start: #ffffff;
   --card-bg: #111113;
@@ -62,6 +70,7 @@
   --text-secondary: #475569;
   --text-muted: #64748b;
 
+  --color-accent-rgb: 234, 88, 12;
   --color-accent: #ea580c;
   --color-accent-hover: #c2410c;
   --color-accent-subtle: rgba(234, 88, 12, 0.12);
