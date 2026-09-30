@@ -82,99 +82,123 @@ function TechCpuIcon({ isHovered }: { isHovered: boolean }) {
 }
 
 /**
- * 3. Reading Book: Pages genuinely flip across the center spine in 3D as wind blows through!
+ * 3. Reading Book: Authentic 3D HTML flipping pages that turn smoothly across the spine!
  */
 function BookPagesIcon({ isHovered }: { isHovered: boolean }) {
   return (
     <div className={`${styles.bookIconWrap} ${isHovered ? styles.bookActive : ''}`}>
-      <svg viewBox="0 0 32 28" width="30" height="28" fill="none" className={styles.bookSvg}>
-        {/* Book Covers & Base Left/Right Spreads */}
-        <path
-          d="M3 6 C7 4.5 11 4.5 16 6.8 L16 23 C11 20.8 7 20.8 3 22 Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          fill="currentColor"
-          opacity="0.18"
-          className={styles.leftPageBase}
-        />
-        <path
-          d="M29 6 C25 4.5 21 4.5 16 6.8 L16 23 C21 20.8 25 20.8 29 22 Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          fill="currentColor"
-          opacity="0.18"
-          className={styles.rightPageBase}
-        />
-
-        {/* Left page text lines */}
-        <line x1="6" y1="10" x2="13" y2="10" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-        <line x1="6" y1="13" x2="13" y2="13" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-        <line x1="6" y1="16" x2="11" y2="16" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-
-        {/* Right page text lines */}
-        <line x1="19" y1="10" x2="26" y2="10" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-        <line x1="19" y1="13" x2="26" y2="13" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-        <line x1="19" y1="16" x2="24" y2="16" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
-
-        {/* Animated 3D Turning Pages (Cascade from right to left like a real book) */}
-        <g className={styles.turningPage1}>
-          <path
-            d="M16 6.8 C21 4.5 25 4.5 29 6 L29 22 C25 20.8 21 20.8 16 23 Z"
-            stroke="var(--color-accent)"
-            strokeWidth="1.6"
-            fill="var(--color-accent-subtle)"
-          />
-        </g>
-        <g className={styles.turningPage2}>
-          <path
-            d="M16 6.8 C21 4.5 25 4.5 29 6 L29 22 C25 20.8 21 20.8 16 23 Z"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            fill="currentColor"
-            opacity="0.3"
-          />
-        </g>
+      <div className={styles.book3DContainer} aria-hidden="true">
+        {/* Left Hardcover & Page Stack */}
+        <div className={styles.pageBaseLeft}>
+          <div className={styles.pageTextLine} />
+          <div className={styles.pageTextLine} />
+          <div className={styles.pageTextShort} />
+        </div>
 
         {/* Center Spine Ridge */}
-        <line x1="16" y1="6" x2="16" y2="24" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+        <div className={styles.bookSpineBar} />
 
-        {/* Wind Gust breeze lines passing over */}
-        <g className={styles.windBreeze}>
-          <path d="M0 4 Q5 2 10 4" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M2 25 Q7 23 12 25" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" />
-        </g>
-      </svg>
+        {/* Right Hardcover & Page Stack */}
+        <div className={styles.pageBaseRight}>
+          <div className={styles.pageTextLine} />
+          <div className={styles.pageTextLine} />
+          <div className={styles.pageTextShort} />
+        </div>
+
+        {/* Dynamic 3D Flipping Leaf 1 (Turns 180° across spine in true GPU 3D) */}
+        <div className={styles.flipLeafOne}>
+          <div className={styles.leafSideFront}>
+            <div className={styles.pageTextLine} />
+            <div className={styles.pageTextLine} />
+          </div>
+          <div className={styles.leafSideBack}>
+            <div className={styles.pageTextLine} />
+            <div className={styles.pageTextLine} />
+          </div>
+        </div>
+
+        {/* Dynamic 3D Flipping Leaf 2 (Follows closely behind for multi-page flurry) */}
+        <div className={styles.flipLeafTwo}>
+          <div className={styles.leafSideFront}>
+            <div className={styles.pageTextLine} />
+            <div className={styles.pageTextLine} />
+          </div>
+          <div className={styles.leafSideBack}>
+            <div className={styles.pageTextLine} />
+            <div className={styles.pageTextLine} />
+          </div>
+        </div>
+
+        {/* Wind Breeze Streaks */}
+        <div className={styles.bookWindTrails}>
+          <span className={styles.windStreakOne} />
+          <span className={styles.windStreakTwo} />
+        </div>
+      </div>
     </div>
   );
 }
 
 /**
- * 4. Video Games: Gamepad controller actively tilts left and right!
+ * 4. Video Games: Active combo mashing, analog stick maneuver, and haptic rumble!
  */
 function GamepadIcon({ isHovered }: { isHovered: boolean }) {
   return (
     <div className={`${styles.gamepadIconWrap} ${isHovered ? styles.gamepadActive : ''}`}>
-      <svg viewBox="0 0 30 26" width="30" height="26" fill="none" className={styles.gamepadSvg}>
-        {/* Controller body */}
-        <rect x="2" y="6" width="26" height="15" rx="7.5" fill="currentColor" opacity="0.2" />
-        <rect x="2" y="6" width="26" height="15" rx="7.5" stroke="currentColor" strokeWidth="2" />
-
-        {/* D-Pad on left */}
-        <g className={styles.dpad}>
-          <path d="M7 11.5 L11 11.5 M9 9.5 L9 13.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+      <svg viewBox="0 0 32 26" width="32" height="26" fill="none" className={styles.gamepadSvg}>
+        {/* Haptic Rumble Pulse Waves */}
+        <g className={styles.rumbleWaves}>
+          <path d="M1 9 C-1 11 -1 15 1 17" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" className={styles.rumbleLeft} />
+          <path d="M31 9 C33 11 33 15 31 17" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" className={styles.rumbleRight} />
         </g>
 
-        {/* Action Buttons on right */}
-        <g className={styles.actionBtns}>
-          <circle cx="21" cy="11.5" r="1.3" fill="var(--color-accent)" className={styles.btnA} />
-          <circle cx="23" cy="13.5" r="1.3" fill="var(--color-accent)" className={styles.btnB} />
-          <circle cx="19" cy="13.5" r="1.3" fill="var(--color-accent)" className={styles.btnX} />
-          <circle cx="21" cy="15.5" r="1.3" fill="var(--color-accent)" className={styles.btnY} />
+        {/* Top Trigger Bumpers */}
+        <path d="M6 6 Q9 3 13 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M26 6 Q23 3 19 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+
+        {/* Gamepad Main Body Shell */}
+        <path
+          d="M6 7 Q16 5 26 7 Q31 9 30 18 Q29 24 24 23 Q20 22 18 19 L14 19 Q12 22 8 23 Q3 24 2 18 Q1 9 6 7 Z"
+          fill="currentColor"
+          opacity="0.2"
+        />
+        <path
+          d="M6 7 Q16 5 26 7 Q31 9 30 18 Q29 24 24 23 Q20 22 18 19 L14 19 Q12 22 8 23 Q3 24 2 18 Q1 9 6 7 Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+
+        {/* Directional D-Pad (Left) */}
+        <g className={styles.dpadGroup}>
+          <rect x="7" y="10" width="6" height="2.2" rx="0.6" fill="currentColor" />
+          <rect x="8.9" y="8.1" width="2.2" height="6" rx="0.6" fill="currentColor" />
+          <circle cx="10" cy="11.1" r="0.7" fill="var(--bg-surface)" />
         </g>
 
-        {/* Dual analog thumbsticks */}
-        <circle cx="11" cy="15.5" r="2.2" stroke="currentColor" strokeWidth="1.4" className={styles.stickLeft} />
-        <circle cx="17" cy="15.5" r="2.2" stroke="currentColor" strokeWidth="1.4" className={styles.stickRight} />
+        {/* Left Thumbstick with dynamic gaming motion */}
+        <g className={styles.leftStick}>
+          <circle cx="12.5" cy="16" r="3" stroke="currentColor" strokeWidth="1.4" fill="currentColor" opacity="0.4" />
+          <circle cx="12.5" cy="16" r="1.2" fill="#ffffff" />
+        </g>
+
+        {/* Right Thumbstick with dynamic gaming motion */}
+        <g className={styles.rightStick}>
+          <circle cx="19.5" cy="16" r="3" stroke="currentColor" strokeWidth="1.4" fill="currentColor" opacity="0.4" />
+          <circle cx="19.5" cy="16" r="1.2" fill="#ffffff" />
+        </g>
+
+        {/* 4 Colored Diamond Action Buttons (Right) */}
+        <g className={styles.actionButtons}>
+          {/* Y Button (Yellow) */}
+          <circle cx="23" cy="8.5" r="1.5" fill="#eab308" className={styles.btnY} />
+          {/* X Button (Blue) */}
+          <circle cx="20.5" cy="11" r="1.5" fill="#38bdf8" className={styles.btnX} />
+          {/* B Button (Red) */}
+          <circle cx="25.5" cy="11" r="1.5" fill="#ef4444" className={styles.btnB} />
+          {/* A Button (Green) */}
+          <circle cx="23" cy="13.5" r="1.5" fill="#22c55e" className={styles.btnA} />
+        </g>
       </svg>
     </div>
   );
@@ -204,67 +228,82 @@ function BallIcon({ isHovered }: { isHovered: boolean }) {
 }
 
 /**
- * 6. Karate Medal: Junior Black Belt gold medal with authentic black-and-red ribbon,
- * prestigious specular shine sweep, and natural pendulum swing!
+ * 6. Karate Medal: Clean minimalist outline vector drawing!
+ * Draped ribbon and embossed medallion with an elegant outline karate/star crest.
  */
 function MedalIcon({ isHovered }: { isHovered: boolean }) {
   return (
     <div className={`${styles.medalIconWrap} ${isHovered ? styles.medalActive : ''}`}>
-      <svg viewBox="0 0 32 38" width="30" height="36" fill="none" className={styles.medalSvg}>
-        <defs>
-          <linearGradient id="goldMedalGrad" x1="8" y1="14" x2="24" y2="34" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#fef08a" />
-            <stop offset="30%" stopColor="#f59e0b" />
-            <stop offset="70%" stopColor="#d97706" />
-            <stop offset="100%" stopColor="#78350f" />
-          </linearGradient>
-          <clipPath id="medalClip">
-            <circle cx="16" cy="24" r="10" />
-          </clipPath>
-        </defs>
-
-        {/* Junior Black Belt V-Neck Ribbon: Solid Black with bold Red center stripe */}
-        <g className={styles.ribbonGroup}>
-          {/* Black outer ribbon bands */}
-          <path d="M6 1 L13 16 L16 14 L19 16 L26 1" stroke="#18181b" strokeWidth="4.2" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Red center junior black belt stripe */}
-          <path d="M6 1 L13 16 L16 14 L19 16 L26 1" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Metallic suspension loop holding medal */}
-          <circle cx="16" cy="15" r="2.2" stroke="#d97706" strokeWidth="1.6" fill="#fef08a" />
+      <svg viewBox="0 0 30 34" width="30" height="34" fill="none" className={styles.medalSvg}>
+        {/* Clean Outline Ribbon Draped from Neck */}
+        <g className={styles.ribbonBand}>
+          <path
+            d="M5 2 L11 15 L15 13 L19 15 L25 2"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* Inner Ribbon Accent Line */}
+          <path
+            d="M8 2 L12 13 M22 2 L18 13"
+            stroke="var(--color-accent)"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
+          {/* Suspension Ring */}
+          <circle cx="15" cy="14" r="2" stroke="currentColor" strokeWidth="1.8" />
         </g>
 
-        {/* The Golden Champion Medal */}
-        <g className={styles.goldenMedallion}>
-          {/* Outer glowing halo */}
-          <circle cx="16" cy="24" r="11" fill="#f59e0b" opacity="0.35" className={styles.medalAura} />
-
-          {/* Heavy Gold Medallion Base */}
-          <circle cx="16" cy="24" r="10.5" fill="url(#goldMedalGrad)" stroke="#ffd700" strokeWidth="1.8" />
-
-          {/* Rim Detail with Embossed Inset */}
-          <circle cx="16" cy="24" r="8" stroke="#92400e" strokeWidth="0.8" opacity="0.6" />
-
-          {/* Junior Black Belt Martial Arts Star Emblem */}
-          <polygon
-            points="16,19 17.5,22.2 21,22.4 18.2,24.5 19.1,28 16,26.1 12.9,28 13.8,24.5 11,22.4 14.5,22.2"
-            fill="#ffd700"
-            stroke="#78350f"
-            strokeWidth="0.7"
+        {/* Clean Outline Medallion */}
+        <g className={styles.goldMedallionBody}>
+          {/* Outer Medal Circle with Subtle Depth Fill */}
+          <circle
+            cx="15"
+            cy="23"
+            r="9.5"
+            fill="currentColor"
+            opacity="0.16"
+          />
+          <circle
+            cx="15"
+            cy="23"
+            r="9.5"
+            stroke="currentColor"
+            strokeWidth="2"
           />
 
-          {/* Diagonal Specular Shimmer Beam */}
-          <g clipPath="url(#medalClip)">
-            <rect
-              x="-15"
-              y="12"
-              width="6"
-              height="25"
-              fill="#ffffff"
-              opacity="0.85"
-              transform="rotate(30 16 24)"
-              className={styles.medalShimmerBar}
-            />
-          </g>
+          {/* Inner Inset Rim Outline */}
+          <circle
+            cx="15"
+            cy="23"
+            r="7"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            opacity="0.5"
+          />
+
+          {/* Martial Arts Star / Black Belt Emblem Outline */}
+          <polygon
+            points="15,18 16.3,21 19.5,21.3 17,23.4 17.8,26.5 15,24.8 12.2,26.5 13,23.4 10.5,21.3 13.7,21"
+            stroke="var(--color-accent)"
+            strokeWidth="1.4"
+            fill="var(--color-accent-subtle)"
+            strokeLinejoin="round"
+          />
+        </g>
+
+        {/* Outline Aura Pulse Ring when worn! */}
+        <g className={styles.outlineAura}>
+          <circle
+            cx="15"
+            cy="23"
+            r="12"
+            stroke="var(--color-accent)"
+            strokeWidth="1.2"
+            strokeDasharray="3 3"
+            className={styles.auraRing}
+          />
         </g>
       </svg>
     </div>

@@ -1,0 +1,40 @@
+DHIRAJ RAJPUT — ENGINEER & RESEARCHER PROFILE
+===============================================
+Full Name: Dhiraj Rajput
+Profession: Cybersecurity & Full-Stack Engineer, Published Researcher
+Location: Pune, Maharashtra, India
+Email: rajputdhiraj1010@gmail.com
+Portfolio: https://dhiraj-rajput.github.io/portfolio/
+LinkedIn: https://linkedin.com/in/dhiraj-rajput-
+GitHub: https://github.com/dhiraj-rajput
+
+EDUCATION:
+- B.Tech Computer Science & Engineering (Specialization: Cybersecurity & Forensics)
+- Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune
+- CGPA: 8.87/ 10.0
+
+CORE TECHNICAL COMPETENCIES:
+- Languages: Go (Golang), Python, TypeScript, JavaScript, SQL, C/C++
+- Web & Frontend: React 18, Vite, CSS Modules, Tailwind CSS, Responsive Web Design, WCAG A11y
+- Backend & Distributed: Apache Kafka, Apache Spark, FastAPI, Django, Redis, TimescaleDB, REST, WebSockets, gRPC
+- Cloud & DevOps: Docker, AWS (S3, EC2), Linux, Git, CI/CD
+- Security & AI: Penetration Testing, Intrusion Detection, PII Sanitization, YOLOv8, OpenCV, Large Language Models
+
+RESEARCH PUBLICATION:
+- Title: Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation
+- Journal: Cureus Journal of Computer Science (Springer Nature)
+- Year: 2026
+- DOI: 10.7759/s44389-026-00265-x
+- Details: Wearable assistive device for visually impaired individuals pairing edge camera sensors and LLM intelligence.
+
+KEY PROJECTS:
+1. Neo-Analytics: Real-time astronomical telemetry pipeline (Kafka, Spark, TimescaleDB)
+2. RakshaNetra: Client-edge PII interceptor proxy for enterprise LLM deployments
+3. RIFT: Remote intrusion simulation & offensive security framework (Go, Django, Celery)
+4. BidForge: Multi-agent LLM system for automated proposal drafting (Python, FastAPI)
+5. Omniscient: Collaborative task engine with LLaMA integration and WebSockets
+
+CERTIFICATIONS:
+- Oracle Cloud Foundations Associate (Oracle)
+- Cisco Endpoint Security (Cisco)
+- Junior Cybersecurity Analyst Career Path (Cisco)
