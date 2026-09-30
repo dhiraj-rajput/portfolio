@@ -42,11 +42,11 @@
   line-height: 1.65;
 }
 
-/* Header Navigation Controls (Counter + Arrow buttons) */
-.navControls {
+/* Counter & Hint in Header */
+.counterBlock {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .counter {
@@ -61,37 +61,78 @@
   color: var(--color-accent);
 }
 
-.arrowGroup {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.dragHintBadge {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
 }
 
-.navBtn {
-  display: inline-flex;
+/* Showcase Stage containing Left Arrow, Card Track, Right Arrow */
+.stage {
+  position: relative;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 42px;
-  padding: 0 16px;
-  border-radius: 12px;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Side Navigation Arrow Buttons */
+.sideNavBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background: var(--bg-surface-elevated, #161618);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-size: 13.5px;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.25s ease;
+  z-index: 10;
   user-select: none;
 }
 
-.navBtn:hover {
+.sideNavBtn:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px var(--color-accent-subtle);
+  transform: scale(1.12);
+  box-shadow: 0 0 24px var(--color-accent-subtle), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.sideNavBtn:active {
+  transform: scale(0.95);
+}
+
+[data-theme="light"] .sideNavBtn {
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .sideNavBtn:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Card Track */
+.cardTrack {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  perspective: 1200px;
 }
 
 /* Single Project Showcase Card */
@@ -105,12 +146,17 @@
   flex-direction: column;
   gap: 28px;
   box-shadow: var(--card-shadow);
-  transition: border-color 0.25s ease;
   overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
 }
 
-.showcaseCard:hover {
-  border-color: var(--border-hover);
+.showcaseCard.dragging {
+  cursor: grabbing;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--color-accent);
 }
 
 /* Ambient glow in background */
@@ -125,7 +171,7 @@
   z-index: 0;
 }
 
-/* Card Header (Meta tags + project indicator pills) */
+/* Card Header */
 .cardHeader {
   position: relative;
   z-index: 1;
@@ -193,79 +239,6 @@
   background: var(--color-accent);
   border-color: var(--color-accent);
   box-shadow: 0 0 10px var(--color-accent-subtle);
-}
-
-/* Media Container for Real Images / Videos */
-.mediaContainer {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-height: 440px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mediaElement {
-  width: 100%;
-  height: 100%;
-  max-height: 440px;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-
-/* Media Placeholder (for future image / video) */
-.mediaPlaceholder {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 200px;
-  border-radius: 16px;
-  background: var(--bg-surface-elevated);
-  border: 1.5px dashed var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: border-color 0.25s ease;
-}
-
-.mediaPlaceholder:hover {
-  border-color: var(--color-accent);
-}
-
-.mediaInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-}
-
-.mediaIcon {
-  color: var(--text-muted);
-  opacity: 0.5;
-}
-
-.mediaLabel {
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.mediaHint {
-  font-family: var(--font-heading);
-  font-size: 11.5px;
-  color: var(--text-muted);
-  opacity: 0.6;
 }
 
 /* Card Body */
@@ -389,7 +362,7 @@
   border-color: var(--color-accent);
 }
 
-/* Card Footer (Actions + Direct links) */
+/* Card Footer */
 .cardFooter {
   position: relative;
   z-index: 1;
@@ -448,49 +421,37 @@
   transform: translateY(-2px);
 }
 
-/* Bottom Pagination & Prev/Next within Card */
-.cardNavGroup {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.cardBottomHint {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
-.bottomNavBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 14px;
-  border-radius: 10px;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.bottomNavBtn:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+/* Responsive */
+@media (max-width: 900px) {
+  .stage {
+    gap: 10px;
   }
 
-  .navControls {
-    width: 100%;
-    justify-content: space-between;
+  .sideNavBtn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .stage {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sideNavBtn {
+    display: none;
   }
 
   .showcaseCard {
-    padding: clamp(18px, 4vw, 28px);
+    padding: clamp(18px, 4vw, 24px);
     border-radius: 20px;
     gap: 20px;
   }
@@ -508,24 +469,6 @@
   .actionBtn {
     flex: 1;
     justify-content: center;
-  }
-
-  .cardNavGroup {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .bottomNavBtn {
-    flex: 1;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .navBtn {
-    height: 38px;
-    padding: 0 12px;
-    font-size: 12.5px;
   }
 
   .projectTitle {

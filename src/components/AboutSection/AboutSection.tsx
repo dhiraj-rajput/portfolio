@@ -23,8 +23,6 @@ export function AboutSection() {
     education,
     principlesHeading,
     principles,
-    focusHeading,
-    focusAreas,
   } = engineerData;
 
   /**
@@ -195,33 +193,8 @@ export function AboutSection() {
             ))}
           </div>
         </section>
-
-        {/* Row 3: Focus & Research Grid */}
-        <section className={styles.focusSection} aria-label="Areas of Focus and Research">
-          <h3 className={styles.sectionBlockTitle}>{focusHeading}</h3>
-          <div className={styles.focusGrid}>
-            {focusAreas.map((area) => (
-              <article key={area.id} className={styles.focusCard}>
-                <div className={styles.focusTop}>
-                  <span className={styles.focusCategory}>{area.category}</span>
-                  <h4 className={styles.focusHeading}>{area.title}</h4>
-                  <p className={styles.focusDesc}>{area.description}</p>
-                </div>
-
-                {area.tags && area.tags.length > 0 && (
-                  <div className={styles.focusTags}>
-                    {area.tags.map((tag) => (
-                      <span key={tag} className={styles.tagChip}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
       </div>
     </section>
   );
 }
+

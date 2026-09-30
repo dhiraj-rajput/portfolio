@@ -77,8 +77,8 @@ export interface EngineerProfile {
   education?: EducationMilestone[];
   principlesHeading: string;
   principles: OperationalPrinciple[];
-  focusHeading: string;
-  focusAreas: ResearchObservation[];
+  focusHeading?: string;
+  focusAreas?: ResearchObservation[];
 }
 
 export interface ResearchEntry {
