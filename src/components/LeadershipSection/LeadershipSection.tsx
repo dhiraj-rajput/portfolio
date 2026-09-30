@@ -119,37 +119,44 @@ function AnimalBallSvg({ type }: { type: AnimalType }) {
   }
 }
 
+type BirdState = 'hidden' | 'in' | 'out';
+type BirdHeading = 1 | -1; // 1 = heading right, -1 = heading left
+
 /**
- * Delightful Wild Sparrow component:
- * - Flies in gracefully from outside the screen when the section is reached.
- * - Perches calmly on the "View All Certificates" button with lifelike micro-idle movements.
- * - When scrolled out, the sparrow takes flight and soars away off-screen!
+ * Delightful Wild Sparrow component (direction-aware):
+ * - Scrolling down: swoops in along a curve from the LEFT, facing right, and perches
+ *   on the "View All Certificates" button. On leaving it flies off to the RIGHT.
+ * - Scrolling up: turns around (faces left), swoops in from the RIGHT and, on leaving,
+ *   flies off to the LEFT.
  */
-function SparrowBird({ isPerched, isFlyingAway }: { isPerched: boolean; isFlyingAway: boolean }) {
+function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeading }) {
   const [hasLanded, setHasLanded] = useState(false);
 
   useEffect(() => {
-    if (isPerched && !isFlyingAway) {
-      const timer = setTimeout(() => {
-        setHasLanded(true);
-      }, 1400); // 1.4s flight time to touch down
-      return () => clearTimeout(timer);
-    } else {
+    if (state !== 'in') {
       setHasLanded(false);
+      return;
     }
-  }, [isPerched, isFlyingAway]);
+    const timer = setTimeout(() => {
+      setHasLanded(true);
+    }, 1800); // matches the 1.8s arrival animation in the CSS
+    return () => clearTimeout(timer);
+  }, [state]);
 
-  let flightClass = styles.sparrowHidden;
-  if (isPerched && !isFlyingAway) {
-    flightClass = hasLanded ? styles.sparrowPerched : styles.sparrowFlyFromTop;
-  } else if (isFlyingAway) {
-    flightClass = styles.sparrowFlyToTop;
-  }
+  let stateClass = styles.birdHidden;
+  if (state === 'in') stateClass = hasLanded ? styles.birdPerched : styles.birdIn;
+  else if (state === 'out') stateClass = styles.birdOut;
 
-  const isFlying = !hasLanded && (isPerched || isFlyingAway);
+  const isFlying = state === 'out' || (state === 'in' && !hasLanded);
+  const headingClass = heading === 1 ? styles.headRight : styles.headLeft;
 
   return (
-    <div className={`${styles.sparrowWrapper} ${flightClass}`} aria-hidden="true">
+    <div
+      className={`${styles.sparrowWrapper} ${headingClass} ${stateClass}`}
+      aria-hidden="true"
+    >
+      <div className={styles.sparrowFlight}>
+        <div className={styles.sparrowFacing}>
       <svg
         viewBox="0 0 38 34"
         width="40"
@@ -242,6 +249,8 @@ function SparrowBird({ isPerched, isFlyingAway }: { isPerched: boolean; isFlying
           <path d="M8 18 L15 16" stroke="#fed7aa" strokeWidth="1.1" strokeLinecap="round" opacity="0.85" />
         </g>
       </svg>
+        </div>
+      </div>
     </div>
   );
 }
@@ -254,13 +263,57 @@ function SparrowBird({ isPerched, isFlyingAway }: { isPerched: boolean; isFlying
  * - Outside the card: Animals roll in the outer gutters, NEVER overlapping or covering the text!
  * - When scrolled out of bounds: Animals roll back in, take the rows back, and reset!
  * - When scrolled into view: Animation automatically repeats afresh!
- * - A wild sparrow flies in and perches on the "View All Certificates" button, staying still while the user is there!
+ * - A wild sparrow swoops in along a curve from the left (scrolling down) or right (scrolling up),
+ *   perches on the "View All Certificates" button, and flies off in its heading when the user leaves.
  */
 export function LeadershipSection() {
   const [isTriggered, setIsTriggered] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const exitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [birdState, setBirdState] = useState<BirdState>('hidden');
+  const [birdHeading, setBirdHeading] = useState<BirdHeading>(1);
+
+  // The bird is driven by the button footer (not the whole section) so its arrival
+  // actually happens on screen. Scroll direction comes from where the footer sits
+  // relative to the viewport middle when it crosses the observed zone.
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Footer below the viewport middle => it is arriving from / sitting beyond the
+          // bottom edge (scrolling down). Above the middle => it is at / beyond the top edge.
+          const viewportH = entry.rootBounds?.height ?? window.innerHeight;
+          const footerBelow = entry.boundingClientRect.top > viewportH / 2;
+
+          if (entry.isIntersecting) {
+            // Scrolling down: fly in from the left, facing right.
+            // Scrolling up: turn around and fly in from the right, facing left.
+            setBirdHeading(footerBelow ? 1 : -1);
+            setBirdState('in');
+          } else {
+            // Scrolled past downwards: fly off to the right.
+            // Scrolled back up out of it: fly off to the left.
+            setBirdHeading(footerBelow ? -1 : 1);
+            setBirdState((prev) => (prev === 'hidden' ? prev : 'out'));
+          }
+        });
+      },
+      {
+        // Active zone: a little inside the viewport so the bird is always visible
+        // when it arrives or takes off.
+        rootMargin: '-12% 0px -12% 0px',
+        threshold: 0,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -274,7 +327,7 @@ export function LeadershipSection() {
             setIsExiting(false);
             setIsTriggered(true);
           } else {
-            // When scrolled out of bounds (above or below), animals take the rows back and bird flies away!
+            // When scrolled out of bounds (above or below), animals take the rows back!
             setIsExiting(true);
             exitTimerRef.current = setTimeout(() => {
               setIsTriggered(false);
@@ -295,17 +348,6 @@ export function LeadershipSection() {
     };
   }, []);
 
-  const replayRolling = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setIsTriggered(false);
-      setIsExiting(false);
-      setTimeout(() => {
-        setIsTriggered(true);
-      }, 50);
-    }, 700);
-  };
-
   return (
     <section
       id="leadership"
@@ -322,15 +364,6 @@ export function LeadershipSection() {
             </p>
           </div>
 
-          <button
-            type="button"
-            className={styles.rollAgainBtn}
-            onClick={replayRolling}
-            title="Roll the animals again!"
-            aria-label="Roll the animals again"
-          >
-            <span>🐾 Roll Animals</span>
-          </button>
         </div>
       </header>
 
@@ -389,7 +422,7 @@ export function LeadershipSection() {
         </ul>
 
         {/* Google Drive Repository Link for All Certificates with Perched Sparrow */}
-        <div className={styles.driveFooter}>
+        <div ref={footerRef} className={styles.driveFooter}>
           <a
             href="https://drive.google.com/drive/folders/1ugIqPA7SVXRZmXlh6HnrGdqVUFpoHeaw?usp=sharing"
             target="_blank"
@@ -397,7 +430,7 @@ export function LeadershipSection() {
             className={styles.driveButton}
           >
             {/* The Sparrow sits comfortably on top of the button */}
-            <SparrowBird isPerched={isTriggered && !isExiting} isFlyingAway={isExiting} />
+            <SparrowBird state={birdState} heading={birdHeading} />
             <span>View All Certificates &amp; Credentials</span>
             <span className={styles.driveArrow}>↗</span>
           </a>
