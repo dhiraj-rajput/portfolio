@@ -21,7 +21,7 @@ export const engineerData: EngineerProfile = {
     { label: 'Institution', value: 'MIT-WPU Pune' },
     { label: 'Degree', value: 'B.Tech Computer Science' },
     { label: 'Specialization', value: 'Cybersecurity & Forensics' },
-    { label: 'CGPA', value: '8.89 / 10.0', highlight: true },
+    { label: 'CGPA', value: '8.87 / 10.0', highlight: true },
     { label: 'Research Focus', value: 'Applied AI & Autonomous Systems' },
     { label: 'Active Domains', value: 'Full-Stack Dev, Forensics & Cloud' },
     { label: 'GitHub', value: 'github.com/dhiraj-rajput', href: 'https://github.com/dhiraj-rajput' },
@@ -52,7 +52,7 @@ export const engineerData: EngineerProfile = {
       institution: 'Dr. Vishwanath Karad MIT WPU',
       degree: 'B.Tech in Computer Science (Cybersecurity & Forensics)',
       period: 'Aug 2023 - Present',
-      grade: 'CGPA: 8.89 / 10.0',
+      grade: 'CGPA: 8.87 / 10.0',
       location: 'Pune, India',
     },
     {
@@ -99,37 +99,5 @@ export const engineerData: EngineerProfile = {
       statement: 'Design strict failure boundaries so isolated component anomalies never cascade into catastrophic service outages.',
     },
   ],
-
-  focusHeading: 'Areas of Focus & Research',
-
-  focusAreas: [
-    {
-      id: 'focus-1',
-      category: 'Security Architecture',
-      title: 'Intrusion Detection & Surface Mapping',
-      description: 'Building automated vulnerability scoring pipelines, SQLi/XSS-resistant filters, and real-time contest aggregation for security testing.',
-      tags: ['Go', 'Redis', 'RBAC', 'Heuristics'],
-    },
-    {
-      id: 'focus-2',
-      category: 'Distributed Systems',
-      title: 'Real-Time Stream Processing',
-      description: 'Ingesting high-throughput astronomical event streams via Kafka message buses and hypertable partitioning in TimescaleDB with zero data loss.',
-      tags: ['Apache Kafka', 'Spark', 'TimescaleDB', 'Grafana'],
-    },
-    {
-      id: 'focus-3',
-      category: 'Edge & AI Privacy',
-      title: 'Client-Edge AI & Model Orchestration',
-      description: 'Sanitizing sensitive tokens on-device before external transmission, integrating local LLMs, and maintaining bidirectional WebSocket feeds.',
-      tags: ['LLaMA', 'WebSockets', 'Privacy', 'Python'],
-    },
-    {
-      id: 'focus-4',
-      category: 'Cloud Infrastructure',
-      title: 'Resilient Microservice Boundaries',
-      description: 'Implementing tamper-proof JWT sessions, rate-limited gateway filters, and containerized Docker environments for reproducible security.',
-      tags: ['Docker', 'JWT', 'REST APIs', 'Cloud Sec'],
-    },
-  ],
 };
+

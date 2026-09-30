@@ -59,11 +59,11 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h6',
-    iconName: 'Shield',
-    category: 'Sports',
-    title: 'Football - Goalkeeper',
+    iconName: 'Medal',
+    category: 'Martial Arts',
+    title: 'Karate Kid & Junior Black Belt',
     description:
-      'Playing as a goalkeeper - the critical defensive anchor with complete visibility over the entire pitch. Reading opposition play patterns, commanding the backline, and reacting in milliseconds is second nature.',
-    tags: ['Goalkeeper', 'Defensive Anchor', 'Reflexes', 'Leadership'],
+      'Trained in traditional Karate and earned a Junior Black Belt. The journey forged discipline, laser-sharp focus, situational awareness, and lightning-fast reflexes through rigorous kata precision and competitive kumite sparring.',
+    tags: ['Junior Black Belt', 'Karate', 'Discipline', 'Kumite', 'Reflexes'],
   },
 ];

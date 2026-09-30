@@ -141,6 +141,44 @@
   display: flex;
   gap: 16px;
   position: relative;
+  padding: 12px 16px;
+  margin: 0 -16px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.28s ease,
+              border-color 0.28s ease,
+              box-shadow 0.28s ease;
+  cursor: pointer;
+}
+
+.eduItem:hover {
+  transform: scale(1.035);
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-subtle);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  z-index: 5;
+}
+
+[data-theme="light"] .eduItem:hover {
+  background: #ffffff;
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
+}
+
+.eduItem:hover .eduDot {
+  transform: scale(1.35);
+  background: var(--color-accent);
+  box-shadow: 0 0 14px var(--color-accent);
+}
+
+.eduItem:hover .eduInstitution {
+  color: var(--color-accent);
+}
+
+.eduItem:hover .eduGrade {
+  transform: scale(1.06);
+  box-shadow: 0 0 12px var(--color-accent-subtle);
 }
 
 .eduGutter {
@@ -159,6 +197,7 @@
   background: var(--color-accent);
   box-shadow: 0 0 8px var(--color-accent-subtle);
   flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .eduLine {
@@ -446,12 +485,15 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
 }
 
 .principleCard:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.025);
   border-color: var(--border-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .principleNumber {
@@ -481,100 +523,6 @@
   margin: 0;
 }
 
-/* Row 3: Focus & Research Grid */
-.focusSection {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 24px;
-  padding: clamp(24px, 3.5vw, 36px);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-shadow: var(--card-shadow);
-}
-
-.focusGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.focusCard {
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.focusCard:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-hover);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] .focusCard:hover {
-  box-shadow: 0 8px 20px rgba(60, 45, 30, 0.05);
-}
-
-.focusTop {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.focusCategory {
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-}
-
-.focusHeading {
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.35;
-  margin: 0;
-}
-
-.focusDesc {
-  font-family: var(--font-body);
-  font-size: 13.5px;
-  line-height: 1.62;
-  color: var(--text-secondary);
-  margin: 0;
-}
-
-.focusTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.tagChip {
-  font-family: var(--font-body);
-  font-size: 11.5px;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 2px 7px;
-  border-radius: 5px;
-  border: 1px solid var(--border-subtle);
-}
-
-[data-theme="light"] .tagChip {
-  background: rgba(0, 0, 0, 0.03);
-}
-
 /* Responsive Media Queries */
 @media (max-width: 1080px) {
   .heroRow {
@@ -584,17 +532,12 @@
   .principlesGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .focusGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 640px) {
   .storyCard,
   .profileCard,
-  .principlesSection,
-  .focusSection {
+  .principlesSection {
     padding: clamp(18px, 4vw, 24px);
     border-radius: 18px;
   }
@@ -611,10 +554,6 @@
   }
 
   .principlesGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .focusGrid {
     grid-template-columns: 1fr;
   }
 
