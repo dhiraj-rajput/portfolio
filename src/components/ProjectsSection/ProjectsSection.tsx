@@ -361,6 +361,29 @@ export function ProjectsSection() {
               <div className={styles.cardBottomHint}>
                 <span>Swipe left / right to flick card</span>
               </div>
+
+              {/* Mobile-friendly bottom navigation bar */}
+              <div className={styles.mobileNavRow}>
+                <button
+                  type="button"
+                  className={styles.mobileNavBtn}
+                  onClick={handlePrev}
+                  aria-label="Previous project"
+                >
+                  <ChevronLeftIcon width={16} height={16} />
+                  <span>Prev</span>
+                </button>
+                <span className={styles.mobileNavHint}>Flick card or tap</span>
+                <button
+                  type="button"
+                  className={styles.mobileNavBtn}
+                  onClick={handleNext}
+                  aria-label="Next project"
+                >
+                  <span>Next</span>
+                  <ChevronRightIcon width={16} height={16} />
+                </button>
+              </div>
             </div>
           </article>
         </div>

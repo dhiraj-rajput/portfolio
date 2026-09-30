@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { hobbies, type HobbyItem } from '../../data/hobbies';
 import styles from './BeyondSection.module.css';
 
@@ -318,6 +318,27 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
   const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
   const [tilt, setTilt] = useState<{ rx: number; ry: number }>({ rx: 0, ry: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.25,
+        rootMargin: '20px 0px -20px 0px',
+      }
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = cardRef.current;
@@ -347,10 +368,13 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
     setTilt({ rx: 0, ry: 0 });
   };
 
+  // On mobile/touch: scrolling the card into view activates the animations automatically!
+  const isActive = isHovered || isInView;
+
   return (
     <article
       ref={cardRef}
-      className={styles.card}
+      className={`${styles.card} ${isInView ? styles.cardInView : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -368,12 +392,12 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
 
       <div className={styles.cardTop}>
         <div className={styles.iconWrap} aria-hidden="true">
-          {hobby.id === 'h1' && <CinemaIcon isHovered={isHovered} />}
-          {hobby.id === 'h2' && <TechCpuIcon isHovered={isHovered} />}
-          {hobby.id === 'h3' && <BookPagesIcon isHovered={isHovered} />}
-          {hobby.id === 'h4' && <GamepadIcon isHovered={isHovered} />}
-          {hobby.id === 'h5' && <BallIcon isHovered={isHovered} />}
-          {hobby.id === 'h6' && <MedalIcon isHovered={isHovered} />}
+          {hobby.id === 'h1' && <CinemaIcon isHovered={isActive} />}
+          {hobby.id === 'h2' && <TechCpuIcon isHovered={isActive} />}
+          {hobby.id === 'h3' && <BookPagesIcon isHovered={isActive} />}
+          {hobby.id === 'h4' && <GamepadIcon isHovered={isActive} />}
+          {hobby.id === 'h5' && <BallIcon isHovered={isActive} />}
+          {hobby.id === 'h6' && <MedalIcon isHovered={isActive} />}
         </div>
         <span className={styles.category}>{hobby.category}</span>
       </div>

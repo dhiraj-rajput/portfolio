@@ -93,34 +93,34 @@
   transition: opacity 0.3s ease;
 }
 
-/* When Stacked in Center (Desktop 3-col x 2-row) */
+/* When Stacked at Top (Desktop 3-col x 2-row) */
 .isStacked .card0 {
-  transform: translate(calc(100% + 24px), calc(50% + 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.94);
+  transform: translate(calc(100% + 24px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.94);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
 .isStacked .card1 {
-  transform: translate(0, calc(50% + 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.96);
+  transform: translate(0, var(--fan-y)) rotate(var(--fan-rotate)) scale(0.96);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
 .isStacked .card2 {
-  transform: translate(calc(-100% - 24px), calc(50% + 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.98);
+  transform: translate(calc(-100% - 24px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.98);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
 .isStacked .card3 {
-  transform: translate(calc(100% + 24px), calc(-50% - 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.0);
+  transform: translate(calc(100% + 24px), calc(-100% - 24px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.0);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
 .isStacked .card4 {
-  transform: translate(0, calc(-50% - 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.02);
+  transform: translate(0, calc(-100% - 24px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.02);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
 .isStacked .card5 {
-  transform: translate(calc(-100% - 24px), calc(-50% - 12px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.04);
+  transform: translate(calc(-100% - 24px), calc(-100% - 24px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.04);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 102, 0, 0.15);
 }
 
@@ -224,7 +224,7 @@
   box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12), 0 0 20px var(--color-accent-subtle);
 }
 
-/* Tablet: 2 Columns, 3 Rows */
+/* Tablet: 2 Columns, 3 Rows — Stacked at Row 1 (Top of section) */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -232,43 +232,43 @@
   }
 
   .isStacked .card0 {
-    transform: translate(calc(50% + 10px), calc(100% + 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.92);
+    transform: translate(calc(50% + 10px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.92);
   }
 
   .isStacked .card1 {
-    transform: translate(calc(-50% - 10px), calc(100% + 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.94);
+    transform: translate(calc(-50% - 10px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.94);
   }
 
   .isStacked .card2 {
-    transform: translate(calc(50% + 10px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.96);
+    transform: translate(calc(50% + 10px), calc(-100% - 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.96);
   }
 
   .isStacked .card3 {
-    transform: translate(calc(-50% - 10px), var(--fan-y)) rotate(var(--fan-rotate)) scale(0.98);
+    transform: translate(calc(-50% - 10px), calc(-100% - 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.98);
   }
 
   .isStacked .card4 {
-    transform: translate(calc(50% + 10px), calc(-100% - 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.0);
+    transform: translate(calc(50% + 10px), calc(-200% - 40px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.0);
   }
 
   .isStacked .card5 {
-    transform: translate(calc(-50% - 10px), calc(-100% - 20px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.02);
+    transform: translate(calc(-50% - 10px), calc(-200% - 40px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.02);
   }
 }
 
-/* Mobile: 1 Column, 6 Rows */
+/* Mobile: 1 Column, 6 Rows — Stacked at Card 0 (Top of section) */
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .card0 { --fan-rotate: -5deg; }
-  .card1 { --fan-rotate: -3deg; }
-  .card2 { --fan-rotate: -1deg; }
-  .card3 { --fan-rotate: 1deg; }
-  .card4 { --fan-rotate: 3deg; }
-  .card5 { --fan-rotate: 5deg; }
+  .card0 { --fan-rotate: -4deg; --fan-y: 0px; }
+  .card1 { --fan-rotate: -2.5deg; --fan-y: 2px; }
+  .card2 { --fan-rotate: -1deg; --fan-y: 3px; }
+  .card3 { --fan-rotate: 1deg; --fan-y: 3px; }
+  .card4 { --fan-rotate: 2.5deg; --fan-y: 2px; }
+  .card5 { --fan-rotate: 4deg; --fan-y: 0px; }
 
   .card {
     padding: 20px 18px;
@@ -280,26 +280,26 @@
   }
 
   .isStacked .card0 {
-    transform: translateY(calc(250% + 40px)) rotate(var(--fan-rotate)) scale(0.92);
+    transform: translateY(var(--fan-y)) rotate(var(--fan-rotate)) scale(0.94);
   }
 
   .isStacked .card1 {
-    transform: translateY(calc(150% + 24px)) rotate(var(--fan-rotate)) scale(0.94);
+    transform: translateY(calc(-100% - 16px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.96);
   }
 
   .isStacked .card2 {
-    transform: translateY(calc(50% + 8px)) rotate(var(--fan-rotate)) scale(0.96);
+    transform: translateY(calc(-200% - 32px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.97);
   }
 
   .isStacked .card3 {
-    transform: translateY(calc(-50% - 8px)) rotate(var(--fan-rotate)) scale(0.98);
+    transform: translateY(calc(-300% - 48px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.98);
   }
 
   .isStacked .card4 {
-    transform: translateY(calc(-150% - 24px)) rotate(var(--fan-rotate)) scale(1.0);
+    transform: translateY(calc(-400% - 64px + var(--fan-y))) rotate(var(--fan-rotate)) scale(0.99);
   }
 
   .isStacked .card5 {
-    transform: translateY(calc(-250% - 40px)) rotate(var(--fan-rotate)) scale(1.02);
+    transform: translateY(calc(-500% - 80px + var(--fan-y))) rotate(var(--fan-rotate)) scale(1.0);
   }
 }

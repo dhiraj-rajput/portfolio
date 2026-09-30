@@ -337,7 +337,8 @@ export function LeadershipSection() {
         });
       },
       {
-        threshold: 0.15,
+        threshold: 0.06,
+        rootMargin: '60px 0px -40px 0px',
       }
     );
 

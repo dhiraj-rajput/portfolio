@@ -22,7 +22,7 @@ export function TechExpertiseSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Trigger spread ONLY when the deck itself is scrolled well into the viewport
+          // Trigger spread reliably on all device heights & aspect ratios as soon as deck enters
           if (entry.isIntersecting) {
             setIsSpread(true);
           } else {
@@ -32,8 +32,8 @@ export function TechExpertiseSection() {
         });
       },
       {
-        threshold: 0.35,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.08,
+        rootMargin: '60px 0px -30px 0px',
       }
     );
 
