@@ -263,6 +263,13 @@
     gap: 16px;
   }
 
+  .card0 { --fan-rotate: -5deg; }
+  .card1 { --fan-rotate: -3deg; }
+  .card2 { --fan-rotate: -1deg; }
+  .card3 { --fan-rotate: 1deg; }
+  .card4 { --fan-rotate: 3deg; }
+  .card5 { --fan-rotate: 5deg; }
+
   .card {
     padding: 20px 18px;
     border-radius: 18px;

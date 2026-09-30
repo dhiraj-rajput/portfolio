@@ -945,3 +945,10 @@
     font-size: 26px;
   }
 }
+
+/* Touch devices: disable sticky hover tilt */
+@media (hover: none) {
+  .card:hover {
+    transform: none !important;
+  }
+}
