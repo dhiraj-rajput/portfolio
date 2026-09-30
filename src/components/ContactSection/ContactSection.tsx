@@ -16,6 +16,7 @@ export function ContactSection() {
 
   const [activeTargetIdx, setActiveTargetIdx] = useState<number>(0);
   const [isClicking, setIsClicking] = useState<boolean>(false);
+  const [hasCompletedTour, setHasCompletedTour] = useState<boolean>(false);
   const [handPos, setHandPos] = useState<{ x: number; y: number; visible: boolean }>({
     x: 0,
     y: 0,
@@ -24,7 +25,7 @@ export function ContactSection() {
   const [isUserHovering, setIsUserHovering] = useState<boolean>(false);
   const [isInView, setIsInView] = useState<boolean>(false);
 
-  // Intersection Observer to run animation only when section is in view
+  // Intersection Observer: Trigger animation when scrolled into view, reset when scrolled out
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -33,9 +34,19 @@ export function ContactSection() {
       (entries) => {
         entries.forEach((entry) => {
           setIsInView(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            // When scrolled into view, start tour afresh
+            setActiveTargetIdx(0);
+            setHasCompletedTour(false);
+          } else {
+            // When scrolled out of view, reset so it repeats when scrolled back in
+            setActiveTargetIdx(0);
+            setHasCompletedTour(false);
+            setHandPos((prev) => ({ ...prev, visible: false }));
+          }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.05, rootMargin: '80px 0px' }
     );
 
     observer.observe(el);
@@ -51,9 +62,9 @@ export function ContactSection() {
       Boolean
     ) as HTMLElement[];
 
-    if (targets.length === 0) return;
+    if (targets.length === 0 || activeTargetIdx >= targets.length) return;
 
-    const currentEl = targets[activeTargetIdx % targets.length];
+    const currentEl = targets[activeTargetIdx];
     if (!currentEl) return;
 
     const innerRect = inner.getBoundingClientRect();
@@ -72,42 +83,46 @@ export function ContactSection() {
     });
   };
 
-  // Automated Tour Orchestration: Glides to each target and clicks one by one!
+  // Automated Tour Orchestration: Snappy, brisk glide through all options ONCE
   useEffect(() => {
-    if (!isInView || isUserHovering) {
+    if (!isInView || isUserHovering || hasCompletedTour) {
       setHandPos((prev) => ({ ...prev, visible: false }));
       return;
     }
 
-    // Step 1: Position hand to active target
+    // Step 1: Position hand to active target immediately
     updateHandToCurrentTarget();
 
-    // Step 2: After gliding over (650ms), perform the click down
+    // Step 2: After brisk glide (320ms), perform the click down
     const clickTimer = setTimeout(() => {
       setIsClicking(true);
-    }, 700);
+    }, 320);
 
-    // Step 3: Release click after tactile depression (350ms)
+    // Step 3: Release click after snappy tactile depression (200ms)
     const releaseTimer = setTimeout(() => {
       setIsClicking(false);
-    }, 1050);
+    }, 520);
 
-    // Step 4: Advance to next target after brief hold (450ms)
+    // Step 4: Advance to next target after brief pause (200ms)
     const nextTimer = setTimeout(() => {
       const targets = [ctaBtnRef.current, ...detailLinkRefs.current.filter(Boolean)].filter(
         Boolean
       );
-      if (targets.length > 0) {
-        setActiveTargetIdx((prev) => (prev + 1) % targets.length);
+      if (activeTargetIdx + 1 < targets.length) {
+        setActiveTargetIdx((prev) => prev + 1);
+      } else {
+        // Finished the full tour across all contact channels: stop and hide hand until scrolled out!
+        setHasCompletedTour(true);
+        setHandPos((prev) => ({ ...prev, visible: false }));
       }
-    }, 1500);
+    }, 720);
 
     return () => {
       clearTimeout(clickTimer);
       clearTimeout(releaseTimer);
       clearTimeout(nextTimer);
     };
-  }, [activeTargetIdx, isInView, isUserHovering]);
+  }, [activeTargetIdx, isInView, isUserHovering, hasCompletedTour]);
 
   // Keep hand aligned on window resize
   useEffect(() => {
@@ -212,7 +227,7 @@ export function ContactSection() {
             ref={ctaBtnRef}
             href={contactInfo.email.href}
             className={`${styles.ctaBtn} ${
-              activeTargetIdx === 0 && isClicking ? styles.handClickedBtn : ''
+              !hasCompletedTour && activeTargetIdx === 0 && isClicking ? styles.handClickedBtn : ''
             }`}
             aria-label="Send me an email"
           >
@@ -227,6 +242,7 @@ export function ContactSection() {
               const currentTargetLink =
                 activeTargetIdx > 0 ? activeLinks[activeTargetIdx - 1] : null;
               const isTargeted =
+                !hasCompletedTour &&
                 Boolean(d.href) &&
                 Boolean(detailLinkRefs.current[index]) &&
                 detailLinkRefs.current[index] === currentTargetLink;

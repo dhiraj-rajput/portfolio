@@ -37,31 +37,6 @@
   margin: 0;
 }
 
-.rollAgainBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 12px;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  font-family: var(--font-heading);
-  font-size: 12.5px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-
-.rollAgainBtn:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px var(--color-accent-subtle);
-}
-
 /* Card wrapping the list: overflow visible so animals sit completely outside! */
 .card {
   background: var(--bg-surface);
@@ -438,10 +413,23 @@
 
 /* ====================================================
    WILD SPARROW CHOREOGRAPHY
-   Flies in from outside, perches on button, stays still,
-   and soars off-screen when scrolled out!
+
+   Direction-aware flight. --dir is +1 when the bird heads right and
+   -1 when it heads left; every keyframe below is mirrored from it.
+
+   - Scrolling DOWN: bird swoops in along a curve from the LEFT
+     (facing right), and when the section is left it flies off RIGHT.
+   - Scrolling UP: bird turns around (faces left), swoops in from
+     the RIGHT, and flies off LEFT.
+
+   Three nested layers so each axis gets its own easing (that is
+   what bends the straight line into a curve):
+     .sparrowWrapper  -> horizontal travel
+       .sparrowFlight -> vertical travel, banking, idle bobbing
+         .sparrowFacing -> mirror the sprite to face its heading
    ==================================================== */
 .sparrowWrapper {
+  --dir: 1;
   position: absolute;
   top: -12px;
   right: 18px;
@@ -451,22 +439,51 @@
   z-index: 25;
 }
 
-.sparrowHidden {
+.headRight {
+  --dir: 1;
+}
+
+.headLeft {
+  --dir: -1;
+}
+
+.sparrowFlight,
+.sparrowFacing {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Turns the bird around smoothly when its heading changes */
+.sparrowFacing {
+  transform: scaleX(var(--dir));
+  transition: transform 0.3s ease;
+}
+
+.birdHidden {
+  visibility: hidden;
   opacity: 0;
-  transform: translate3d(-30px, -450px, 0);
 }
 
-.sparrowFlyFromTop {
-  animation: sparrowFlyFromTopAnim 1.4s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+.birdIn {
+  animation: birdArriveX 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-.sparrowPerched {
+.birdIn .sparrowFlight {
+  animation: birdArriveY 1.8s cubic-bezier(0.45, 0.05, 0.3, 1) both;
+}
+
+.birdPerched .sparrowFlight {
   transform: translate3d(0, -18px, 0);
   animation: sparrowIdle 4.5s ease-in-out infinite;
 }
 
-.sparrowFlyToTop {
-  animation: sparrowFlyToTopAnim 1.05s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+.birdOut {
+  animation: birdLeaveX 1.3s cubic-bezier(0.5, 0, 0.85, 0.55) both;
+}
+
+.birdOut .sparrowFlight {
+  animation: birdLeaveY 1.3s cubic-bezier(0.4, 0, 0.9, 0.5) both;
 }
 
 .sparrowSvg {
@@ -507,27 +524,62 @@
   transform: translateY(-2px);
 }
 
-/* Flight from TOP to DOWN outside screen to perch on button */
-@keyframes sparrowFlyFromTopAnim {
+/* ---- Arrival: comes in from the side it is heading away from ---- */
+@keyframes birdArriveX {
   0% {
-    transform: translate3d(-30px, -450px, 0) scale(0.8) rotate(16deg);
+    transform: translate3d(calc(var(--dir) * -1 * (50vw + 280px)), 0, 0);
     opacity: 0;
   }
-  12% {
+  8% {
     opacity: 1;
-  }
-  45% {
-    transform: translate3d(-18px, -180px, 0) scale(0.95) rotate(8deg);
-  }
-  75% {
-    transform: translate3d(-6px, -45px, 0) scale(1.02) rotate(-5deg);
-  }
-  90% {
-    transform: translate3d(-1px, -22px, 0) scale(1) rotate(1.5deg);
   }
   100% {
-    transform: translate3d(0, -18px, 0) scale(1) rotate(0deg);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
+  }
+}
+
+/* Vertical half of the arc: high on entry, sweeping down, then a
+   small flare-up (beak lifts) just before touch-down. */
+@keyframes birdArriveY {
+  0% {
+    transform: translate3d(0, -170px, 0) rotate(calc(var(--dir) * 6deg));
+  }
+  55% {
+    transform: translate3d(0, -70px, 0) rotate(calc(var(--dir) * 14deg));
+  }
+  85% {
+    transform: translate3d(0, -24px, 0) rotate(calc(var(--dir) * -10deg));
+  }
+  100% {
+    transform: translate3d(0, -18px, 0) rotate(0deg);
+  }
+}
+
+/* ---- Departure: lifts off and carries on in its heading ---- */
+@keyframes birdLeaveX {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(calc(var(--dir) * (50vw + 280px)), 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes birdLeaveY {
+  0% {
+    transform: translate3d(0, -18px, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(0, -46px, 0) rotate(calc(var(--dir) * -16deg));
+  }
+  100% {
+    transform: translate3d(0, -190px, 0) rotate(calc(var(--dir) * -12deg));
   }
 }
 
@@ -539,40 +591,16 @@
     transform: translate3d(0, -18.5px, 0) scale(1.01, 0.99);
   }
   32% {
-    transform: translate3d(0, -18px, 0) rotate(-3.5deg);
+    transform: translate3d(0, -18px, 0) rotate(calc(var(--dir) * -3.5deg));
   }
   42% {
     transform: translate3d(0, -18px, 0) rotate(0deg);
   }
   65% {
-    transform: translate3d(0, -16.5px, 0) rotate(2.5deg);
+    transform: translate3d(0, -16.5px, 0) rotate(calc(var(--dir) * 2.5deg));
   }
   75% {
     transform: translate3d(0, -18px, 0) rotate(0deg);
-  }
-}
-
-/* Flight back UP to TOP off-screen when scrolled out */
-@keyframes sparrowFlyToTopAnim {
-  0% {
-    transform: translate3d(0, -18px, 0) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  15% {
-    transform: translate3d(12px, -48px, 0) scale(1.05) rotate(-14deg);
-    opacity: 1;
-  }
-  45% {
-    transform: translate3d(28px, -180px, 0) scale(0.92) rotate(-24deg);
-    opacity: 1;
-  }
-  75% {
-    transform: translate3d(42px, -320px, 0) scale(0.75) rotate(-30deg);
-    opacity: 0.85;
-  }
-  100% {
-    transform: translate3d(55px, -480px, 0) scale(0.5) rotate(-34deg);
-    opacity: 0;
   }
 }
 
@@ -591,6 +619,28 @@
   }
   100% {
     transform: rotate(40deg) scaleY(0.75) scaleX(1.05);
+  }
+}
+
+/* Reduced motion: no flight at all, the bird simply sits on the button */
+@media (prefers-reduced-motion: reduce) {
+  .birdIn,
+  .birdOut,
+  .birdIn .sparrowFlight,
+  .birdOut .sparrowFlight,
+  .birdPerched .sparrowFlight,
+  .flappingWingNear,
+  .flappingWingFar {
+    animation: none;
+  }
+
+  .birdIn .sparrowFlight,
+  .birdOut .sparrowFlight {
+    transform: translate3d(0, -18px, 0);
+  }
+
+  .birdOut {
+    opacity: 0;
   }
 }
 

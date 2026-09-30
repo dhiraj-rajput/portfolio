@@ -349,6 +349,17 @@
   border-radius: 10px;
   background: #000000;
   display: block;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Chrome / Safari / Edge: Hide the download button from shadow DOM controls */
+.mediaVideo::-internal-media-controls-download-button {
+  display: none !important;
+}
+
+.mediaVideo::-webkit-media-controls-enclosure {
+  overflow: hidden;
 }
 
 .mediaCaption {

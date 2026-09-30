@@ -15,6 +15,66 @@ const LAVA_COLORS = ['#ffd700', '#ff6600', '#ff2200', '#ff8c00', '#ffffff', '#4a
 const WATER_COLORS = ['#38bdf8', '#0284c7', '#bae6fd', '#0ea5e9', '#ffffff', '#7dd3fc'];
 
 /**
+ * Auto-playing Video with Intersection Observer:
+ * Automatically plays muted when scrolled into view, pauses when out of view,
+ * with full controls available for unmute/scrubbing.
+ */
+function AutoPlayResearchVideo({
+  src,
+  poster,
+  caption,
+}: {
+  src: string;
+  poster?: string;
+  caption?: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={styles.mediaWrap} onContextMenu={(e) => e.preventDefault()}>
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        muted
+        playsInline
+        loop
+        controls
+        controlsList="nodownload"
+        disablePictureInPicture
+        onContextMenu={(e) => e.preventDefault()}
+        preload="auto"
+        className={styles.mediaVideo}
+      />
+      {caption && <span className={styles.mediaCaption}>{caption}</span>}
+    </div>
+  );
+}
+
+/**
  * Research & Innovation Section
  *
  * Professional 120fps GPU Fluid Timeline:
@@ -481,19 +541,11 @@ export function ResearchSection() {
 
               {/* Media Preview: Video or Screenshot */}
               {entry.videoUrl ? (
-                <div className={styles.mediaWrap}>
-                  <video
-                    src={assetUrl(entry.videoUrl)}
-                    poster={entry.videoPoster ? assetUrl(entry.videoPoster) : undefined}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className={styles.mediaVideo}
-                  />
-                  {entry.videoCaption && (
-                    <span className={styles.mediaCaption}>{entry.videoCaption}</span>
-                  )}
-                </div>
+                <AutoPlayResearchVideo
+                  src={assetUrl(entry.videoUrl)}
+                  poster={entry.videoPoster ? assetUrl(entry.videoPoster) : undefined}
+                  caption={entry.videoCaption}
+                />
               ) : entry.image ? (
                 <div className={styles.mediaWrap}>
                   <img
