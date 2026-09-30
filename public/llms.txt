@@ -1,0 +1,54 @@
+# Dhiraj Rajput — Portfolio & Knowledge Base
+
+> Cybersecurity & Full-Stack Engineer. Published Researcher in Springer Nature. MIT-WPU Pune, India.
+
+## Executive Summary
+Dhiraj Rajput is a software engineer and cybersecurity researcher based in Pune, Maharashtra, India. He builds high-throughput distributed systems in Go and Python, modern interactive frontends in React and TypeScript, and published groundbreaking assistive technology research combining computer vision with LLMs for real-time blind navigation in Springer Nature (Cureus Journal of Computer Science).
+
+## Core Capabilities & Specializations
+- **Cybersecurity & Defense:** Penetration testing, intrusion detection, red team simulation, LLM privacy proxies, PII sanitization, credential & access audits.
+- **Distributed Systems & Backend:** High-throughput streaming data pipelines with Apache Kafka, Apache Spark, TimescaleDB, Redis, Go microservices, FastAPI, and Django.
+- **Frontend & UI Engineering:** React 18, TypeScript, Vite, CSS Modules, high-performance web animations, responsive design, WCAG accessibility (a11y).
+- **Edge AI & Assistive Tech:** Edge computer vision (YOLOv8, OpenCV), multimodal LLM reasoning, Raspberry Pi wearable prototypes, audio spatial feedback.
+
+## Peer-Reviewed Publication
+- **Title:** "Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation"
+- **Publisher:** Cureus Journal of Computer Science — Springer Nature (2026)
+- **DOI:** https://doi.org/10.7759/s44389-026-00265-x
+- **Summary:** Wearable, hands-free assistive device pairing edge computer vision with multimodal LLM reasoning for real-time obstacle annotation and navigation for visually impaired users.
+
+## Selected Open Source Projects
+1. **Neo-Analytics:**
+   - Real-time astronomical telemetry pipeline using Apache Kafka, Apache Spark, and TimescaleDB with automated risk evaluation.
+   - Code: https://github.com/dhiraj-rajput/neo-project
+2. **RakshaNetra:**
+   - Proactive client-edge PII interceptor proxy that sanitizes sensitive tokens before prompts reach external LLM endpoints.
+   - Code: https://github.com/dhiraj-rajput/rakshak-pii
+3. **RIFT (Remote Intrusion Framework):**
+   - Security operations and remote intrusion simulation framework built with Go, Django, Celery, and Redis.
+   - Code: https://github.com/dhiraj-rajput/rift-agent
+4. **BidForge:**
+   - Multi-agent LLM pipeline generating comprehensive enterprise proposals and bids from request documents.
+   - Code: https://github.com/dhiraj-rajput/bidforge
+5. **Omniscient:**
+   - Real-time collaborative task management engine powered by LLaMA and WebSockets.
+   - Code: https://github.com/dhiraj-rajput/omniscient
+
+## Professional Experience
+- **OrbitAvanya Tech** — Software Engineering Intern (Distributed Systems & Backend Architecture)
+
+## Education & Certifications
+- **B.Tech in Computer Science & Engineering (Specialization: Cybersecurity & Forensics)**
+  - Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune
+  - CGPA: 8.87
+- **Certifications:**
+  - Oracle Cloud Foundations Associate (Oracle)
+  - Cisco Endpoint Security (Cisco)
+  - Junior Cybersecurity Analyst Career Path (Cisco)
+
+## Contact Information
+- **Email:** rajputdhiraj1010@gmail.com
+- **LinkedIn:** https://linkedin.com/in/dhiraj-rajput-
+- **GitHub:** https://github.com/dhiraj-rajput
+- **WhatsApp:** https://wa.me/917972742879
+- **Portfolio Website:** https://dhiraj-rajput.github.io/portfolio/
