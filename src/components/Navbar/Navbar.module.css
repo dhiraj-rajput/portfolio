@@ -11,7 +11,7 @@
 }
 
 [data-theme="light"] .wrapper {
-  background: rgba(237, 238, 242, 0.92);
+  background: rgba(248, 249, 252, 0.88);
 }
 
 .inner {
@@ -248,8 +248,8 @@
 }
 
 [data-theme="light"] .mobileDrawer {
-  background: #edeef2;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.14);
+  background: var(--bg-canvas);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 /* Mobile Nav List */

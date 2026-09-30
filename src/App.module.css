@@ -18,6 +18,10 @@
   z-index: -1;
 }
 
+[data-theme="light"] .backgroundGrid {
+  opacity: 0.45;
+}
+
 /* Sections are stacked ABOVE the meteor canvas */
 .sections {
   display: flex;
