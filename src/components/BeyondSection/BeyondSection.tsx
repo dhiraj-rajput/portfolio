@@ -432,7 +432,7 @@ export function BeyondSection() {
       <header className={styles.header}>
         <h2 className={styles.title}>Beyond Engineering</h2>
         <p className={styles.subtitle}>
-          The things that fuel the work. Curiosity and discipline don't stop at the terminal.
+          Curiosity and discipline outside the terminal.
         </p>
       </header>
 

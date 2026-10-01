@@ -119,45 +119,12 @@ function AnimalBallSvg({ type }: { type: AnimalType }) {
   }
 }
 
-type BirdState = 'hidden' | 'in' | 'out';
-type BirdHeading = 1 | -1; // 1 = heading right, -1 = heading left
+type BirdPhase = 'hidden' | 'flyIn' | 'perched' | 'flyOut' | 'gone';
 
-/**
- * Delightful Wild Sparrow component (direction-aware):
- * - Scrolling down: swoops in along a curve from the LEFT, facing right, and perches
- *   on the "View All Certificates" button. On leaving it flies off to the RIGHT.
- * - Scrolling up: turns around (faces left), swoops in from the RIGHT and, on leaving,
- *   flies off to the LEFT.
- */
-function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeading }) {
-  const [hasLanded, setHasLanded] = useState(false);
-
-  useEffect(() => {
-    if (state !== 'in') {
-      setHasLanded(false);
-      return;
-    }
-    const timer = setTimeout(() => {
-      setHasLanded(true);
-    }, 1800); // matches the 1.8s arrival animation in the CSS
-    return () => clearTimeout(timer);
-  }, [state]);
-
-  let stateClass = styles.birdHidden;
-  if (state === 'in') stateClass = hasLanded ? styles.birdPerched : styles.birdIn;
-  else if (state === 'out') stateClass = styles.birdOut;
-
-  const isFlying = state === 'out' || (state === 'in' && !hasLanded);
-  const headingClass = heading === 1 ? styles.headRight : styles.headLeft;
-
+/** The sparrow artwork. Wings flap while flying and fold when perched. */
+function BirdSvg({ isFlying, hasLanded }: { isFlying: boolean; hasLanded: boolean }) {
   return (
-    <div
-      className={`${styles.sparrowWrapper} ${headingClass} ${stateClass}`}
-      aria-hidden="true"
-    >
-      <div className={styles.sparrowFlight}>
-        <div className={styles.sparrowFacing}>
-      <svg
+    <svg
         viewBox="0 0 38 34"
         width="40"
         height="36"
@@ -176,7 +143,7 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
             <stop offset="100%" stopColor="#fed7aa" />
           </linearGradient>
         </defs>
-
+  
         {/* Far Wing behind body (flaps synchronously, clearly visible!) */}
         <g className={isFlying ? styles.flappingWingFar : styles.foldedWingFar}>
           <path
@@ -186,7 +153,7 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
             strokeWidth="0.8"
           />
         </g>
-
+  
         {/* Claws / Feet clutching the button rim */}
         <path
           d="M13 26 L13 31 M11 31 L15 31 M19 26 L19 31 M17 31 L21 31"
@@ -195,7 +162,7 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
           strokeLinecap="round"
           className={hasLanded ? styles.feetPerched : styles.feetTucked}
         />
-
+  
         {/* Tail feathers */}
         <path
           d="M3 17 L-2 23 L2 25 L8 20 Z"
@@ -203,40 +170,40 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
           stroke="#451a03"
           strokeWidth="0.8"
         />
-
+  
         {/* Plump Sparrow Body */}
         <path
           d="M8 17 C7 11 12 7 20 7 C26 7 29 10 29 15 C29 21 25 26 18 26 C11 26 8 22 8 17 Z"
           fill="url(#sparrowBodyGrad)"
         />
-
+  
         {/* Soft Buff Chest */}
         <path
           d="M16 14 C16 11 21 10 25 13 C28 16 26 24 21 25 C17 25 16 19 16 14 Z"
           fill="url(#sparrowChestGrad)"
         />
-
+  
         {/* Dark Throat Bib */}
         <path
           d="M23 14 C23 12 25 12 26 14 C26 17 24 18 23 17 Z"
           fill="#1e293b"
         />
-
+  
         {/* Round Head & Crown */}
         <circle cx="23.5" cy="9.5" r="6.2" fill="#78350f" />
         <path d="M19 6.5 C21 5 26 5 28 6.5 C27 8.5 20 8.5 19 6.5 Z" fill="#451a03" />
-
+  
         {/* White facial cheek patch */}
         <ellipse cx="23" cy="11" rx="2.5" ry="2" fill="#fef3c7" opacity="0.9" />
-
+  
         {/* Eye streak & sharp pupil with sparkle */}
         <ellipse cx="24.5" cy="9" rx="2.5" ry="1.4" fill="#0f172a" />
         <circle cx="24.8" cy="8.8" r="1.3" fill="#0f172a" />
         <circle cx="25.2" cy="8.5" r="0.5" fill="#ffffff" />
-
+  
         {/* Golden Conical Beak */}
         <polygon points="28.5,9 35,11 28.5,12.5" fill="#f59e0b" stroke="#d97706" strokeWidth="0.5" />
-
+  
         {/* Near Wing with feather bars (wide flapping arc up and down!) */}
         <g className={isFlying ? styles.flappingWingNear : styles.foldedWingNear}>
           <path
@@ -249,9 +216,103 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
           <path d="M8 18 L15 16" stroke="#fed7aa" strokeWidth="1.1" strokeLinecap="round" opacity="0.85" />
         </g>
       </svg>
-        </div>
-      </div>
-    </div>
+  );
+}
+
+/**
+ * Delightful Wild Sparrow component:
+ * 1. Swoops in gracefully along an aerodynamic continuous curve from the upper-left sky
+ * 2. Lands softly on the "View All Certificates" button rim and folds wings
+ * 3. Sits and idles (cute hops, head tilts, joyful hover bounce) for ~3.2 seconds
+ * 4. Pushes off and flies away climbing diagonally into the sky off-screen
+ * 5. Replays when scrolled back into view or when clicked!
+ */
+function SparrowBird({ trigger }: { trigger: number }) {
+  const [phase, setPhase] = useState<BirdPhase>('hidden');
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (trigger > 0) {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      setPhase('flyIn');
+    } else {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      setPhase('hidden');
+    }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [trigger]);
+
+  const handleFlyInEnd = () => {
+    setPhase('perched');
+    // Sits adorably on the button for 3.2 seconds, then cheerfully takes off into the sky!
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setPhase('flyOut');
+    }, 3200);
+  };
+
+  const handleFlyOutEnd = () => {
+    setPhase('gone');
+  };
+
+  const handleReplayClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setPhase('hidden');
+    requestAnimationFrame(() => {
+      setPhase('flyIn');
+    });
+  };
+
+  if (phase === 'hidden' || phase === 'gone') {
+    return (
+      <span
+        className={styles.sparrowPerch}
+        aria-hidden="true"
+        onClick={handleReplayClick}
+        title="Click me to see the sparrow fly!"
+        style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+      />
+    );
+  }
+
+  return (
+    <span
+      className={styles.sparrowPerch}
+      aria-hidden="true"
+      onClick={handleReplayClick}
+      title="Click me to see the sparrow fly!"
+      style={{ cursor: phase === 'perched' ? 'pointer' : 'default', pointerEvents: 'auto' }}
+    >
+      {phase === 'flyIn' && (
+        <span
+          className={styles.birdFlyIn}
+          onAnimationEnd={handleFlyInEnd}
+        >
+          <BirdSvg isFlying hasLanded={false} />
+        </span>
+      )}
+
+      {phase === 'perched' && (
+        <span className={styles.perchedBird}>
+          <span className={styles.perchedIdle}>
+            <BirdSvg isFlying={false} hasLanded />
+          </span>
+        </span>
+      )}
+
+      {phase === 'flyOut' && (
+        <span
+          className={styles.birdFlyOut}
+          onAnimationEnd={handleFlyOutEnd}
+        >
+          <BirdSvg isFlying hasLanded={false} />
+        </span>
+      )}
+    </span>
   );
 }
 
@@ -263,8 +324,8 @@ function SparrowBird({ state, heading }: { state: BirdState; heading: BirdHeadin
  * - Outside the card: Animals roll in the outer gutters, NEVER overlapping or covering the text!
  * - When scrolled out of bounds: Animals roll back in, take the rows back, and reset!
  * - When scrolled into view: Animation automatically repeats afresh!
- * - A wild sparrow swoops in along a curve from the left (scrolling down) or right (scrolling up),
- *   perches on the "View All Certificates" button, and flies off in its heading when the user leaves.
+ * - A wild sparrow swoops in along a curve from the left, perches on the "View All Certificates"
+ *   button, and flies off into the sky.
  */
 export function LeadershipSection() {
   const [isTriggered, setIsTriggered] = useState(false);
@@ -272,47 +333,39 @@ export function LeadershipSection() {
   const exitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-  const [birdState, setBirdState] = useState<BirdState>('hidden');
-  const [birdHeading, setBirdHeading] = useState<BirdHeading>(1);
+  const [birdTrigger, setBirdTrigger] = useState(0);
 
-  // The bird is driven by the button footer (not the whole section) so its arrival
-  // actually happens on screen. Scroll direction comes from where the footer sits
-  // relative to the viewport middle when it crosses the observed zone.
   useEffect(() => {
     const el = footerRef.current;
     if (!el) return;
 
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Footer below the viewport middle => it is arriving from / sitting beyond the
-          // bottom edge (scrolling down). Above the middle => it is at / beyond the top edge.
-          const viewportH = entry.rootBounds?.height ?? window.innerHeight;
-          const footerBelow = entry.boundingClientRect.top > viewportH / 2;
-
           if (entry.isIntersecting) {
-            // Scrolling down: fly in from the left, facing right.
-            // Scrolling up: turn around and fly in from the right, facing left.
-            setBirdHeading(footerBelow ? 1 : -1);
-            setBirdState('in');
+            // Settle delay of 250ms when the certificates button enters view, then swoop!
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+              setBirdTrigger((prev) => prev + 1);
+            }, 250);
           } else {
-            // Scrolled past downwards: fly off to the right.
-            // Scrolled back up out of it: fly off to the left.
-            setBirdHeading(footerBelow ? -1 : 1);
-            setBirdState((prev) => (prev === 'hidden' ? prev : 'out'));
+            if (timer) clearTimeout(timer);
           }
         });
       },
       {
-        // Active zone: a little inside the viewport so the bird is always visible
-        // when it arrives or takes off.
-        rootMargin: '-12% 0px -12% 0px',
-        threshold: 0,
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
       }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -337,8 +390,7 @@ export function LeadershipSection() {
         });
       },
       {
-        threshold: 0.06,
-        rootMargin: '60px 0px -40px 0px',
+        threshold: 0.15,
       }
     );
 
@@ -361,7 +413,7 @@ export function LeadershipSection() {
           <div>
             <h2 className={styles.title}>Leadership &amp; Recognition</h2>
             <p className={styles.subtitle}>
-              Milestones across academic competitions, certifications, and industry recognitions.
+              Hackathon wins, peer-reviewed publications, and industry certifications.
             </p>
           </div>
 
@@ -431,7 +483,7 @@ export function LeadershipSection() {
             className={styles.driveButton}
           >
             {/* The Sparrow sits comfortably on top of the button */}
-            <SparrowBird state={birdState} heading={birdHeading} />
+            <SparrowBird trigger={birdTrigger} />
             <span>View All Certificates &amp; Credentials</span>
             <span className={styles.driveArrow}>↗</span>
           </a>

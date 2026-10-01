@@ -218,9 +218,9 @@ export function ContactSection() {
         <div className={styles.left}>
           <h2 className={styles.title}>Get in Touch</h2>
           <p className={styles.subtitle}>
-            Open to full-time roles, research collaborations, and interesting problems.
+            Open to engineering roles, security research, and ambitious projects.
             <br />
-            Reach out - I respond within 24 hours.
+            Reach out—I reply within 24 hours.
           </p>
 
           <a

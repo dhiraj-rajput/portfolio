@@ -8,7 +8,7 @@ import type { EngineerProfile } from '../types';
  */
 export const engineerData: EngineerProfile = {
   title: 'About Me',
-  subtitle: 'Background, engineering philosophy, and active focus areas.',
+  subtitle: 'A quick look at my background, what I build, and how I work.',
 
   profile: {
     name: 'Dhiraj Rajput',
@@ -30,21 +30,20 @@ export const engineerData: EngineerProfile = {
   ],
 
   bioParagraphs: [
-    'Building and securing modern distributed architectures at the intersection of offensive security, stream telemetry, and resilient web infrastructure is less about stitching libraries together and more about understanding system invariants and threat models. My journey began with low-level protocol inspection and binary reverse engineering, exploring how network packets traverse unverified boundaries.',
-    'As a Computer Science candidate specializing in Cybersecurity and Forensics at MIT-WPU Pune, I engineer defensive loops and high-throughput data pipelines. From orchestrating distributed telemetry pipelines with Apache Kafka and TimescaleDB in Neo-Analytics, to architecting intelligent workflow automation and secure full-stack systems, my focus is always on deterministic reliability.',
-    'Whether auditing zero-trust authentication barriers, sanitizing LLM execution paths with private model orchestration (Omniscient), or building low-latency reactive web frontends with React and Next.js, I bridge the gap between rigorous systems security and seamless digital performance.',
+    "I'm a Computer Science student at MIT-WPU Pune specializing in Cybersecurity and Forensics. I like building from both sides of the stack: designing clean, responsive web applications with React and Next.js, while digging into network protocols, binary analysis, and security fundamentals to make sure systems hold up under real-world conditions.",
+    "Much of my work revolves around real-time data pipelines and applied security. Whether that's streaming astronomical telemetry with Apache Kafka and TimescaleDB in Neo-Analytics, building lightweight token filters to prevent data leakage in LLMs (RakshaNetra), or publishing assistive computer vision research with Springer Nature, I focus on building reliable software that solves tangible problems.",
   ],
 
   bioHighlightKeywords: [
     'MIT-WPU Pune',
     'Cybersecurity and Forensics',
+    'React',
+    'Next.js',
     'Apache Kafka',
     'TimescaleDB',
     'Neo-Analytics',
-    'Omniscient',
-    'React',
-    'Next.js',
-    'zero-trust authentication',
+    'RakshaNetra',
+    'Springer Nature',
   ],
 
   education: [
@@ -78,25 +77,25 @@ export const engineerData: EngineerProfile = {
       id: 'p1',
       number: '01',
       title: 'Security by Design',
-      statement: 'Security is a foundational architectural constraint, never an external wrapper added after the fact.',
+      statement: 'Security is a core constraint from day one, not a patch applied at the end.',
     },
     {
       id: 'p2',
       number: '02',
-      title: 'Low-Latency Determinism',
-      statement: 'Low-latency streaming and deterministic event loops guarantee system resilience under peak concurrent load.',
+      title: 'Predictable Performance',
+      statement: 'Keep systems fast, measurable, and reliable under high concurrent load.',
     },
     {
       id: 'p3',
       number: '03',
-      title: 'Empirical Verification',
-      statement: 'Validate theoretical threat models through continuous telemetry feedback and structured penetration testing.',
+      title: 'Test Real Scenarios',
+      statement: "Validate assumptions against live telemetry, messy edge cases, and actual threat models.",
     },
     {
       id: 'p4',
       number: '04',
-      title: 'Graceful Degradation',
-      statement: 'Design strict failure boundaries so isolated component anomalies never cascade into catastrophic service outages.',
+      title: 'Fail Gracefully',
+      statement: 'Set strict failure boundaries so one breaking service never brings down the whole system.',
     },
   ],
 };

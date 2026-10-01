@@ -433,8 +433,7 @@ export function ResearchSection() {
       <header className={styles.header}>
         <h2 className={styles.title}>Research &amp; Innovation</h2>
         <p className={styles.subtitle}>
-          Published work, applied research, and ongoing investigations at the intersection of
-          security, AI, and distributed systems.
+          Peer-reviewed publications and applied research in edge AI, computer vision, and systems security.
         </p>
       </header>
 

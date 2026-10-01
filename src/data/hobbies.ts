@@ -18,7 +18,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Cinema & Anime',
     title: 'Cinephile & Anime Lover',
     description:
-      'Deep appreciation for compelling narratives across world cinema and thought-provoking anime. From intricate cyberpunk lore and psychological thrillers to cinematic masterpieces - fascinated by layered character arcs, philosophy, and visual world-building.',
+      'Huge fan of world cinema and anime—especially psychological thrillers, cyberpunk lore, and rich visual storytelling.',
     tags: ['Anime', 'World Cinema', 'Psychological Thrillers', 'Storytelling'],
   },
   {
@@ -27,7 +27,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Tech Exploration',
     title: 'Exploring New Technologies',
     description:
-      'Constantly staying at the frontier - experimenting with bleeding-edge frameworks, inspecting low-level protocols, reading papers, and building side projects. If an architectural pattern seems intriguing, it gets dissected.',
+      'Tinkering with emerging tech, inspecting network protocols, reading engineering papers, and building hands-on prototypes.',
     tags: ['Open Source', 'Research', 'Low-Level Tools', 'Experimentation'],
   },
   {
@@ -36,7 +36,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Reading',
     title: 'Reading & Systems Thinking',
     description:
-      'Reading books on distributed systems design, offensive security principles, behavioral economics, and philosophy. Always seeking mental models that explain how complex systems actually behave under stress.',
+      'Reading about distributed systems design, offensive security, and mental models that explain how complex systems behave under stress.',
     tags: ['Non-fiction', 'Systems Thinking', 'Philosophy', 'Security'],
   },
   {
@@ -45,7 +45,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Gaming',
     title: 'MOBA & Video Games',
     description:
-      'Playing MOBAs and competitive strategy games where micro-mechanics, map awareness, and split-second tactical decisions determine the outcome. High-stakes team coordination mirrors real-world engineering teamwork.',
+      'Competitive gaming in MOBAs and tactical strategy games that demand fast micro-mechanics, map awareness, and team coordination.',
     tags: ['MOBA', 'Macro Strategy', 'Team Coordination', 'Competitive'],
   },
   {
@@ -54,7 +54,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Sports',
     title: 'Volleyball',
     description:
-      'Playing volleyball regularly - a fast-paced sport rewarding rapid anticipation, defensive positioning, and team synchronization. Rallies demand intense situational awareness and physical agility.',
+      'Playing volleyball regularly—love the fast pace, court communication, and reflex-heavy rallies.',
     tags: ['Team Sport', 'Athletic Conditioning', 'Coordination'],
   },
   {
@@ -63,7 +63,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Martial Arts',
     title: 'Karate Kid & Junior Black Belt',
     description:
-      'Trained in traditional Karate and earned a Junior Black Belt. The journey forged discipline, laser-sharp focus, situational awareness, and lightning-fast reflexes through rigorous kata precision and competitive kumite sparring.',
+      'Trained in traditional Karate and earned a Junior Black Belt, building long-term discipline, focus, and quick reflexes.',
     tags: ['Junior Black Belt', 'Karate', 'Discipline', 'Kumite', 'Reflexes'],
   },
 ];

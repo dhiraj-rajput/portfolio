@@ -15,17 +15,17 @@ export const experiences: ExperienceEntry[] = [
       {
         heading: 'Winbidai - AI Tender Discovery & Proposal Engine',
         detail:
-          'Engineered an AI-powered SaaS platform for tender discovery, company intelligence, and automated proposal generation. Implemented multi-tenant architectural isolation, integrated CRM workflows, and deployed autonomous research agents to aggregate tender data and generate compliant proposals.',
+          'Built a multi-tenant AI SaaS for tender discovery and automated proposal drafting with CRM workflows and autonomous research agents.',
       },
       {
         heading: 'Leadorbit - Self-Hosted AI SDR for B2B Outreach',
         detail:
-          'Developed a self-hosted AI Sales Development Representative (SDR) platform for B2B outreach automation. Orchestrated automated LinkedIn connection sequences and cold email campaigns with full private data sovereignty, deliverability tracking, and integrated newsletter management.',
+          'Engineered a self-hosted AI SDR platform automating LinkedIn sequences and cold email campaigns with deliverability tracking and private data control.',
       },
       {
         heading: 'Mind Elevate - Corporate Mental Performance Platform',
         detail:
-          'Engineered an organizational mental performance platform delivering monthly focus themes, confidential executive coaching modules, and privacy-preserving aggregated wellbeing analytics for enterprise administrators.',
+          'Developed an enterprise mental performance platform featuring executive coaching modules and privacy-first wellbeing analytics.',
       },
     ],
   },
@@ -38,42 +38,42 @@ export const techDomains: TechDomain[] = [
     category: 'Cybersecurity',
     stack: 'Endpoint Security / Forensics / RBAC / Intrusion Detection',
     description:
-      'Applied endpoint security architectures, reverse-engineered credential harvesting endpoints, simulated intrusion frameworks (RIFT), and engineered zero-leakage PII sanitizers (RakshaNetra).',
+      'Applied endpoint defenses, simulated intrusion frameworks (RIFT), and engineered zero-leakage PII sanitizers (RakshaNetra).',
   },
   {
     id: 'ai-ml',
     category: 'Artificial Intelligence',
     stack: 'Multi-Agent LLMs / Computer Vision / Edge NLP',
     description:
-      'Engineered edge computer vision and LLM reasoning for blind navigation (Springer Nature), built client-edge PII redaction proxies, and orchestrated multi-agent proposal synthesis engines.',
+      'Engineered edge vision and LLM reasoning for blind navigation (Springer Nature) and built client-side PII redaction proxies.',
   },
   {
     id: 'iot',
     category: 'IoT & Embedded Systems',
     stack: 'Raspberry Pi / Sensor Fusion / Microcontrollers',
     description:
-      'Integrated camera and speech sensor loops on Raspberry Pi edge devices for real-time assistive navigation with 0.6s wake-word latency and 88% object detection.',
+      'Integrated camera and audio sensor loops on Raspberry Pi edge devices for assistive navigation with 0.6s wake-word latency.',
   },
   {
     id: 'programming',
     category: 'Programming',
     stack: 'Rust / Go / Python / C++ / TypeScript',
     description:
-      'Engineered high-performance low-level systems in Rust (Arc), asynchronous distributed frameworks in Go (RIFT), AI pipeline automation in Python, and reactive web applications in TypeScript.',
+      'Systems programming in Rust and C++, distributed services in Go and Python, and responsive web apps in TypeScript.',
   },
   {
     id: 'cloud',
     category: 'Cloud & Big Data',
     stack: 'Kafka / TimescaleDB / Oracle OCI / Redis / AWS S3',
     description:
-      'Configured high-throughput event buses with Kafka and Spark in Neo-Analytics, structured time-series data in TimescaleDB, and configured certified Oracle OCI architectures.',
+      'High-throughput event streaming with Kafka and Spark, partitioned time-series storage in TimescaleDB, and cloud deployments.',
   },
   {
     id: 'stacks',
     category: 'Stacks & Tools',
     stack: 'FastAPI / Django REST / React / Docker / Linux',
     description:
-      'Built multi-tenant enterprise platforms at OrbitAvanya Tech, containerized microservices with Docker, and developed low-latency full-stack portals with React and Django.',
+      'Built multi-tenant enterprise backends with FastAPI and Django REST, modern UIs with React, and containerized deployments with Docker.',
   },
 ];
 
