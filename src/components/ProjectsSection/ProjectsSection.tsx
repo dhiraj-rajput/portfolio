@@ -224,7 +224,7 @@ export function ProjectsSection() {
         <div className={styles.titleWrap}>
           <h2 className={styles.heading}>Projects</h2>
           <p className={styles.subheading}>
-            Architectures, frameworks, and applications I've engineered
+            Selected systems, tools, and platforms I've engineered.
           </p>
         </div>
 

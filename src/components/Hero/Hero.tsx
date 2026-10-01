@@ -20,7 +20,7 @@ export function Hero() {
       </h1>
       <div className={styles.copy}>
         <p className={styles.description}>
-          Hi, I'm Dhiraj Rajput. Building secure, resilient web architectures, real-time data streaming pipelines, and high-performance digital experiences. Specializing in Go, Python, React, Next.js, and offensive/defensive cybersecurity tools.
+          Hi, I'm Dhiraj. I build secure web systems, real-time data pipelines, and high-performance digital experiences with Python, React, Next.js, and Go.
         </p>
         <div className={styles.actions}>
           <a href="#projects" onClick={(e) => handleCtaClick(e, '#projects')}>

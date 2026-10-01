@@ -48,8 +48,7 @@ export function TechExpertiseSection() {
         <div className={styles.headerLeft}>
           <h2 className={styles.title}>Technical Expertise</h2>
           <p className={styles.subtitle}>
-            Technologies applied directly across projects, research publications, and security
-            operations — mapped by domain.
+            Core technical stack and domains applied across projects and production systems.
           </p>
         </div>
       </header>

@@ -60,8 +60,7 @@ export function Footer() {
           </div>
 
           <p className={styles.brandDesc}>
-            Architecting defensive loops, stream telemetry pipelines, and resilient distributed
-            systems. Grounded in deterministic reliability over convenient abstractions.
+            Building secure distributed systems, real-time telemetry, and resilient web software.
           </p>
 
           <div className={styles.statusPill}>
