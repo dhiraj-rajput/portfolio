@@ -255,14 +255,14 @@
 }
 
 .eduGrade {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-accent-text, var(--color-accent));
   background: var(--color-accent-subtle);
   border: 1px solid var(--color-accent-border, transparent);
-  padding: 2px 9px;
-  border-radius: 6px;
+  padding: 2px 8px;
+  border-radius: 5px;
 }
 
 .eduLocation {
@@ -717,21 +717,62 @@
 }
 
 @media (max-width: 640px) {
+  .title {
+    font-size: 26px;
+  }
+
   .storyCard,
   .profileCard,
   .principlesSection {
-    padding: clamp(20px, 4vw, 24px);
+    padding: 18px 16px;
     border-radius: 18px;
+  }
+
+  .paragraph {
+    font-size: 14.5px;
+    line-height: 1.62;
+  }
+
+  .eduItem {
+    padding: 10px 12px;
+    margin: 0 -12px;
+    gap: 12px;
+  }
+
+  .eduInstitution {
+    font-size: 15.5px;
+  }
+
+  .eduDegree {
+    font-size: 13.5px;
+  }
+
+  .eduGrade {
+    font-size: 11px;
+    padding: 2px 7px;
   }
 
   .principlesGrid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .principleCard {
+    padding: 16px;
+  }
+
+  .principleTitle {
+    font-size: 16.5px;
+  }
+
+  .principleText {
+    font-size: 14px;
+    line-height: 1.58;
   }
 
   .photoStage {
-    max-width: 260px;
-    max-height: 260px;
+    max-width: 240px;
+    max-height: 240px;
   }
 
   .eduRowTop {
