@@ -98,3 +98,25 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 20px 16px 0;
+    gap: 14px;
+  }
+
+  .title {
+    font-size: clamp(28px, 7.8vw, 36px);
+    line-height: 1.15;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .actions {
+    gap: 10px;
+    width: 100%;
+  }
+}

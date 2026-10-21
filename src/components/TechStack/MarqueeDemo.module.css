@@ -72,3 +72,25 @@
   color: var(--text-primary);
   letter-spacing: -0.015em;
 }
+
+@media (max-width: 640px) {
+  .itemWrapper {
+    margin: 0 0.5rem;
+    padding: 4px 0;
+  }
+
+  .techCard {
+    padding: 8px 14px;
+    gap: 8px;
+    border-radius: 11px;
+  }
+
+  .techLogo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .techName {
+    font-size: 13.5px;
+  }
+}

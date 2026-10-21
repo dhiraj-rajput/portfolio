@@ -21,7 +21,7 @@ export const contactInfo = {
     handle: 'github.com/dhiraj-rajput',
   },
   location: 'Pune, India',
-  resumeFile: 'Dhiraj_Rajput_Resume.pdf',
+  resumeFile: 'Dhiraj_Rajput_Resume_2026.pdf?v=20261021',
 };
 
 export const contactDetailsList = [
