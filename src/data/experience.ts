@@ -57,7 +57,7 @@ export const techDomains: TechDomain[] = [
   {
     id: 'programming',
     category: 'Programming',
-    stack: 'Rust / Go / Python / C++ / TypeScript',
+    stack: 'Python / C++ / TypeScript',
     description:
       'Systems programming in C++, distributed services in Go and Python, and responsive web apps in TypeScript.',
   },
