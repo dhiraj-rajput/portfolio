@@ -2,7 +2,7 @@
   width: 100%;
   background: var(--bg-surface);
   position: relative;
-  margin-top: 48px;
+  margin-top: 0;
   font-family: var(--font-body);
 }
 
@@ -23,23 +23,24 @@
 .container {
   max-width: 1372px;
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 64px) clamp(16px, 3vw, 24px) clamp(32px, 4vw, 48px);
+  padding: clamp(32px, 4.5vw, 52px) clamp(16px, 3vw, 24px) clamp(24px, 3.5vw, 40px);
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1.4fr 1.1fr 1.15fr 1.15fr;
+  gap: clamp(24px, 3.5vw, 48px);
+  align-items: start;
 }
 
 /* Brand Column */
 .brandCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .brandHeader {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .logoLink {
@@ -47,6 +48,7 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .logoLink:hover {
@@ -54,7 +56,7 @@
 }
 
 .logoImg {
-  height: 44px;
+  height: 40px;
   width: auto;
   object-fit: contain;
 }
@@ -67,7 +69,7 @@
 
 .brandName {
   font-family: var(--font-heading);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -76,7 +78,7 @@
 
 .brandRole {
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--color-accent-text, var(--color-accent));
   font-weight: 600;
   margin: 0;
@@ -84,12 +86,12 @@
 
 .brandDesc {
   font-family: var(--font-body);
-  font-size: 15.5px;
-  line-height: 1.68;
+  font-size: 14.5px;
+  line-height: 1.6;
   color: var(--text-secondary);
   letter-spacing: -0.005em;
   margin: 0;
-  max-width: 380px;
+  max-width: 360px;
 }
 
 .statusPill {
@@ -99,21 +101,22 @@
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: 100px;
-  padding: 6px 14px;
+  padding: 5px 12px;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text-primary);
   width: fit-content;
 }
 
 .pulseDot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #10b981;
   box-shadow: 0 0 8px #10b981;
   animation: pulse 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -129,13 +132,13 @@
 
 /* Nav & Works & Connect Columns */
 .colTitle {
-  font-family: var(--font-mono, var(--font-heading));
-  font-size: 13.5px;
+  font-family: var(--font-heading);
+  font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--color-accent-text, var(--color-accent));
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
 }
 
 .linkList {
@@ -144,12 +147,20 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+}
+
+/* Compact 2-column subgrid for the 9 Navigation items so it never stretches the footer vertically */
+.navCol .linkList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(80px, auto));
+  gap: 8px 18px;
 }
 
 .footerLink {
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 14.5px;
+  line-height: 1.45;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.18s ease, transform 0.18s ease;
@@ -170,17 +181,17 @@
 .bottomInner {
   max-width: 1372px;
   margin: 0 auto;
-  padding: 20px clamp(16px, 3vw, 24px);
+  padding: 16px clamp(16px, 3vw, 24px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .copyright {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--text-muted);
   margin: 0;
 }
@@ -192,13 +203,14 @@
   background: transparent;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 7px 15px;
+  padding: 6px 13px;
   font-family: var(--font-heading);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .backToTop:hover {
@@ -207,32 +219,102 @@
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/* Tablet & Medium Screens (<= 1024px) */
 @media (max-width: 1024px) {
   .container {
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 22px 28px;
+    padding: 28px 20px 24px;
   }
 
   .brandCol {
     grid-column: 1 / -1;
+    gap: 10px;
   }
 
   .brandDesc {
     max-width: 100%;
   }
+
+  .navCol {
+    grid-column: 1 / -1;
+  }
+
+  .navCol .linkList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
 }
 
+/* Mobile Screens (<= 640px) */
 @media (max-width: 640px) {
   .container {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding-top: 36px;
+    gap: 18px;
+    padding: 22px 16px 18px;
+  }
+
+  .brandCol {
+    gap: 8px;
+  }
+
+  .logoImg {
+    height: 34px;
+  }
+
+  .brandName {
+    font-size: 18px;
+  }
+
+  .brandRole {
+    font-size: 12.5px;
+  }
+
+  .brandDesc {
+    font-size: 13.5px;
+    line-height: 1.52;
+  }
+
+  .statusPill {
+    font-size: 11.5px;
+    padding: 4px 10px;
+  }
+
+  .colTitle {
+    font-size: 11.5px;
+    margin: 0 0 8px 0;
+  }
+
+  .navCol .linkList,
+  .worksCol .linkList,
+  .connectCol .linkList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+  }
+
+  .footerLink {
+    font-size: 13px;
+    line-height: 1.4;
   }
 
   .bottomInner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+
+  .backToTop {
+    padding: 5px 10px;
+    font-size: 12px;
   }
 }
