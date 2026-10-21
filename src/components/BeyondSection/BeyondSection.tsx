@@ -190,13 +190,9 @@ function GamepadIcon({ isHovered }: { isHovered: boolean }) {
 
         {/* 4 Colored Diamond Action Buttons (Right) */}
         <g className={styles.actionButtons}>
-          {/* Y Button (Yellow) */}
           <circle cx="23" cy="8.5" r="1.5" fill="#eab308" className={styles.btnY} />
-          {/* X Button (Blue) */}
           <circle cx="20.5" cy="11" r="1.5" fill="#38bdf8" className={styles.btnX} />
-          {/* B Button (Red) */}
           <circle cx="25.5" cy="11" r="1.5" fill="#ef4444" className={styles.btnB} />
-          {/* A Button (Green) */}
           <circle cx="23" cy="13.5" r="1.5" fill="#22c55e" className={styles.btnA} />
         </g>
       </svg>
@@ -229,13 +225,11 @@ function BallIcon({ isHovered }: { isHovered: boolean }) {
 
 /**
  * 6. Karate Medal: Clean minimalist outline vector drawing!
- * Draped ribbon and embossed medallion with an elegant outline karate/star crest.
  */
 function MedalIcon({ isHovered }: { isHovered: boolean }) {
   return (
     <div className={`${styles.medalIconWrap} ${isHovered ? styles.medalActive : ''}`}>
       <svg viewBox="0 0 30 34" width="30" height="34" fill="none" className={styles.medalSvg}>
-        {/* Clean Outline Ribbon Draped from Neck */}
         <g className={styles.ribbonBand}>
           <path
             d="M5 2 L11 15 L15 13 L19 15 L25 2"
@@ -244,46 +238,19 @@ function MedalIcon({ isHovered }: { isHovered: boolean }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          {/* Inner Ribbon Accent Line */}
           <path
             d="M8 2 L12 13 M22 2 L18 13"
             stroke="var(--color-accent)"
             strokeWidth="1.2"
             strokeLinecap="round"
           />
-          {/* Suspension Ring */}
           <circle cx="15" cy="14" r="2" stroke="currentColor" strokeWidth="1.8" />
         </g>
 
-        {/* Clean Outline Medallion */}
         <g className={styles.goldMedallionBody}>
-          {/* Outer Medal Circle with Subtle Depth Fill */}
-          <circle
-            cx="15"
-            cy="23"
-            r="9.5"
-            fill="currentColor"
-            opacity="0.16"
-          />
-          <circle
-            cx="15"
-            cy="23"
-            r="9.5"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-
-          {/* Inner Inset Rim Outline */}
-          <circle
-            cx="15"
-            cy="23"
-            r="7"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            opacity="0.5"
-          />
-
-          {/* Martial Arts Star / Black Belt Emblem Outline */}
+          <circle cx="15" cy="23" r="9.5" fill="currentColor" opacity="0.16" />
+          <circle cx="15" cy="23" r="9.5" stroke="currentColor" strokeWidth="2" />
+          <circle cx="15" cy="23" r="7" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
           <polygon
             points="15,18 16.3,21 19.5,21.3 17,23.4 17.8,26.5 15,24.8 12.2,26.5 13,23.4 10.5,21.3 13.7,21"
             stroke="var(--color-accent)"
@@ -293,7 +260,6 @@ function MedalIcon({ isHovered }: { isHovered: boolean }) {
           />
         </g>
 
-        {/* Outline Aura Pulse Ring when worn! */}
         <g className={styles.outlineAura}>
           <circle
             cx="15"
@@ -311,12 +277,11 @@ function MedalIcon({ isHovered }: { isHovered: boolean }) {
 }
 
 /**
- * Interactive 3D Tilt Card with dynamic cursor spotlight & lively repeating micro-interactions
+ * Interactive 3D Tilt Card with zero-rerender 120fps direct DOM cursor spotlight & hover micro-interactions
  */
 function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
   const cardRef = useRef<HTMLElement>(null);
-  const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
-  const [tilt, setTilt] = useState<{ rx: number; ry: number }>({ rx: 0, ry: 0 });
+  const rafRef = useRef<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
@@ -337,24 +302,35 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
     );
 
     observer.observe(card);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = cardRef.current;
     if (!card) return;
-    setIsHovered(true);
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setCoords({ x, y });
+    if (!isHovered) setIsHovered(true);
 
-    // Calculate rotation angles from cursor position (-8° to +8°)
-    const normX = (x / rect.width) * 2 - 1;
-    const normY = (y / rect.height) * 2 - 1;
-    setTilt({
-      rx: -normY * 8,
-      ry: normX * 8,
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const el = cardRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const normX = (x / rect.width) * 2 - 1;
+      const normY = (y / rect.height) * 2 - 1;
+      const rx = (-normY * 6.5).toFixed(2);
+      const ry = (normX * 6.5).toFixed(2);
+
+      el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.02)`;
+      el.style.setProperty('--mouse-x', `${x}px`);
+      el.style.setProperty('--mouse-y', `${y}px`);
     });
   };
 
@@ -364,12 +340,16 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    setCoords(null);
-    setTilt({ rx: 0, ry: 0 });
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    const card = cardRef.current;
+    if (card) {
+      card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+      card.style.setProperty('--mouse-x', '50%');
+      card.style.setProperty('--mouse-y', '50%');
+    }
   };
 
-  // On mobile/touch: scrolling the card into view activates the animations automatically!
-  const isActive = isHovered || isInView;
+  const isActive = true;
 
   return (
     <article
@@ -378,15 +358,6 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={
-        {
-          transform: coords
-            ? `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(-8px) scale(1.03)`
-            : 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)',
-          '--mouse-x': coords ? `${coords.x}px` : '50%',
-          '--mouse-y': coords ? `${coords.y}px` : '50%',
-        } as React.CSSProperties
-      }
     >
       <div className={styles.cardSpotlight} aria-hidden="true" />
 
@@ -423,7 +394,7 @@ function InteractiveHobbyCard({ hobby }: { hobby: HobbyItem }) {
 /**
  * Beyond Engineering Section
  *
- * Innovative 3D magnetic tilt cards with dynamic cursor spotlight,
+ * 120fps GPU-accelerated tilt cards with dynamic cursor spotlight,
  * reflecting personal disciplines and passions outside of pure code.
  */
 export function BeyondSection() {

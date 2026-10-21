@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { projects } from '../../data/projects';
 import { CodeIcon, LinkIcon, ChevronLeftIcon, ChevronRightIcon } from '../icons';
 import styles from './ProjectsSection.module.css';
@@ -27,7 +27,7 @@ export function ProjectsSection() {
    * Smoothly throw the current card and bring in the target project card
    */
   const throwCard = useCallback(
-    (direction: 'left' | 'right', target: 'next' | 'prev' = 'next') => {
+    (direction: 'left' | 'right', target: 'next' | 'prev' | number = 'next') => {
       const card = cardRef.current;
       if (!card || isAnimating) return;
 
@@ -42,11 +42,15 @@ export function ProjectsSection() {
 
       // 2. Change project index and slide in from opposite edge
       setTimeout(() => {
-        if (target === 'next') {
-          setCurrentIndex((prev) => (prev + 1) % total);
-        } else {
-          setCurrentIndex((prev) => (prev - 1 + total) % total);
-        }
+        React.startTransition(() => {
+          if (typeof target === 'number') {
+            setCurrentIndex(((target % total) + total) % total);
+          } else if (target === 'next') {
+            setCurrentIndex((prev) => (prev + 1) % total);
+          } else {
+            setCurrentIndex((prev) => (prev - 1 + total) % total);
+          }
+        });
 
         const enterFromX = direction === 'left' ? 120 : -120;
         const enterRotate = direction === 'left' ? 8 : -8;
@@ -158,8 +162,8 @@ export function ProjectsSection() {
       // Dragged left -> throws left and advances to next project
       throwCard('left', 'next');
     } else if (dx > throwThreshold) {
-      // Dragged right -> throws right and ALSO advances to next project
-      throwCard('right', 'next');
+      // Dragged right -> throws right and returns to previous project
+      throwCard('right', 'prev');
     } else {
       // Elastic spring back to center
       if (card) {
@@ -286,8 +290,8 @@ export function ProjectsSection() {
                       idx === currentIndex ? styles.stepDotActive : ''
                     }`}
                     onClick={() => {
-                      if (idx > currentIndex) throwCard('left', 'next');
-                      else if (idx < currentIndex) throwCard('right', 'prev');
+                      if (idx > currentIndex) throwCard('left', idx);
+                      else if (idx < currentIndex) throwCard('right', idx);
                     }}
                   />
                 ))}
@@ -336,7 +340,7 @@ export function ProjectsSection() {
                   <a
                     href={currentProject.githubUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}
                     aria-label={`View repository for ${currentProject.title}`}
                   >
@@ -348,7 +352,7 @@ export function ProjectsSection() {
                   <a
                     href={currentProject.liveUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
                     aria-label={`View live demo for ${currentProject.title}`}
                   >

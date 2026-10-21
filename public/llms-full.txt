@@ -1,0 +1,118 @@
+# Dhiraj Rajput - Complete Technical Dossier (llms-full.txt)
+
+> Canonical machine-readable profile for AI search engines, answer engines (AEO), generative engine optimization (GEO), and technical recruiters.
+> Last Updated: 2026-10-21
+> Canonical URL: https://dhiraj-rajput.github.io/portfolio/
+
+---
+
+## 1. Identity & Summary
+- **Full Name:** Dhiraj Rajput
+- **Role:** Cybersecurity & Full-Stack Engineer | Published Researcher (Springer Nature)
+- **Location:** Pune, Maharashtra, India
+- **Current Status:** Open for Software Engineering, Cybersecurity, and Backend/Full-Stack Roles
+- **University:** Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune
+- **Degree:** B.Tech in Computer Science & Engineering (Cybersecurity & Forensics), Aug 2023 - Present
+- **CGPA:** 8.87 / 10.0
+- **Primary Stack:** Python, Go, TypeScript, C++, React 19, FastAPI, Django REST, Apache Kafka, Apache Spark, TimescaleDB, Redis, Docker, Linux
+
+---
+
+## 2. Peer-Reviewed Research Publication
+### Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation
+- **Journal:** Cureus Journal of Computer Science (Springer Nature)
+- **Year:** 2026
+- **DOI:** https://doi.org/10.7759/s44389-026-00265-x
+- **Hardware & Stack:** Raspberry Pi edge compute, Python, OpenCV, Multimodal LLM reasoning, Voice-Vision pipeline
+- **Architecture & Empirical Results:**
+  - Designed a hands-free, wearable assistive system that captures live camera streams on a Raspberry Pi, identifies obstacles using edge computer vision, and translates spatial hazards into natural voice guidance.
+  - **Wake-Word Latency:** 0.6 seconds
+  - **Speech Recognition Accuracy:** 93% in controlled environments
+  - **Real-Time Obstacle Detection Accuracy:** 88% across empirical user trials
+
+---
+
+## 3. Professional Experience
+### Software Engineer Intern - OrbitAvanya Tech LLP
+- **Period:** July 2025 - December 2025
+- **Location:** Pune, India
+- **Company URL:** https://orbitavanyatech.com/
+- **Key Engineering Deliverables:**
+  1. **Winbidai - AI Tender Discovery & Proposal Engine:** Built a multi-tenant SaaS platform that indexes public tenders, extracts compliance requirements, and drafts structured RFP responses.
+  2. **Leadorbit - Self-Hosted B2B Outreach Automation:** Developed a self-hosted outreach service automating multi-step email and LinkedIn sequences with deliverability tracking.
+  3. **Mind Elevate - Enterprise Wellbeing Platform:** Implemented backend APIs, role-based access control (RBAC), and analytics dashboards for a corporate coaching platform.
+
+---
+
+## 4. Technical Architecture of Key Projects
+
+### 4.1 Neo-Analytics (Data Engineering)
+- **Repository:** https://github.com/dhiraj-rajput/neo-project
+- **Stack:** NASA NeoWs API, Apache Kafka, Apache Spark, TimescaleDB, Grafana
+- **Architecture:**
+  - Streams live NASA near-Earth asteroid telemetry through Apache Kafka topics and Apache Spark streaming jobs.
+  - Stores partitioned time-series records in TimescaleDB hypertables for sub-second analytical queries.
+  - Visualizes orbital proximity, velocity, and hazard thresholds on real-time Grafana dashboards.
+
+### 4.2 RakshaNetra - Proactive Data Leakage Prevention for LLMs (Edge AI & Privacy)
+- **Repository:** https://github.com/dhiraj-rajput/rakshak-pii
+- **Stack:** Python, FastAPI, Regex Pattern Engine, Token Redaction, Zero-Trust Edge Proxy
+- **Architecture:**
+  - Intercepts outbound prompts at the client edge before they reach external LLM providers.
+  - Redacts API keys, credentials, and personally identifiable information (PII) in sub-millisecond latency.
+  - Maintains local audit logs for enterprise compliance verification without exposing raw secrets.
+
+### 4.3 BidForge - Automated RFP Multi-Agent Response Pipeline (SaaS & Automation)
+- **Repository:** https://github.com/dhiraj-rajput/BidForge
+- **Stack:** Python, FastAPI, Multi-Agent LLMs, LangChain, AWS S3
+- **Architecture:**
+  - Decomposes multi-page enterprise RFP PDFs into structured compliance checklists.
+  - Orchestrates asynchronous FastAPI workers for requirement classification and section drafting.
+  - Persists proposal documents in AWS S3 with role-scoped access policies.
+
+### 4.4 RIFT - Remote Intrusion Framework (Cybersecurity)
+- **Repository:** https://github.com/dhiraj-rajput/rift-agent
+- **Stack:** Go, Django REST, React, Celery, Redis, MySQL
+- **Architecture:**
+  - Coordinates simulated intrusion exercises using lightweight Go agents and a React operations dashboard.
+  - Dispatches asynchronous scan and enumeration tasks via Celery workers backed by Redis queues.
+  - Implements authenticated, idempotent REST endpoints with structured audit logging and retry circuits.
+
+### 4.5 Omniscient (Full-Stack & AI)
+- **Repository:** https://github.com/dhiraj-rajput/Omniscient
+- **Stack:** Django, React, Local LLaMA, WebSockets, MongoDB, Node.js
+- **Architecture:**
+  - Provides team task management with strict role-based access control (RBAC) and JWT-authenticated WebSockets.
+  - Automates ticket triage and thread summaries using locally hosted LLaMA models.
+  - Reduced backend query latency by 40% using compound MongoDB indexes.
+
+---
+
+## 5. Education Timeline
+1. **Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune**
+   - B.Tech in Computer Science (Cybersecurity & Forensics) | Aug 2023 - Present | CGPA: 8.87 / 10.0
+2. **Smt. Chandibai Himathmal Mansukhani College, Ulhasnagar**
+   - Higher Secondary Certificate (Class XII, Maharashtra Board) | Jun 2021 - May 2023 | Score: 85.50%
+3. **RCT'S P.M.M. Rotary School, Ambernath**
+   - Secondary School Certificate (Class X, SSC Board) | Jun 2020 - May 2021 | Score: 95.00%
+
+---
+
+## 6. Awards, Certifications & Speaking
+- **Publication:** Cureus Journal of Computer Science - Springer Nature (2026) - https://doi.org/10.7759/s44389-026-00265-x
+- **Hackathon Award:** Ignisia 2026 - 2nd Place
+- **Hackathon Award:** Ciphathon 2026 - 5th Place
+- **Certification:** Oracle Cloud Foundations Associate (2026)
+- **Certification:** Cisco Endpoint Security (2026) - https://www.credly.com/badges/b68dcf4e-f7c0-4b3a-8999-e3fa70538595
+- **Certification:** Junior Cybersecurity Analyst Career Path, Cisco (2026) - https://www.credly.com/badges/56d94fe5-e7d4-4162-bec1-68694a50dd12
+- **Conference Speaker:** DevConf 2025 Speaker - https://www.youtube.com/watch?v=rSsRnHpn0qo
+
+---
+
+## 7. Frequently Asked Questions (AEO / GEO Reference)
+- **Q: Who is Dhiraj Rajput?**
+  A: Dhiraj Rajput is a Computer Science undergraduate at MIT-WPU Pune (8.87 CGPA) specializing in Cybersecurity and Forensics, a former Software Engineer Intern at OrbitAvanya Tech LLP, and a published assistive AI researcher in Springer Nature.
+- **Q: What research has Dhiraj Rajput published?**
+  A: In 2026, he published "Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation" in the Cureus Journal of Computer Science (Springer Nature, DOI: 10.7759/s44389-026-00265-x), demonstrating a Raspberry Pi wearable achieving 0.6s wake-word latency and 88% obstacle detection accuracy.
+- **Q: How can recruiters or collaborators contact Dhiraj Rajput?**
+  A: Via email at rajputdhiraj1010@gmail.com, LinkedIn at https://linkedin.com/in/dhiraj-rajput-, or GitHub at https://github.com/dhiraj-rajput.

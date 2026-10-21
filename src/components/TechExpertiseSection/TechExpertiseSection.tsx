@@ -1,15 +1,42 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { techDomains } from '../../data/experience';
 import styles from './TechExpertiseSection.module.css';
 
-const cardSuits = ['♠', '♦', '♣', '♥', '★', '⚡'];
+const renderCardSuit = (index: number) => {
+  switch (index % 6) {
+    case 0:
+      return '♠\uFE0E';
+    case 1:
+      return '♦\uFE0E';
+    case 2:
+      return '♣\uFE0E';
+    case 3:
+      return '♥\uFE0E';
+    case 4:
+      return '★\uFE0E';
+    case 5:
+    default:
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          style={{ display: 'block' }}
+        >
+          <path d="M13 2L4 14h7l-2 8 11-12h-7l2-8z" />
+        </svg>
+      );
+  }
+};
 
 /**
  * Technical Expertise Section
  *
  * Playing card deck spread animation:
- * Cards remain stacked in the center until the user actually scrolls the deck
- * into full view. Then, they deal out one by one smoothly and slowly.
+ * Cards remain stacked in the center until the user scrolls the deck
+ * into view. Then, they deal out one by one smoothly and re-stack when scrolled out.
  */
 export function TechExpertiseSection() {
   const [isSpread, setIsSpread] = useState(false);
@@ -53,7 +80,7 @@ export function TechExpertiseSection() {
         </div>
       </header>
 
-      {/* Attach ref to the deck stage itself so it only spreads when cards are directly in view */}
+      {/* Attach ref to the deck stage itself so it spreads when cards are in view */}
       <div
         ref={deckRef}
         className={`${styles.deckStage} ${isSpread ? styles.isSpread : styles.isStacked}`}
@@ -68,9 +95,11 @@ export function TechExpertiseSection() {
               <div className={styles.cardGlow} aria-hidden="true" />
 
               <div className={styles.cardHeader}>
-                <span className={styles.cardIndexBadge}>0{index + 1}</span>
+                <span className={styles.cardIndexBadge}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <span className={styles.cardSuit} aria-hidden="true">
-                  {cardSuits[index % cardSuits.length]}
+                  {renderCardSuit(index)}
                 </span>
               </div>
 

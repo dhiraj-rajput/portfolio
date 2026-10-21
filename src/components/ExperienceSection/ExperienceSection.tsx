@@ -12,7 +12,7 @@ export function ExperienceSection() {
       <header className={styles.header}>
         <h2 className={styles.title}>Professional Experience</h2>
         <p className={styles.subtitle}>
-          Engineering assignments, internships, and operational deployments.
+          Internships and production systems shipped.
         </p>
       </header>
 
@@ -29,7 +29,7 @@ export function ExperienceSection() {
                     <a
                       href={exp.website}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className={styles.companyLink}
                     >
                       {exp.company} ↗

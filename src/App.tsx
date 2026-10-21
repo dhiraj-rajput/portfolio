@@ -1,3 +1,4 @@
+import { LoadingScreen } from './components/LoadingScreen/LoadingScreen';
 import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { TechStack } from './components/TechStack/TechStack';
@@ -15,33 +16,35 @@ import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import styles from './App.module.css';
 
 function App() {
-
   return (
-    <div className={styles.page}>
-      <div className={styles.backgroundGrid} aria-hidden="true" />
-      <Navbar />
-      <Hero />
-      <TechStack />
+    <>
+      <LoadingScreen />
+      <div className={styles.page}>
+        <div className={styles.backgroundGrid} aria-hidden="true" />
+        <Navbar />
+        <Hero />
+        <TechStack />
 
-      {/* Meteor shower zone: covers from About through Contact */}
-      <div className={styles.meteorZone}>
-        <MeteorShower count={22} />
+        {/* Meteor shower zone: covers from About through Contact */}
+        <div className={styles.meteorZone}>
+          <MeteorShower count={18} />
 
-        <main className={styles.sections}>
-          <AboutSection />
-          <ExperienceSection />
-          <TechExpertiseSection />
-          <ProjectsSection />
-          <ResearchSection />
-          <LeadershipSection />
-          <BeyondSection />
-          <ContactSection />
-        </main>
+          <main className={styles.sections}>
+            <AboutSection />
+            <ExperienceSection />
+            <TechExpertiseSection />
+            <ProjectsSection />
+            <ResearchSection />
+            <LeadershipSection />
+            <BeyondSection />
+            <ContactSection />
+          </main>
+        </div>
+
+        <Footer />
+        <ScrollToTop />
       </div>
-
-      <Footer />
-      <ScrollToTop />
-    </div>
+    </>
   );
 }
 

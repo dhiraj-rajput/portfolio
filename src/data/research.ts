@@ -13,7 +13,7 @@ export const researchEntries: ResearchEntry[] = [
     title: 'Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation',
     venue: 'Cureus Journal of Computer Science - Springer Nature',
     description:
-      'A wearable, hands-free assistive device combining Raspberry Pi edge vision with LLM reasoning. Evaluated empirically with 0.6s wake-word latency, 93% speech accuracy, and 88% real-time obstacle detection.',
+      'Wearable Raspberry Pi assistive system combining OpenCV object detection with LLM voice guidance, achieving 0.6s wake-word latency, 93% speech accuracy, and 88% obstacle detection in user trials.',
     tags: ['Computer Vision', 'LLMs', 'Edge Computing', 'Raspberry Pi', 'Springer Nature', 'Assistive AI'],
     link: 'https://doi.org/10.7759/s44389-026-00265-x',
     actionLabel: 'Read Paper ↗',
@@ -27,7 +27,7 @@ export const researchEntries: ResearchEntry[] = [
     title: 'RakshaNetra - Proactive Data Leakage Prevention for LLMs',
     venue: 'Applied Research & Open Source',
     description:
-      'Client-edge privacy proxy that intercepts and sanitizes sensitive tokens and PII before prompts reach third-party LLMs. Features sub-millisecond pattern filtering and zero-leakage routing.',
+      'Client-edge FastAPI proxy that detects and redacts API keys, credentials, and PII in sub-millisecond latency before prompts leave the local network.',
     tags: ['LLM Security', 'PII Redaction', 'Data Privacy', 'Python', 'FastAPI', 'Token Sanitization'],
     link: 'https://github.com/dhiraj-rajput/rakshak-pii',
     actionLabel: 'View Project ↗',
@@ -40,7 +40,7 @@ export const researchEntries: ResearchEntry[] = [
     title: 'BidForge - Automated RFP Multi-Agent Response Pipeline',
     venue: 'Applied Research',
     description:
-      'Multi-agent pipeline that parses RFP documents, extracts requirements, and generates compliance-mapped proposals using specialized parsing and synthesis agents.',
+      'Multi-agent Python workflow that decomposes enterprise RFP PDFs, maps mandatory compliance clauses, and drafts technical responses with source citations.',
     tags: ['Multi-Agent', 'LLM', 'RFP Automation', 'Orchestration', 'Python', 'Document AI'],
     link: 'https://github.com/dhiraj-rajput/BidForge',
     actionLabel: 'View Project ↗',

@@ -11,26 +11,27 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 40px;
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: clamp(30px, 3vw, 40px);
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.5px;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 
 .subtitle {
   font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--text-muted);
+  font-size: clamp(16.5px, 1.15vw, 18.5px);
+  color: var(--text-secondary);
   line-height: 1.65;
   margin: 0;
-  max-width: 580px;
+  max-width: 640px;
 }
 
 /* Hobby Grid - 3 col on large, 2 on medium, 1 on mobile */
@@ -47,7 +48,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 22px;
-  padding: 26px 24px;
+  padding: 28px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,7 +70,7 @@
   border-radius: 22px;
   background: radial-gradient(
     480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 102, 0, 0.16),
+    rgba(255, 102, 0, 0.14),
     transparent 65%
   );
   opacity: 0;
@@ -94,7 +95,7 @@
 
 .card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45), 0 0 24px var(--color-accent-subtle);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4), 0 0 20px var(--color-accent-subtle);
   z-index: 10;
 }
 
@@ -112,13 +113,13 @@
 
 [data-theme='light'] .card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12), 0 0 20px var(--color-accent-subtle);
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.1), 0 0 18px var(--color-accent-subtle);
 }
 
 [data-theme='light'] .cardSpotlight {
   background: radial-gradient(
     480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(234, 88, 12, 0.12),
+    rgba(234, 88, 12, 0.1),
     transparent 65%
   );
 }
@@ -159,14 +160,14 @@
 }
 
 .category {
-  font-family: var(--font-heading);
-  font-size: 11px;
+  font-family: var(--font-mono, var(--font-heading));
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-accent);
+  color: var(--color-accent-text, var(--color-accent));
   background: var(--color-accent-subtle);
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid var(--border-subtle);
 }
@@ -183,21 +184,21 @@
 
 .hobbyTitle {
   font-family: var(--font-heading);
-  font-size: 17.5px;
+  font-size: clamp(19px, 1.35vw, 21.5px);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.015em;
   transition: color 0.2s ease;
 }
 
 .card:hover .hobbyTitle {
-  color: var(--color-accent);
+  color: var(--color-accent-text, var(--color-accent));
 }
 
 .hobbyDesc {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: clamp(16px, 1.05vw, 17.5px);
   line-height: 1.68;
   color: var(--text-secondary);
   letter-spacing: -0.005em;
@@ -210,34 +211,32 @@
   z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
   padding-top: 14px;
   border-top: 1px solid var(--border-subtle);
 }
 
 .tag {
-  font-family: var(--font-body);
-  font-size: 11.5px;
+  font-family: var(--font-mono, var(--font-heading));
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 6px;
   transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .tag:hover {
-  transform: translateY(-2px) scale(1.05);
-  color: var(--color-accent);
+  transform: translateY(-2px);
+  color: var(--color-accent-text, var(--color-accent));
   border-color: var(--color-accent);
   background: var(--color-accent-subtle);
 }
 
 /* ====================================================
    1. CINEMA CLAPPERBOARD ANIMATION
-   Clapper stick opens wide to -42deg, slams shut with
-   mechanical recoil, shockwave bursts and slate vibration!
    ==================================================== */
 .cinemaIconWrap {
   display: flex;
@@ -331,8 +330,6 @@
 
 /* ====================================================
    2. TECHNOLOGY CPU: CIRCUIT WIRES GROW OUTWARD
-   Neon energy beams pulse through all 8 bus wires,
-   converging into the silicon die with overclocked glow!
    ==================================================== */
 .techIconWrap {
   display: flex;
@@ -428,7 +425,6 @@
 
 /* ====================================================
    3. READING BOOK: REAL 3D HTML PAGE FLIP
-   True GPU-accelerated 3D pages flip across the center spine!
    ==================================================== */
 .bookIconWrap {
   display: flex;
@@ -507,7 +503,6 @@
   border-radius: 1px;
 }
 
-/* 3D Flipping Leaves */
 .flipLeafOne,
 .flipLeafTwo {
   position: absolute;
@@ -629,8 +624,6 @@
 
 /* ====================================================
    4. VIDEO GAME: HAPTIC RUMBLE & COMBO SMASH
-   Controllers rumble vibrates, sticks steer, and
-   colored ABXY buttons flash in an intense gaming combo!
    ==================================================== */
 .gamepadIconWrap {
   display: flex;
@@ -756,7 +749,6 @@
 
 /* ====================================================
    5. FOOTBALL / SPORTS: HIGH BOUNCE & SQUASH
-   Ball leaps high, spins in air, lands with elastic squash!
    ==================================================== */
 .ballIconWrap {
   display: flex;
@@ -830,8 +822,6 @@
 
 /* ====================================================
    6. MARTIAL ARTS MEDAL: CLEAN OUTLINE DRAWING
-   Clean outline ribbon & medallion sways gracefully
-   with an outline aura ring pulse!
    ==================================================== */
 .medalIconWrap {
   display: flex;
@@ -950,20 +940,5 @@
 @media (hover: none) {
   .card:hover {
     transform: none !important;
-  }
-}
-
-/* Mobile & Touch: Highlight active card softly when in view */
-@media (max-width: 768px) {
-  .card.cardInView {
-    border-color: var(--color-accent);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35), 0 0 14px var(--color-accent-subtle);
-  }
-
-  .card.cardInView .iconWrap {
-    transform: scale(1.06) translateY(-2px);
-    background: var(--color-accent-subtle);
-    border-color: var(--color-accent);
-    box-shadow: 0 4px 16px var(--color-accent-subtle);
   }
 }

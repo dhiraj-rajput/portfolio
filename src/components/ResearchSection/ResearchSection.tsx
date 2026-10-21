@@ -83,7 +83,7 @@ function AutoPlayResearchVideo({
  * - Dot Absorption / Merge: The droplet permanently swells and expands in size as it absorbs each milestone dot!
  * - Track extends all the way to the very bottom of the last card.
  * - One-way ratchet: Flows downward as you scroll, NEVER retracts or comes back up.
- * - Authentic Minecraft voxel particles popping out of the droplet.
+ * - Authentic Minecraft voxel particles popping out of the droplet continuously while on screen.
  */
 export function ResearchSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -112,11 +112,14 @@ export function ResearchSection() {
     if (typeof document === 'undefined') return false;
     return document.documentElement.getAttribute('data-theme') === 'light';
   });
+  const isLightModeRef = useRef<boolean>(isLightMode);
 
   // Track theme changes dynamically
   useEffect(() => {
     const checkTheme = () => {
-      setIsLightMode(document.documentElement.getAttribute('data-theme') === 'light');
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      isLightModeRef.current = light;
+      setIsLightMode(light);
     };
     checkTheme();
 
@@ -136,7 +139,7 @@ export function ResearchSection() {
 
   // Minecraft burst when merging with a dot
   const triggerMergeBurst = (dotIdx: number) => {
-    const palette = isLightMode ? WATER_COLORS : LAVA_COLORS;
+    const palette = isLightModeRef.current ? WATER_COLORS : LAVA_COLORS;
     let nextId = Date.now() + dotIdx * 100;
     const burst: MinecraftParticle[] = [];
     for (let i = 0; i < 9; i++) {
@@ -311,7 +314,6 @@ export function ResearchSection() {
             currentProgressRef.current = Math.min(currentProgressRef.current + step, 1.0);
           } else {
             currentProgressRef.current = 1.0;
-            // Stays there until the entire component is scrolled up out of view
           }
         } else {
           // 'flow-with-scroll' mode (coming from top to down):
@@ -396,14 +398,14 @@ export function ResearchSection() {
     };
   }, []);
 
-  // Minecraft Particle Spawner (crisp pixel cubes popping out of the drop during descent)
+  // Minecraft Particle Spawner (crisp pixel cubes popping out of the drop whenever section is in view)
   useEffect(() => {
     let nextId = 0;
     const interval = setInterval(() => {
-      // Spawn particles when droplet has begun its descent
-      if (currentProgressRef.current <= 0.01) return;
+      // Spawn particles whenever the section is in view
+      if (!wasInViewRef.current) return;
 
-      const palette = isLightMode ? WATER_COLORS : LAVA_COLORS;
+      const palette = isLightModeRef.current ? WATER_COLORS : LAVA_COLORS;
       // Emit more sparks when bigger (absorbed more dots)
       const count = 1 + (Math.random() < 0.25 + absorbedCountRef.current * 0.15 ? 1 : 0);
 
@@ -569,7 +571,7 @@ export function ResearchSection() {
                   <a
                     href={entry.link}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className={styles.readLink}
                     aria-label={`${entry.actionLabel || 'View Project ↗'}: ${entry.title}`}
                   >

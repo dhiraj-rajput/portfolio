@@ -1,11 +1,16 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, startTransition } from 'react';
 import styles from './ThemeToggle.module.css';
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window === 'undefined') return 'dark';
-    const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    return saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    try {
+      const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch {
+      // Fallback safely when localStorage is blocked
+    }
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   });
 
   useLayoutEffect(() => {
@@ -14,8 +19,14 @@ export function ThemeToggle() {
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    localStorage.setItem('theme', next);
+    startTransition(() => {
+      setTheme(next);
+    });
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      // Ignore storage error in restricted environments
+    }
   };
 
   return (
@@ -27,7 +38,6 @@ export function ThemeToggle() {
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       {theme === 'dark' ? (
-        // Sun icon for switching to light mode
         <svg
           className={styles.icon}
           viewBox="0 0 24 24"
@@ -36,6 +46,7 @@ export function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <circle cx="12" cy="12" r="5" />
           <line x1="12" y1="1" x2="12" y2="3" />
@@ -48,7 +59,6 @@ export function ThemeToggle() {
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
         </svg>
       ) : (
-        // Moon icon for switching to dark mode
         <svg
           className={styles.icon}
           viewBox="0 0 24 24"
@@ -57,6 +67,7 @@ export function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>

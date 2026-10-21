@@ -1,50 +1,59 @@
-# Dhiraj Rajput — Portfolio & Knowledge Base
+# Dhiraj Rajput - Portfolio & Knowledge Base
 
 > Cybersecurity & Full-Stack Engineer. Published Researcher in Springer Nature. MIT-WPU Pune, India.
 
 ## Executive Summary
-Dhiraj Rajput is a software engineer and cybersecurity researcher based in Pune, Maharashtra, India. He builds high-throughput distributed systems in Go and Python, modern interactive frontends in React and TypeScript, and published groundbreaking assistive technology research combining computer vision with LLMs for real-time blind navigation in Springer Nature (Cureus Journal of Computer Science).
+Dhiraj Rajput is a software engineer and cybersecurity researcher based in Pune, Maharashtra, India. He builds distributed backend services in Go and Python, responsive frontends in React 19 and TypeScript, and published peer-reviewed assistive technology research combining computer vision with LLMs for real-time blind navigation in Springer Nature (Cureus Journal of Computer Science).
 
 ## Core Capabilities & Specializations
-- **Cybersecurity & Defense:** Penetration testing, intrusion detection, red team simulation, LLM privacy proxies, PII sanitization, credential & access audits.
-- **Distributed Systems & Backend:** High-throughput streaming data pipelines with Apache Kafka, Apache Spark, TimescaleDB, Redis, Go microservices, FastAPI, and Django.
-- **Frontend & UI Engineering:** React 18, TypeScript, Vite, CSS Modules, high-performance web animations, responsive design, WCAG accessibility (a11y).
-- **Edge AI & Assistive Tech:** Edge computer vision (YOLOv8, OpenCV), multimodal LLM reasoning, Raspberry Pi wearable prototypes, audio spatial feedback.
+- **Cybersecurity & Defense:** Endpoint security, digital forensics, RBAC, intrusion simulation (RIFT), LLM privacy proxies, PII sanitization (RakshaNetra).
+- **Distributed Systems & Backend:** Real-time streaming pipelines with Apache Kafka, Apache Spark, TimescaleDB, Redis, Go services, FastAPI, and Django REST.
+- **Frontend & UI Engineering:** React 19, TypeScript, Vite, CSS Modules, responsive layouts, WCAG AA accessibility (a11y).
+- **Edge AI & Assistive Tech:** Edge computer vision (OpenCV), multimodal LLM reasoning, Raspberry Pi wearable systems, low-latency voice interfaces.
 
 ## Peer-Reviewed Publication
 - **Title:** "Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation"
-- **Publisher:** Cureus Journal of Computer Science — Springer Nature (2026)
+- **Publisher:** Cureus Journal of Computer Science - Springer Nature (2026)
 - **DOI:** https://doi.org/10.7759/s44389-026-00265-x
-- **Summary:** Wearable, hands-free assistive device pairing edge computer vision with multimodal LLM reasoning for real-time obstacle annotation and navigation for visually impaired users.
+- **Summary:** Wearable, hands-free Raspberry Pi assistive device pairing edge computer vision with multimodal LLM voice guidance (0.6s wake-word latency, 93% speech recognition, 88% obstacle detection accuracy).
 
 ## Selected Open Source Projects
 1. **Neo-Analytics:**
-   - Real-time astronomical telemetry pipeline using Apache Kafka, Apache Spark, and TimescaleDB with automated risk evaluation.
+   - Real-time NASA NeoWs asteroid telemetry pipeline using Apache Kafka, Apache Spark, TimescaleDB hypertables, and Grafana dashboards.
    - Code: https://github.com/dhiraj-rajput/neo-project
 2. **RakshaNetra:**
-   - Proactive client-edge PII interceptor proxy that sanitizes sensitive tokens before prompts reach external LLM endpoints.
+   - Client-edge PII interceptor proxy that redacts API keys, secrets, and personal identifiers in sub-millisecond latency before prompts reach external LLMs.
    - Code: https://github.com/dhiraj-rajput/rakshak-pii
 3. **RIFT (Remote Intrusion Framework):**
-   - Security operations and remote intrusion simulation framework built with Go, Django, Celery, and Redis.
+   - Security testing and simulated intrusion framework built with Go agents, Django REST, Celery, and Redis.
    - Code: https://github.com/dhiraj-rajput/rift-agent
 4. **BidForge:**
-   - Multi-agent LLM pipeline generating comprehensive enterprise proposals and bids from request documents.
-   - Code: https://github.com/dhiraj-rajput/bidforge
+   - Multi-agent LLM pipeline that parses complex RFP PDFs, maps compliance clauses, and drafts technical proposals.
+   - Code: https://github.com/dhiraj-rajput/BidForge
 5. **Omniscient:**
-   - Real-time collaborative task management engine powered by LLaMA and WebSockets.
-   - Code: https://github.com/dhiraj-rajput/omniscient
+   - Collaborative task management platform featuring local LLaMA ticket triage, RBAC, and WebSockets (40% lower query latency via compound MongoDB indexes).
+   - Code: https://github.com/dhiraj-rajput/Omniscient
 
 ## Professional Experience
-- **OrbitAvanya Tech** — Software Engineering Intern (Distributed Systems & Backend Architecture)
+- **OrbitAvanya Tech LLP** - Software Engineer Intern (Jul 2025 - Dec 2025, Pune, India)
+  - Built Winbidai (multi-tenant tender discovery & RFP drafting SaaS), Leadorbit (self-hosted B2B outreach automation), and Mind Elevate (enterprise coaching backend & RBAC analytics).
 
 ## Education & Certifications
 - **B.Tech in Computer Science & Engineering (Specialization: Cybersecurity & Forensics)**
-  - Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune
-  - CGPA: 8.87
-- **Certifications:**
+  - Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune (Aug 2023 - Present)
+  - CGPA: 8.87 / 10.0
+- **Certifications & Awards:**
+  - Ignisia 2026 Hackathon - 2nd Place
+  - Ciphathon 2026 Hackathon - 5th Place
   - Oracle Cloud Foundations Associate (Oracle)
   - Cisco Endpoint Security (Cisco)
   - Junior Cybersecurity Analyst Career Path (Cisco)
+  - DevConf 2025 Speaker
+
+## Machine-Readable Resources
+- **Full Technical Dossier:** https://dhiraj-rajput.github.io/portfolio/llms-full.txt
+- **Plain-Text Profile:** https://dhiraj-rajput.github.io/portfolio/about.txt
+- **Resume (PDF):** https://dhiraj-rajput.github.io/portfolio/Dhiraj_Rajput_Resume.pdf
 
 ## Contact Information
 - **Email:** rajputdhiraj1010@gmail.com

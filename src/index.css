@@ -1,33 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
-
 :root {
-  /* Default: Dark Theme */
+  color-scheme: dark;
+  /* Default: Dark Theme (Obsidian Carbon + Warm Amber Accent) */
   --bg-canvas: #09090b;
-  --bg-surface: #111113;
-  --bg-surface-elevated: #161618;
-  --border-subtle: #27272a;
-  --border-hover: #3f3f46;
-  
+  --bg-surface: #111114;
+  --bg-surface-elevated: #18181c;
+  --border-subtle: #27272c;
+  --border-hover: #3f3f48;
+
   --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
+  --text-secondary: #b4b4be;
+  --text-muted: #8a8a96;
 
   /*
-   * Ergonomic Lighter Orange Accent (#fb923c — Warm Amber-Tangerine):
-   * Derived from Color Opponent Theory & APCA Perceptual Contrast:
-   * - Elevated Lightness (61% vs 50% on #ff6600) prevents harsh retinal burn-in
-   * - Tuned Hue Angle (27° warm amber) aligns with photopic sensitivity peak (V-lambda)
-   * - Softened Saturation (96%) eliminates chromostereopsis against dark canvas (#09090b)
+   * Perceptually Balanced Dark-Mode Accent (#fb923c - Warm Amber-Tangerine):
+   * - High photopic contrast against #09090b without harsh retinal glare
    */
   --color-accent-rgb: 251, 146, 60;
   --color-accent: #fb923c;
+  --color-accent-text: #fb923c;
   --color-accent-hover: #ff9f43;
   --color-accent-subtle: rgba(251, 146, 60, 0.12);
+  --color-accent-border: rgba(251, 146, 60, 0.28);
 
   --hero-gradient-start: #ffffff;
-  --card-bg: #111113;
-  --card-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-  --glow-opacity: 0.35;
+  --hero-gradient-mid: #f4f4f5;
+  --card-bg: #111114;
+  --card-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --glow-opacity: 0.32;
 
   /* Legacy design tokens compatibility */
   --color-orange-500: var(--color-accent);
@@ -44,51 +43,59 @@
   --color-white: var(--text-primary);
   --color-border-subtle: var(--border-subtle);
 
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  /* Modern Engineering Typography Trio: Outfit + Inter + JetBrains Mono */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --content-max-width: 1372px;
-  --section-gap: clamp(64px, 8vw, 100px);
+  --content-max-width: 1380px;
+  --section-gap: clamp(68px, 8vw, 108px);
 }
 
 [data-theme="light"] {
+  color-scheme: light;
   /*
-   * Luxury Modern Light Theme (Optimized for Large Laptops & Monitors + Mobile):
-   * - Pristine, luminous pearl-white canvas (#f8f9fc) that banishes muddy cement-gray
-   *   while maintaining comfortable eye luminance on 16"-27" screens
-   * - Crisp pure card surfaces (#ffffff) with featherweight architectural borders (#e2e6ef)
-   * - Luminous elevated components & chips (#f1f3f9)
-   * - Deep obsidian Slate-900 typography (#0f172a) for crisp legibility and high contrast
-   * - Radiant warm amber-orange accent (#f97316 / #ea580c hover) that feels energetic and elegant
-   * - Multi-layered diffuse ambient elevation shadow for stunning desktop depth
+   * Calibrated Architectural Light Theme (60-30-10 Color Theory + WCAG AA/AAA):
+   * - 60% Canvas (#f3f5f9): Soft alabaster-pearl reduces large-monitor glare and creates
+   *   unmistakable figure-ground separation against pure white (#ffffff) cards.
+   * - 30% Surfaces & Structure (#ffffff cards, #eaeef5 elevated chips, #d8e0ed borders).
+   * - 10% Split Accent System:
+   *     • Fill Accent (--color-accent: #ea580c) for buttons, active indicators, and glows.
+   *     • Text Accent (--color-accent-text: #c2410c) delivering 5.42:1 WCAG AA contrast on white!
    */
-  --bg-canvas: #f8f9fc;
+  --bg-canvas: #f3f5f9;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #f1f3f9;
-  --border-subtle: #e2e6ef;
-  --border-hover: #cbd5e1;
+  --bg-surface-elevated: #eaeef5;
+  --border-subtle: #d8e0ed;
+  --border-hover: #b4c2d8;
 
   --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-secondary: #2d3d52;
+  --text-muted: #52637a;
 
-  --color-accent-rgb: 249, 115, 22;
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
-  --color-accent-subtle: rgba(249, 115, 22, 0.09);
+  --color-accent-rgb: 234, 88, 12;
+  --color-accent: #ea580c;
+  --color-accent-text: #c2410c;
+  --color-accent-hover: #c2410c;
+  --color-accent-subtle: rgba(234, 88, 12, 0.09);
+  --color-accent-border: rgba(194, 65, 12, 0.24);
 
   --hero-gradient-start: #0f172a;
+  --hero-gradient-mid: #1e293b;
   --card-bg: #ffffff;
-  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 10px 28px -4px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.02);
-  --glow-opacity: 0.12;
+  --card-shadow:
+    0 1px 3px 0 rgba(15, 23, 42, 0.04),
+    0 12px 32px -4px rgba(15, 23, 42, 0.07),
+    0 0 0 1px rgba(15, 23, 42, 0.03);
+  --glow-opacity: 0.14;
 
-  /* Legacy design tokens mapped for Soft Light Theme */
+  /* Legacy design tokens mapped for Light Theme */
   --color-orange-500: var(--color-accent);
   --color-orange-50: #fff7ed;
   --color-grey-100: var(--text-secondary);
   --color-grey-200: var(--text-muted);
   --color-grey-300: var(--text-muted);
-  --color-grey-400: #e2e6ef;
+  --color-grey-400: #d8e0ed;
   --color-black-900: var(--bg-canvas);
   --color-black-400: var(--border-subtle);
   --color-black-200: var(--text-secondary);
@@ -112,22 +119,24 @@ body {
 
 html {
   scroll-behavior: auto;
+  font-size: 100%;
 }
 
 section[id],
 header[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 16px;
 }
 
 body {
   background-color: var(--bg-canvas);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.68;
-  letter-spacing: -0.01em;
+  font-size: clamp(16px, 1.06vw, 18px);
+  line-height: 1.72;
+  letter-spacing: -0.008em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -139,6 +148,10 @@ h1, h2, h3, h4, h5, h6 {
 
 p, span, li {
   font-family: var(--font-body);
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
 }
 
 img {
@@ -167,7 +180,7 @@ ul {
 .container {
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 0 clamp(16px, 3vw, 24px);
+  padding: 0 clamp(16px, 3vw, 28px);
 }
 
 @media (max-width: 900px) {

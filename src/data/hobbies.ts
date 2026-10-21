@@ -18,7 +18,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Cinema & Anime',
     title: 'Cinephile & Anime Lover',
     description:
-      'Huge fan of world cinema and anime—especially psychological thrillers, cyberpunk lore, and rich visual storytelling.',
+      'Exploring world cinema and anime, especially psychological thrillers and sci-fi storytelling.',
     tags: ['Anime', 'World Cinema', 'Psychological Thrillers', 'Storytelling'],
   },
   {
@@ -27,7 +27,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Tech Exploration',
     title: 'Exploring New Technologies',
     description:
-      'Tinkering with emerging tech, inspecting network protocols, reading engineering papers, and building hands-on prototypes.',
+      'Inspecting network protocols, reading systems papers, and testing new open-source tools.',
     tags: ['Open Source', 'Research', 'Low-Level Tools', 'Experimentation'],
   },
   {
@@ -36,7 +36,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Reading',
     title: 'Reading & Systems Thinking',
     description:
-      'Reading about distributed systems design, offensive security, and mental models that explain how complex systems behave under stress.',
+      'Reading books on distributed architecture, security engineering, and decision-making under pressure.',
     tags: ['Non-fiction', 'Systems Thinking', 'Philosophy', 'Security'],
   },
   {
@@ -45,7 +45,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Gaming',
     title: 'MOBA & Video Games',
     description:
-      'Competitive gaming in MOBAs and tactical strategy games that demand fast micro-mechanics, map awareness, and team coordination.',
+      'Playing competitive MOBAs and strategy games focused on map awareness and team coordination.',
     tags: ['MOBA', 'Macro Strategy', 'Team Coordination', 'Competitive'],
   },
   {
@@ -54,7 +54,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Sports',
     title: 'Volleyball',
     description:
-      'Playing volleyball regularly—love the fast pace, court communication, and reflex-heavy rallies.',
+      'Regular court sessions focused on fast rallies, positioning, and team communication.',
     tags: ['Team Sport', 'Athletic Conditioning', 'Coordination'],
   },
   {
@@ -63,7 +63,7 @@ export const hobbies: HobbyItem[] = [
     category: 'Martial Arts',
     title: 'Karate Kid & Junior Black Belt',
     description:
-      'Trained in traditional Karate and earned a Junior Black Belt, building long-term discipline, focus, and quick reflexes.',
+      'Trained in traditional Karate (Junior Black Belt), building discipline, balance, and quick reflexes.',
     tags: ['Junior Black Belt', 'Karate', 'Discipline', 'Kumite', 'Reflexes'],
   },
 ];

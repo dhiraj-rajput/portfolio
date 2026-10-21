@@ -1,12 +1,25 @@
 # Robots.txt for https://dhiraj-rajput.github.io/portfolio/
+# AI Knowledge Base: https://dhiraj-rajput.github.io/portfolio/llms.txt
+# Full Technical Dossier: https://dhiraj-rajput.github.io/portfolio/llms-full.txt
+
 User-agent: *
 Allow: /
 
-# Explicit AI and LLM Search Engine Access
+# OpenAI Search & Assistants
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
-User-agent: PerplexityBot
+# Anthropic Claude Search & Assistants
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: ClaudeBot
@@ -15,6 +28,14 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+# Perplexity AI Search & Assistants
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google, Apple & Common Crawl AI Agents
 User-agent: Google-Extended
 Allow: /
 

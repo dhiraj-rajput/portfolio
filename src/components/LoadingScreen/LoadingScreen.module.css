@@ -1,0 +1,311 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-canvas, #09090b);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.overlayExiting {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.ambientGlow {
+  position: absolute;
+  width: min(560px, 90vw);
+  height: min(560px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 102, 0, 0.24) 0%,
+    rgba(251, 146, 60, 0.08) 42%,
+    transparent 70%
+  );
+  animation: pulseAura 1.8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.emblemStage {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+}
+
+/* Outer high-speed cyber arc */
+.orbitalOuter {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-top-color: #ff6600;
+  border-right-color: rgba(251, 146, 60, 0.35);
+  box-shadow: 0 0 24px rgba(255, 102, 0, 0.2);
+  animation: orbitSpin 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  pointer-events: none;
+}
+
+/* Counter-rotating middle dashed ring */
+.orbitalMiddle {
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 102, 0, 0.38);
+  animation: orbitSpinReverse 3.2s linear infinite;
+  pointer-events: none;
+}
+
+/* Inner glowing ring */
+.orbitalInner {
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle, #27272c);
+  border-bottom-color: #fb923c;
+  animation: orbitSpin 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Expanding sonar pulse wave */
+.pulseRing {
+  position: absolute;
+  inset: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 102, 0, 0.55);
+  animation: sonarRipple 1.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+/* Actual Logo Wrapper with 3D Entrance & Breathing Glow */
+.logoCard {
+  position: relative;
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 102, 0, 0.14) 0%,
+    var(--bg-surface, #111114) 75%
+  );
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(255, 102, 0, 0.22);
+  animation:
+    logoReveal3D 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    logoLevitate 1.8s ease-in-out 0.75s infinite alternate;
+}
+
+[data-theme="light"] .logoCard {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(234, 88, 12, 0.12) 0%,
+    #ffffff 78%
+  );
+  box-shadow:
+    0 16px 36px rgba(15, 23, 42, 0.12),
+    0 0 28px rgba(234, 88, 12, 0.2);
+}
+
+/* Sweeping light beam across the logo */
+.logoShimmerMask {
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%) rotate(15deg);
+  animation: shimmerSweep 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.15s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.logoImage {
+  position: relative;
+  z-index: 1;
+  width: 118px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 14px rgba(255, 102, 0, 0.55));
+  animation: logoPulseScale 1.4s ease-in-out infinite alternate;
+}
+
+.metaWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandName {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: metaFadeIn 0.45s ease 0.15s forwards;
+}
+
+.progressTrack {
+  width: 164px;
+  height: 3.5px;
+  border-radius: 999px;
+  background: var(--border-subtle, #27272c);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff6600, #fb923c, #ffd700, #ff6600);
+  background-size: 200% 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation:
+    progressFill 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards,
+    gradientFlow 1.2s linear infinite;
+}
+
+@keyframes logoReveal3D {
+  0% {
+    opacity: 0;
+    transform: scale(0.68) rotateY(-28deg) translateY(16px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.05) rotateY(6deg) translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg) translateY(0);
+  }
+}
+
+@keyframes logoLevitate {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+@keyframes logoPulseScale {
+  0% {
+    transform: scale(0.97);
+    filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.45));
+  }
+  100% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 22px rgba(255, 102, 0, 0.85));
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-120%) rotate(15deg);
+  }
+  100% {
+    transform: translateX(120%) rotate(15deg);
+  }
+}
+
+@keyframes sonarRipple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+}
+
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulseAura {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes metaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
