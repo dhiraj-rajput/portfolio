@@ -6,10 +6,10 @@ export const experiences: ExperienceEntry[] = [
   {
     id: 'orbitavanya-intern',
     role: 'Software Engineer Intern',
-    company: 'OrbitAvanya Tech',
+    company: 'OrbitAvanya Tech LLP',
     website: 'https://orbitavanyatech.com/',
     location: 'Pune, India',
-    period: 'Jul 2025 - Oct 2025',
+    period: 'Jul 2025 - Dec 2025',
     type: 'Internship',
     responsibilities: [
       {
@@ -59,7 +59,7 @@ export const techDomains: TechDomain[] = [
     category: 'Programming',
     stack: 'Rust / Go / Python / C++ / TypeScript',
     description:
-      'Systems programming in Rust and C++, distributed services in Go and Python, and responsive web apps in TypeScript.',
+      'Systems programming in C++, distributed services in Go and Python, and responsive web apps in TypeScript.',
   },
   {
     id: 'cloud',
