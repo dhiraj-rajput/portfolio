@@ -6,23 +6,28 @@ import styles from './ScrollToTop.module.css';
 /**
  * Floating Back-to-Top Action Button
  *
- * Positioned fixed at the bottom-right of the viewport.
- * Smoothly fades in when user scrolls down > 300px.
- * Smoothly scrolls user back to the top of the page when clicked.
+ * Uses a requestAnimationFrame-throttled passive scroll listener
+ * to avoid redundant state updates during fast scrolling.
  */
 export function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 320) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          const shouldShow = window.scrollY > 320;
+          setVisible((prev) => (prev === shouldShow ? prev : shouldShow));
+        });
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

@@ -8,7 +8,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 40px;
 }
 
@@ -22,17 +22,18 @@
 
 .title {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: clamp(30px, 3vw, 40px);
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.5px;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 
 .subtitle {
   font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--text-muted);
+  font-size: clamp(16.5px, 1.15vw, 18.5px);
+  color: var(--text-secondary);
   line-height: 1.65;
   margin: 0;
 }
@@ -356,10 +357,10 @@
 /* Each item row content */
 .itemContent {
   display: grid;
-  grid-template-columns: 200px 1fr auto;
+  grid-template-columns: 220px 1fr auto;
   align-items: center;
-  gap: 16px;
-  padding: 18px 28px;
+  gap: 20px;
+  padding: 20px 28px;
   transition: background 0.18s ease;
   will-change: transform, opacity;
 }
@@ -369,12 +370,13 @@
 }
 
 .driveFooter {
-  padding: 18px 28px;
+  padding: 20px 28px;
   background: var(--bg-surface-elevated);
   display: flex;
   align-items: center;
   justify-content: center;
   border-top: 1px solid var(--border-subtle);
+  border-radius: 0 0 20px 20px;
 }
 
 .driveButton {
@@ -384,19 +386,20 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-heading);
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-accent-text, var(--color-accent));
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 10px;
   background: var(--color-accent-subtle);
-  border: 1px solid transparent;
+  border: 1px solid var(--border-subtle);
   transition: all 0.2s ease;
 }
 
 .driveButton:hover {
   background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px var(--color-accent-subtle);
@@ -413,13 +416,6 @@
 
 /* ====================================================
    WILD SPARROW
-
-   The flight itself (curve, banking, turn-around) is driven frame by
-   frame from LeadershipSection.tsx using utils/birdFlight.ts, so there
-   are no flight keyframes here. This file only styles:
-     .sparrowPerch  -> invisible anchor on the button the bird lands on
-     .perched*      -> the bird once it has landed (idle fidgeting)
-     .flightLayer   -> the bird while flying (fixed layer on <body>)
    ==================================================== */
 .sparrowPerch {
   position: absolute;
@@ -435,7 +431,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  transform: translate3d(0, -18px, 0); /* keep in sync with PERCH_LIFT in the .tsx */
+  transform: translate3d(0, -18px, 0);
 }
 
 .perchedIdle {
@@ -658,31 +654,20 @@
   }
 }
 
-/* Reduced motion: the flight is skipped in the .tsx; also stop the idle fidgeting */
-@media (prefers-reduced-motion: reduce) {
-  .perchedIdle,
-  .flappingWingNear,
-  .flappingWingFar {
-    animation: none;
-  }
-}
-
 .category {
-  font-family: var(--font-heading);
-  font-size: 12px;
+  font-family: var(--font-mono, var(--font-heading));
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .entryTitle {
   font-family: var(--font-body);
-  font-size: 14.5px;
+  font-size: clamp(16px, 1.1vw, 18px);
   font-weight: 600;
   line-height: 1.5;
   color: var(--text-primary);
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 2px;
 }
 
 .entryLink {
@@ -694,15 +679,15 @@
 }
 
 .entryLink:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
+  color: var(--color-accent-text, var(--color-accent));
+  border-color: var(--color-accent-text, var(--color-accent));
 }
 
 .year {
-  font-family: var(--font-heading);
-  font-size: 13px;
+  font-family: var(--font-mono, var(--font-heading));
+  font-size: 14px;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-accent-text, var(--color-accent));
   text-align: right;
   white-space: nowrap;
 }

@@ -1,4 +1,4 @@
-# Dhiraj Rajput — Portfolio
+# Dhiraj Rajput - Portfolio
 
 Personal portfolio of **Dhiraj Rajput**, Cybersecurity & Full-Stack Engineer and published researcher from Pune, India.
 

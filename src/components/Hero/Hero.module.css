@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(14px, 1.8vw, 20px);
-  max-width: 1178px;
+  gap: clamp(16px, 2vw, 24px);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(24px, 3.5vw, 42px) clamp(16px, 3vw, 24px) 0;
+  padding: clamp(28px, 4vw, 48px) clamp(16px, 3vw, 28px) 0;
   text-align: center;
 }
 
@@ -16,7 +16,11 @@
   right: -220px;
   width: 700px;
   height: 500px;
-  background: radial-gradient(circle, rgba(var(--color-accent-rgb, 251, 146, 60), var(--glow-opacity, 0.35)) 0%, rgba(var(--color-accent-rgb, 251, 146, 60), 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-accent-rgb, 251, 146, 60), var(--glow-opacity, 0.32)) 0%,
+    rgba(var(--color-accent-rgb, 251, 146, 60), 0) 70%
+  );
   pointer-events: none;
   z-index: -1;
   animation: glowBreathe 6s ease-in-out infinite alternate;
@@ -37,30 +41,53 @@
 .title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(30px, 5vw, 58px);
-  line-height: 1.15;
-  background: linear-gradient(85deg, var(--hero-gradient-start, #ffffff) 56%, var(--color-orange-500) 98%);
+  font-size: clamp(34px, 5.2vw, 64px);
+  line-height: 1.12;
+  background: linear-gradient(
+    85deg,
+    var(--hero-gradient-start, #ffffff) 0%,
+    var(--hero-gradient-mid, #f4f4f5) 48%,
+    var(--color-accent) 98%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  max-width: 900px;
-  letter-spacing: -0.025em;
+  max-width: 960px;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="light"] .title {
+  background: linear-gradient(
+    85deg,
+    #0f172a 0%,
+    #1e293b 46%,
+    #c2410c 82%,
+    #ea580c 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  max-width: 980px;
+  gap: 12px;
+  max-width: 860px;
 }
 
 .description {
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.8vw, 18px);
+  font-size: clamp(17px, 1.35vw, 20.5px);
   line-height: 1.68;
   color: var(--text-secondary);
   letter-spacing: -0.01em;
+}
+
+.description strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .actions {

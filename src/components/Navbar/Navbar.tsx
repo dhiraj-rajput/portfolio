@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, startTransition } from 'react';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '../../data/navLinks';
 import { contactInfo } from '../../data/contact';
@@ -72,53 +72,63 @@ const WhatsAppSvg = () => (
   </svg>
 );
 
+const SECTION_IDS = [
+  'contact',
+  'beyond',
+  'leadership',
+  'research',
+  'projects',
+  'expertise',
+  'experience',
+  'about',
+];
+
 /**
- * Responsive top navigation bar with:
- * - Desktop: horizontal links + expandable action buttons + theme toggle
- * - Mobile / Tablet: clean single-row header + modern slide-down drawer with full tap targets
+ * Responsive top navigation bar with RAF-throttled scroll spy,
+ * desktop expandable socials, and accessible mobile drawer.
  */
 export function Navbar() {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
-  // Active section tracking on scroll
+  // RAF-throttled active section tracking on scroll
   useEffect(() => {
-    const sectionIds = [
-      'contact',
-      'beyond',
-      'leadership',
-      'research',
-      'projects',
-      'expertise',
-      'experience',
-      'about',
-    ];
+    let ticking = false;
 
-    const handleScroll = () => {
+    const evaluateActiveSection = () => {
+      ticking = false;
       if (window.scrollY < 200) {
-        setActiveSection('home');
+        startTransition(() => {
+          setActiveSection((prev) => (prev === 'home' ? prev : 'home'));
+        });
         return;
       }
 
-      // Use getBoundingClientRect() + window.scrollY for document-relative
-      // position — el.offsetTop is relative to offsetParent (<main>) and
-      // will always be exceeded once user scrolls past the hero zone.
       const triggerLine = window.scrollY + 160;
 
-      for (const id of sectionIds) {
+      for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
           if (triggerLine >= top) {
-            setActiveSection(id);
+            startTransition(() => {
+              setActiveSection((prev) => (prev === id ? prev : id));
+            });
             return;
           }
         }
       }
     };
 
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(evaluateActiveSection);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    evaluateActiveSection();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -169,9 +179,9 @@ export function Navbar() {
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className={styles.logo}
-            aria-label="Home"
+            aria-label="Dhiraj Rajput Home"
           >
-            <img src={assetUrl('logo.svg')} alt="DJ Logo" className={styles.logoImg} />
+            <img src={assetUrl('logo.svg')} alt="Dhiraj Rajput Logo" className={styles.logoImg} />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -185,6 +195,7 @@ export function Navbar() {
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={isActive ? styles.linkActive : styles.link}
+                  aria-current={isActive ? 'location' : undefined}
                 >
                   {link.label}
                 </a>
@@ -198,9 +209,9 @@ export function Navbar() {
             <a
               href={assetUrl(contactInfo.resumeFile)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.resumeButton}
-              aria-label="Download Resume"
+              aria-label="Download Resume PDF"
               title="Download Resume PDF"
             >
               <ResumeIcon />
@@ -213,7 +224,7 @@ export function Navbar() {
               <a
                 href={contactInfo.github.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.expandableButton}
                 aria-label="GitHub Profile"
                 title="View GitHub Profile"
@@ -226,7 +237,7 @@ export function Navbar() {
               <a
                 href={contactInfo.linkedin.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.expandableButton}
                 aria-label="LinkedIn Profile"
                 title="Connect on LinkedIn"
@@ -239,7 +250,7 @@ export function Navbar() {
               <a
                 href={contactInfo.whatsapp.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={`${styles.expandableButton} ${styles.whatsappExpandable}`}
                 aria-label="Contact on WhatsApp"
                 title="Chat on WhatsApp"
@@ -304,7 +315,7 @@ export function Navbar() {
                 <a
                   href={contactInfo.github.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={styles.mobileSocialCard}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -315,7 +326,7 @@ export function Navbar() {
                 <a
                   href={contactInfo.linkedin.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={styles.mobileSocialCard}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -326,7 +337,7 @@ export function Navbar() {
                 <a
                   href={contactInfo.whatsapp.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={`${styles.mobileSocialCard} ${styles.mobileWhatsappCard}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -337,7 +348,7 @@ export function Navbar() {
                 <a
                   href={assetUrl(contactInfo.resumeFile)}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={styles.mobileSocialCard}
                   onClick={() => setMobileMenuOpen(false)}
                 >

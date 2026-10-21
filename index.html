@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <!-- ══════════════════════════════════════════════════════
          THEME INITIALIZATION
-         Executes before first paint to prevent light-theme flash
+         Executes before first paint to prevent light/dark flash
     ══════════════════════════════════════════════════════ -->
     <script>
       (function () {
@@ -22,21 +23,31 @@
          PRIMARY SEO META TAGS
     ══════════════════════════════════════════════════════ -->
     <title>Dhiraj Rajput Portfolio</title>
+    <meta name="title" content="Dhiraj Rajput Portfolio" />
     <meta
       name="description"
-      content="Dhiraj Rajput — Cybersecurity &amp; Full-Stack Engineer from Pune, India. Published researcher in Springer Nature (Computer Vision &amp; LLMs). Building Go/Python distributed systems, real-time data pipelines, and React applications."
+      content="Dhiraj Rajput Portfolio - Cybersecurity &amp; Full-Stack Engineer based in Pune, India. Published researcher in Springer Nature (Computer Vision &amp; LLMs). Building Go and Python distributed systems, real-time Kafka/Spark pipelines, and React applications."
     />
     <meta
       name="keywords"
-      content="Dhiraj Rajput, Dhiraj Rajput portfolio, Cybersecurity Engineer, Full-Stack Developer, Go developer, Python developer, React developer, Apache Kafka, Computer Vision, LLM, Pune India, MIT-WPU, Software Engineer"
+      content="Dhiraj Rajput, Dhiraj Rajput Portfolio, Cybersecurity Engineer, Full-Stack Developer, Go developer, Python developer, React developer, Apache Kafka, Computer Vision, LLM Security, Pune India, MIT-WPU, Software Engineer"
     />
     <meta name="author" content="Dhiraj Rajput" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#edeef2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#f3f5f9" media="(prefers-color-scheme: light)" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://dhiraj-rajput.github.io/portfolio/" />
+
+    <!-- ══════════════════════════════════════════════════════
+         AI / LLM CONTEXT DISCOVERY (GEO 2026 STANDARD)
+    ══════════════════════════════════════════════════════ -->
+    <link rel="describedby" type="text/markdown" title="LLM Context Summary" href="./llms.txt" />
+    <link rel="alternate" type="text/markdown" title="Full LLM Portfolio Knowledge Base" href="./llms-full.txt" />
+    <link rel="author" type="text/plain" href="./about.txt" />
 
     <!-- ══════════════════════════════════════════════════════
          GEO META TAGS (Local SEO & Regional Discovery)
@@ -45,11 +56,6 @@
     <meta name="geo.placename" content="Pune, Maharashtra, India" />
     <meta name="geo.position" content="18.5204;73.8567" />
     <meta name="ICBM" content="18.5204, 73.8567" />
-
-    <!-- ══════════════════════════════════════════════════════
-         ASSET PRELOAD (LCP Optimization)
-    ══════════════════════════════════════════════════════ -->
-    <link rel="preload" as="image" href="/profile.jpg" fetchpriority="high" />
 
     <!-- ══════════════════════════════════════════════════════
          IDENTITY VERIFICATION & ENTITY LINKING (AEO / GEO)
@@ -61,16 +67,16 @@
          OPEN GRAPH (LinkedIn, WhatsApp, Facebook, Slack previews)
     ══════════════════════════════════════════════════════ -->
     <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="Dhiraj Rajput" />
-    <meta property="og:title" content="Dhiraj Rajput — Cybersecurity &amp; Full-Stack Engineer" />
+    <meta property="og:site_name" content="Dhiraj Rajput Portfolio" />
+    <meta property="og:title" content="Dhiraj Rajput Portfolio" />
     <meta
       property="og:description"
-      content="Building secure distributed systems, real-time data pipelines, and AI-powered tools. Published researcher in Springer Nature. MIT-WPU Pune."
+      content="Building distributed systems, real-time Kafka/Spark pipelines, and AI security tooling. Published researcher in Springer Nature. MIT-WPU Pune."
     />
     <meta property="og:image" content="https://dhiraj-rajput.github.io/portfolio/profile.jpg" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="800" />
-    <meta property="og:image:alt" content="Dhiraj Rajput — Cybersecurity &amp; Full-Stack Engineer" />
+    <meta property="og:image:alt" content="Dhiraj Rajput - Cybersecurity &amp; Full-Stack Engineer" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:url" content="https://dhiraj-rajput.github.io/portfolio/" />
     <meta property="og:locale" content="en_US" />
@@ -84,284 +90,343 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@dhirajrajput" />
     <meta name="twitter:creator" content="@dhirajrajput" />
-    <meta name="twitter:title" content="Dhiraj Rajput — Cybersecurity &amp; Full-Stack Engineer" />
+    <meta name="twitter:title" content="Dhiraj Rajput Portfolio" />
     <meta
       name="twitter:description"
-      content="Building secure distributed systems, real-time data pipelines, and AI-powered tools. Published researcher in Springer Nature."
+      content="Building distributed systems, real-time Kafka/Spark pipelines, and AI security tooling. Published researcher in Springer Nature."
     />
     <meta name="twitter:image" content="https://dhiraj-rajput.github.io/portfolio/profile.jpg" />
     <meta name="twitter:image:alt" content="Dhiraj Rajput profile photo" />
 
     <!-- ══════════════════════════════════════════════════════
-         JSON-LD STRUCTURED DATA
-         Enables Google Knowledge Graph, rich snippets & person card
+         UNIFIED @GRAPH JSON-LD STRUCTURED DATA (SEO, AEO & GEO)
+         Enables Google Knowledge Graph, Speakable AI Answers & Citations
     ══════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "dateCreated": "2026-01-01",
-      "dateModified": "2026-09-27",
-      "url": "https://dhiraj-rajput.github.io/portfolio/",
-      "name": "Dhiraj Rajput — Portfolio",
-      "description": "Personal portfolio of Dhiraj Rajput, Cybersecurity & Full-Stack Engineer and published researcher.",
-      "mainEntity": {
-        "@type": "Person",
-        "@id": "https://dhiraj-rajput.github.io/portfolio/#person",
-        "name": "Dhiraj Rajput",
-        "givenName": "Dhiraj",
-        "familyName": "Rajput",
-        "jobTitle": "Cybersecurity & Full-Stack Engineer",
-        "description": "Cybersecurity & Full-Stack Engineer specializing in Go, Python, React, and distributed systems. Published researcher in Springer Nature — Computer Vision & LLMs for real-time blind navigation. Building secure, resilient web architectures and high-throughput data pipelines.",
-        "url": "https://dhiraj-rajput.github.io/portfolio/",
-        "image": "https://dhiraj-rajput.github.io/portfolio/profile.jpg",
-        "email": "rajputdhiraj1010@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Pune",
-          "addressRegion": "Maharashtra",
-          "addressCountry": "IN"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#website",
+          "url": "https://dhiraj-rajput.github.io/portfolio/",
+          "name": "Dhiraj Rajput Portfolio",
+          "description": "Official portfolio, peer-reviewed research, and open-source software of Dhiraj Rajput.",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://dhiraj-rajput.github.io/portfolio/#person"
+          }
         },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Dr. Vishwanath Karad MIT World Peace University",
-          "alternateName": "MIT-WPU",
+        {
+          "@type": "ProfilePage",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#profilepage",
+          "dateCreated": "2026-01-01",
+          "dateModified": "2026-10-21",
+          "url": "https://dhiraj-rajput.github.io/portfolio/",
+          "name": "Dhiraj Rajput Portfolio",
+          "description": "Personal portfolio of Dhiraj Rajput, Cybersecurity & Full-Stack Engineer and published researcher in Springer Nature.",
+          "isPartOf": {
+            "@id": "https://dhiraj-rajput.github.io/portfolio/#website"
+          },
+          "about": {
+            "@id": "https://dhiraj-rajput.github.io/portfolio/#person"
+          },
+          "mainEntity": {
+            "@id": "https://dhiraj-rajput.github.io/portfolio/#person"
+          },
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["#hero-summary", "#about"]
+          },
+          "hasPart": [
+            {
+              "@type": "ScholarlyArticle",
+              "@id": "https://doi.org/10.7759/s44389-026-00265-x",
+              "headline": "Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation",
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Cureus Journal of Computer Science - Springer Nature",
+                "url": "https://www.springernature.com"
+              },
+              "datePublished": "2026",
+              "url": "https://doi.org/10.7759/s44389-026-00265-x",
+              "sameAs": "https://doi.org/10.7759/s44389-026-00265-x",
+              "keywords": [
+                "Computer Vision",
+                "Large Language Models",
+                "Edge Computing",
+                "Assistive Technology",
+                "Raspberry Pi",
+                "Blind Navigation"
+              ],
+              "description": "Wearable assistive device pairing Raspberry Pi edge computer vision with multimodal LLM reasoning, achieving 0.6s wake-word latency, 93% speech accuracy, and 88% real-time obstacle detection."
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#person",
+          "name": "Dhiraj Rajput",
+          "givenName": "Dhiraj",
+          "familyName": "Rajput",
+          "jobTitle": "Cybersecurity & Full-Stack Engineer",
+          "description": "Dhiraj Rajput is a Cybersecurity and Full-Stack Engineer in Pune, India, specializing in Go, Python, React, TypeScript, and Apache Kafka distributed systems. Published researcher in Springer Nature.",
+          "url": "https://dhiraj-rajput.github.io/portfolio/",
+          "image": "https://dhiraj-rajput.github.io/portfolio/profile.jpg",
+          "email": "rajputdhiraj1010@gmail.com",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Pune",
+            "addressRegion": "Maharashtra",
             "addressCountry": "IN"
-          }
-        },
-        "knowsAbout": [
-          "Cybersecurity",
-          "Penetration Testing",
-          "Intrusion Detection",
-          "Go (Golang)",
-          "Python",
-          "React",
-          "TypeScript",
-          "Apache Kafka",
-          "Distributed Systems",
-          "Computer Vision",
-          "Large Language Models",
-          "Edge AI",
-          "FastAPI",
-          "Django",
-          "Docker",
-          "AWS",
-          "TimescaleDB"
-        ],
-        "hasCredential": [
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Oracle Cloud Foundations Associate",
-            "credentialCategory": "certification",
-            "recognizedBy": { "@type": "Organization", "name": "Oracle" }
           },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Cisco Endpoint Security",
-            "credentialCategory": "certification",
-            "recognizedBy": { "@type": "Organization", "name": "Cisco" }
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Dr. Vishwanath Karad MIT World Peace University",
+            "alternateName": "MIT-WPU",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Pune",
+              "addressCountry": "IN"
+            }
           },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Junior Cybersecurity Analyst Career Path",
-            "credentialCategory": "certification",
-            "recognizedBy": { "@type": "Organization", "name": "Cisco" }
-          }
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "OrbitAvanya Tech"
-        },
-        "sameAs": [
-          "https://linkedin.com/in/dhiraj-rajput-",
-          "https://github.com/dhiraj-rajput",
-          "https://wa.me/917972742879"
-        ]
-      },
-      "hasPart": [
-        {
-          "@type": "Article",
-          "headline": "Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation",
-          "inLanguage": "en",
-          "isAccessibleForFree": true,
-          "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Cureus Journal of Computer Science — Springer Nature",
-            "url": "https://www.springernature.com"
-          },
-          "datePublished": "2026",
-          "url": "https://doi.org/10.7759/s44389-026-00265-x",
-          "keywords": [
+          "knowsAbout": [
+            "Cybersecurity",
+            "Intrusion Detection",
+            "LLM Privacy & PII Redaction",
+            "Go (Golang)",
+            "Python",
+            "React",
+            "TypeScript",
+            "Apache Kafka",
+            "Apache Spark",
+            "TimescaleDB",
+            "Distributed Systems",
             "Computer Vision",
             "Large Language Models",
-            "Edge Computing",
-            "Assistive Technology",
-            "Raspberry Pi",
-            "Real-Time Navigation",
-            "Blind Navigation"
+            "FastAPI",
+            "Django",
+            "Docker",
+            "AWS"
           ],
-          "description": "Wearable, hands-free assistive device combining edge computer vision with multimodal LLM reasoning for real-time obstacle annotation and navigation for visually impaired users."
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Oracle Cloud Foundations Associate",
+              "credentialCategory": "certification",
+              "recognizedBy": { "@type": "Organization", "name": "Oracle" }
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Cisco Endpoint Security",
+              "credentialCategory": "certification",
+              "recognizedBy": { "@type": "Organization", "name": "Cisco" }
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Junior Cybersecurity Analyst Career Path",
+              "credentialCategory": "certification",
+              "recognizedBy": { "@type": "Organization", "name": "Cisco" }
+            }
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "OrbitAvanya Tech LLP",
+            "url": "https://orbitavanyatech.com/"
+          },
+          "sameAs": [
+            "https://linkedin.com/in/dhiraj-rajput-",
+            "https://github.com/dhiraj-rajput",
+            "https://doi.org/10.7759/s44389-026-00265-x"
+          ]
         },
         {
-          "@type": "SoftwareSourceCode",
-          "name": "RakshaNetra — Proactive Data Leakage Prevention for LLMs",
-          "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
-          "codeRepository": "https://github.com/dhiraj-rajput/rakshak-pii",
-          "programmingLanguage": ["Python", "FastAPI"],
-          "description": "Client-edge interceptor proxy that sanitizes PII and sensitive tokens before prompts reach external LLM endpoints."
+          "@type": "ItemList",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#projects-list",
+          "name": "Featured Software Engineering Projects by Dhiraj Rajput",
+          "numberOfItems": 6,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "Neo-Analytics",
+                "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+                "codeRepository": "https://github.com/dhiraj-rajput/neo-project",
+                "programmingLanguage": ["Python", "Apache Kafka", "Apache Spark", "TimescaleDB"],
+                "description": "Real-time astronomical telemetry pipeline processing NASA NeoWs data with Apache Kafka, Spark, and TimescaleDB."
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "BidForge",
+                "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+                "codeRepository": "https://github.com/dhiraj-rajput/BidForge",
+                "programmingLanguage": ["Python", "FastAPI"],
+                "description": "Multi-agent LLM pipeline that parses RFP documents, extracts compliance matrices, and drafts enterprise proposals."
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "RakshaNetra",
+                "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+                "codeRepository": "https://github.com/dhiraj-rajput/rakshak-pii",
+                "programmingLanguage": ["Python", "FastAPI"],
+                "description": "Client-edge privacy proxy that intercepts and redacts credentials and PII before prompts reach external LLMs."
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "Omniscient",
+                "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+                "codeRepository": "https://github.com/dhiraj-rajput/Omniscient",
+                "programmingLanguage": ["Python", "Django", "React", "TypeScript"],
+                "description": "Collaborative task and workflow platform with local LLaMA triage, RBAC, and real-time WebSockets."
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "RIFT - Remote Intrusion Framework",
+                "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
+                "codeRepository": "https://github.com/dhiraj-rajput/rift-agent",
+                "programmingLanguage": ["Go", "Python", "Django", "Redis"],
+                "description": "Security operations and intrusion simulation platform built with Go agents, Django REST, Celery, and Redis queues."
+              }
+            }
+          ]
         },
         {
-          "@type": "SoftwareSourceCode",
-          "name": "Neo-Analytics — Real-Time Astronomical Data Pipeline",
-          "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
-          "codeRepository": "https://github.com/dhiraj-rajput/neo-project",
-          "programmingLanguage": ["Python", "Apache Kafka", "Apache Spark"],
-          "description": "Real-time data streaming and distributed analytics platform processing near-Earth astronomical telemetry."
+          "@type": "FAQPage",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does Dhiraj Rajput specialize in?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dhiraj Rajput specializes in Cybersecurity, Distributed Backend Systems, and Full-Stack Development using Go, Python, React, TypeScript, Apache Kafka, and TimescaleDB."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is Dhiraj Rajput's research published?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dhiraj Rajput's research 'Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation' is published in the Cureus Journal of Computer Science (Springer Nature, 2026), DOI: 10.7759/s44389-026-00265-x."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is Dhiraj Rajput's educational background?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dhiraj Rajput is pursuing a B.Tech in Computer Science and Engineering (Specialization in Cybersecurity and Forensics) at Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune, with a CGPA of 8.87 / 10.0."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Dhiraj Rajput available for software engineering roles?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Dhiraj Rajput is available for software engineering, backend, and cybersecurity roles. Contact him via rajputdhiraj1010@gmail.com or LinkedIn (linkedin.com/in/dhiraj-rajput-)."
+              }
+            }
+          ]
         },
         {
-          "@type": "SoftwareSourceCode",
-          "name": "RIFT — Remote Intrusion Framework",
-          "author": { "@id": "https://dhiraj-rajput.github.io/portfolio/#person" },
-          "codeRepository": "https://github.com/dhiraj-rajput/rift-agent",
-          "programmingLanguage": ["Go", "Django", "Redis"],
-          "description": "Security operations and remote intrusion framework with asynchronous execution, Celery worker nodes, and Redis queues."
+          "@type": "BreadcrumbList",
+          "@id": "https://dhiraj-rajput.github.io/portfolio/#breadcrumbs",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dhiraj-rajput.github.io/portfolio/" },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://dhiraj-rajput.github.io/portfolio/#about" },
+            { "@type": "ListItem", "position": 3, "name": "Experience", "item": "https://dhiraj-rajput.github.io/portfolio/#experience" },
+            { "@type": "ListItem", "position": 4, "name": "Expertise", "item": "https://dhiraj-rajput.github.io/portfolio/#expertise" },
+            { "@type": "ListItem", "position": 5, "name": "Projects", "item": "https://dhiraj-rajput.github.io/portfolio/#projects" },
+            { "@type": "ListItem", "position": 6, "name": "Research", "item": "https://dhiraj-rajput.github.io/portfolio/#research" },
+            { "@type": "ListItem", "position": 7, "name": "Leadership", "item": "https://dhiraj-rajput.github.io/portfolio/#leadership" },
+            { "@type": "ListItem", "position": 8, "name": "Contact", "item": "https://dhiraj-rajput.github.io/portfolio/#contact" }
+          ]
         }
       ]
     }
     </script>
 
     <!-- ══════════════════════════════════════════════════════
-         AEO STRUCTURED DATA: FAQ SCHEMA (AI Search / Answer Engines)
+         FAVICONS (Relative paths for GitHub Pages subpath compatibility)
     ══════════════════════════════════════════════════════ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does Dhiraj Rajput specialize in?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dhiraj Rajput specializes in Cybersecurity, Full-Stack Development, and AI systems. He builds distributed Go/Python systems, React frontends, and security tools including intrusion detection frameworks and LLM privacy proxies."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where is Dhiraj Rajput's research published?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Published in Cureus Journal of Computer Science (Springer Nature) — 'Integrating Computer Vision and LLMs for Real-Time Blind Navigation'. DOI: 10.7759/s44389-026-00265-x"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is Dhiraj Rajput available for hire?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Open to full-time engineering roles in cybersecurity, distributed systems, and full-stack development. Email: rajputdhiraj1010@gmail.com · LinkedIn: linkedin.com/in/dhiraj-rajput-"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is Dhiraj Rajput's educational background?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dhiraj is pursuing B.Tech in Computer Science (Specialization in Cybersecurity and Forensics) at Dr. Vishwanath Karad MIT World Peace University (MIT-WPU), Pune with a CGPA of 8.89."
-          }
-        }
-      ]
-    }
-    </script>
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
+    <link rel="apple-touch-icon" href="./logo.svg" sizes="180x180" />
 
     <!-- ══════════════════════════════════════════════════════
-         BREADCRUMBLIST SCHEMA (Navigation Hierarchy & Sitelinks)
-    ══════════════════════════════════════════════════════ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://dhiraj-rajput.github.io/portfolio/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "About",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#about"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Experience",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#experience"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Tech Expertise",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#tech"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "name": "Projects",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#projects"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Research",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#research"
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
-          "name": "Leadership & Awards",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#leadership"
-        },
-        {
-          "@type": "ListItem",
-          "position": 8,
-          "name": "Beyond Engineering",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#beyond"
-        },
-        {
-          "@type": "ListItem",
-          "position": 9,
-          "name": "Contact",
-          "item": "https://dhiraj-rajput.github.io/portfolio/#contact"
-        }
-      ]
-    }
-    </script>
-
-    <!-- ══════════════════════════════════════════════════════
-         FAVICONS
-    ══════════════════════════════════════════════════════ -->
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="apple-touch-icon" href="/logo.svg" sizes="180x180" />
-
-    <!-- ══════════════════════════════════════════════════════
-         GOOGLE FONTS (Preconnected for fast, non-blocking render)
+         GOOGLE FONTS (Outfit + Inter + JetBrains Mono)
     ══════════════════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@500;600;700;800&display=swap"
     />
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Static Semantic Fallback for Non-JS AI Crawlers & Answer Engines (GEO / AEO) -->
+    <noscript>
+      <main style="max-width: 900px; margin: 0 auto; padding: 2rem; font-family: system-ui, sans-serif; line-height: 1.6;">
+        <header>
+          <h1>Dhiraj Rajput - Cybersecurity &amp; Full-Stack Engineer</h1>
+          <p>
+            Dhiraj Rajput is a software engineer and published researcher based in Pune, India (B.Tech CSE - Cybersecurity &amp; Forensics at MIT-WPU, 8.87 CGPA). He builds distributed systems in Go and Python, streaming telemetry pipelines with Apache Kafka and TimescaleDB, and responsive React/TypeScript web applications.
+          </p>
+        </header>
+        <section>
+          <h2>Peer-Reviewed Publication</h2>
+          <p>
+            <strong>Integrating Computer Vision and Large Language Models for Real-Time Blind Navigation</strong> - Published in <em>Cureus Journal of Computer Science (Springer Nature, 2026)</em>. <a href="https://doi.org/10.7759/s44389-026-00265-x">DOI: 10.7759/s44389-026-00265-x</a>. Achieved 0.6s wake-word latency, 93% speech accuracy, and 88% obstacle detection accuracy.
+          </p>
+        </section>
+        <section>
+          <h2>Experience</h2>
+          <p><strong>Software Engineer Intern - OrbitAvanya Tech LLP</strong> (Jul 2025 - Dec 2025, Pune, India): Built Winbidai (multi-tenant AI RFP engine), Leadorbit (self-hosted B2B outreach automation), and Mind Elevate (enterprise wellbeing platform).</p>
+        </section>
+        <section>
+          <h2>Featured Open-Source Projects</h2>
+          <ul>
+            <li><strong>Neo-Analytics</strong>: Real-time NASA astronomical telemetry pipeline using Apache Kafka, Spark, TimescaleDB, and Grafana (<a href="https://github.com/dhiraj-rajput/neo-project">GitHub</a>).</li>
+            <li><strong>RakshaNetra</strong>: Client-edge PII redaction proxy for LLMs built with Python and FastAPI (<a href="https://github.com/dhiraj-rajput/rakshak-pii">GitHub</a>).</li>
+            <li><strong>RIFT (Remote Intrusion Framework)</strong>: Security operations and intrusion simulation framework using Go, Django REST, Celery, and Redis (<a href="https://github.com/dhiraj-rajput/rift-agent">GitHub</a>).</li>
+            <li><strong>BidForge</strong>: Multi-agent LLM proposal engine with FastAPI and AWS S3 (<a href="https://github.com/dhiraj-rajput/BidForge">GitHub</a>).</li>
+            <li><strong>Omniscient</strong>: Real-time workflow platform with local LLaMA triage and WebSockets (<a href="https://github.com/dhiraj-rajput/Omniscient">GitHub</a>).</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Contact &amp; Links</h2>
+          <ul>
+            <li>Email: <a href="mailto:rajputdhiraj1010@gmail.com">rajputdhiraj1010@gmail.com</a></li>
+            <li>GitHub: <a href="https://github.com/dhiraj-rajput">github.com/dhiraj-rajput</a></li>
+            <li>LinkedIn: <a href="https://linkedin.com/in/dhiraj-rajput-">linkedin.com/in/dhiraj-rajput-</a></li>
+            <li>LLM Summary: <a href="./llms.txt">llms.txt</a> | <a href="./llms-full.txt">llms-full.txt</a></li>
+          </ul>
+        </section>
+      </main>
+    </noscript>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

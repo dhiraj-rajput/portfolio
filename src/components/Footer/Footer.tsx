@@ -20,6 +20,8 @@ const ArrowUpIcon = () => (
   </svg>
 );
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export function Footer() {
   const scrollToTop = () => {
     flutterScrollTo(0);
@@ -95,7 +97,7 @@ export function Footer() {
               <a
                 href="https://doi.org/10.7759/s44389-026-00265-x"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 Springer Nature Publication ↗
@@ -105,7 +107,7 @@ export function Footer() {
               <a
                 href="https://github.com/dhiraj-rajput/rakshak-pii"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 RakshaNetra (LLM Privacy) ↗
@@ -115,7 +117,7 @@ export function Footer() {
               <a
                 href="https://github.com/dhiraj-rajput/neo-project"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 Neo-Analytics (Kafka &amp; Spark) ↗
@@ -125,7 +127,7 @@ export function Footer() {
               <a
                 href="https://github.com/dhiraj-rajput/rift-agent"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 RIFT Intrusion Framework ↗
@@ -135,7 +137,7 @@ export function Footer() {
               <a
                 href="https://github.com/dhiraj-rajput/BidForge"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 BidForge (Multi-Agent RFP) ↗
@@ -160,7 +162,7 @@ export function Footer() {
               <a
                 href={contactInfo.whatsapp.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 WhatsApp ({contactInfo.whatsapp.display}) ↗
@@ -170,7 +172,7 @@ export function Footer() {
               <a
                 href={contactInfo.linkedin.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 LinkedIn ↗
@@ -180,7 +182,7 @@ export function Footer() {
               <a
                 href={contactInfo.github.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 GitHub ↗
@@ -190,7 +192,7 @@ export function Footer() {
               <a
                 href={assetUrl(contactInfo.resumeFile)}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={styles.footerLink}
               >
                 Resume PDF ↗
@@ -204,7 +206,7 @@ export function Footer() {
       <div className={styles.bottomBar}>
         <div className={styles.bottomInner}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Dhiraj Rajput. Built with React &amp; TypeScript.
+            &copy; {CURRENT_YEAR} Dhiraj Rajput. Built with React &amp; TypeScript.
           </p>
 
           <button

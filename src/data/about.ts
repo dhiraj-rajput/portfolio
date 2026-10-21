@@ -18,27 +18,24 @@ export const engineerData: EngineerProfile = {
   },
 
   quickFacts: [
-    { label: 'Institution', value: 'MIT-WPU Pune' },
-    { label: 'Degree', value: 'B.Tech Computer Science' },
+    { label: 'Location', value: 'Pune, India' },
     { label: 'Specialization', value: 'Cybersecurity & Forensics' },
     { label: 'CGPA', value: '8.87 / 10.0', highlight: true },
-    { label: 'Research Focus', value: 'Applied AI & Autonomous Systems' },
-    { label: 'Active Domains', value: 'Full-Stack Dev, Forensics & Cloud' },
+    { label: 'Publication', value: 'Springer Nature (2026)', href: 'https://doi.org/10.7759/s44389-026-00265-x' },
     { label: 'GitHub', value: 'github.com/dhiraj-rajput', href: 'https://github.com/dhiraj-rajput' },
-    { label: 'Location', value: 'Pune, India' },
     { label: 'Status', value: 'Open for Roles', highlight: true },
   ],
 
   bioParagraphs: [
-    "I'm a Computer Science student at MIT-WPU Pune specializing in Cybersecurity and Forensics. I like building from both sides of the stack: designing clean, responsive web applications with React and Next.js, while digging into network protocols, binary analysis, and security fundamentals to make sure systems hold up under real-world conditions.",
-    "Much of my work revolves around real-time data pipelines and applied security. Whether that's streaming astronomical telemetry with Apache Kafka and TimescaleDB in Neo-Analytics, building lightweight token filters to prevent data leakage in LLMs (RakshaNetra), or publishing assistive computer vision research with Springer Nature, I focus on building reliable software that solves tangible problems.",
+    "I'm a Computer Science undergraduate at MIT-WPU Pune specializing in Cybersecurity and Forensics (8.87 CGPA). I work across the stack - building responsive React and TypeScript interfaces alongside Go and Python backend services designed for security and reliability.",
+    "My recent work focuses on real-time data pipelines and applied AI security: streaming NASA telemetry with Apache Kafka and TimescaleDB (Neo-Analytics), filtering sensitive PII before prompts reach external LLMs (RakshaNetra), and publishing peer-reviewed assistive computer vision research in Springer Nature.",
   ],
 
   bioHighlightKeywords: [
     'MIT-WPU Pune',
     'Cybersecurity and Forensics',
     'React',
-    'Next.js',
+    'TypeScript',
     'Apache Kafka',
     'TimescaleDB',
     'Neo-Analytics',
@@ -77,26 +74,25 @@ export const engineerData: EngineerProfile = {
       id: 'p1',
       number: '01',
       title: 'Security by Design',
-      statement: 'Security is a core constraint from day one, not a patch applied at the end.',
+      statement: 'Build authentication, input validation, and least-privilege access from day one.',
     },
     {
       id: 'p2',
       number: '02',
       title: 'Predictable Performance',
-      statement: 'Keep systems fast, measurable, and reliable under high concurrent load.',
+      statement: 'Measure latency and keep services responsive under concurrent load.',
     },
     {
       id: 'p3',
       number: '03',
       title: 'Test Real Scenarios',
-      statement: "Validate assumptions against live telemetry, messy edge cases, and actual threat models.",
+      statement: 'Verify systems against live telemetry, edge cases, and practical threat models.',
     },
     {
       id: 'p4',
       number: '04',
       title: 'Fail Gracefully',
-      statement: 'Set strict failure boundaries so one breaking service never brings down the whole system.',
+      statement: 'Isolate service failures so a single broken component never crashes the pipeline.',
     },
   ],
 };
-

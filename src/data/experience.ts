@@ -15,17 +15,17 @@ export const experiences: ExperienceEntry[] = [
       {
         heading: 'Winbidai - AI Tender Discovery & Proposal Engine',
         detail:
-          'Built a multi-tenant AI SaaS for tender discovery and automated proposal drafting with CRM workflows and autonomous research agents.',
+          'Built a multi-tenant SaaS platform that indexes public tenders, extracts compliance requirements, and drafts structured RFP responses.',
       },
       {
-        heading: 'Leadorbit - Self-Hosted AI SDR for B2B Outreach',
+        heading: 'Leadorbit - Self-Hosted B2B Outreach Automation',
         detail:
-          'Engineered a self-hosted AI SDR platform automating LinkedIn sequences and cold email campaigns with deliverability tracking and private data control.',
+          'Developed a self-hosted outreach service automating multi-step email and LinkedIn sequences with deliverability tracking.',
       },
       {
-        heading: 'Mind Elevate - Corporate Mental Performance Platform',
+        heading: 'Mind Elevate - Enterprise Wellbeing Platform',
         detail:
-          'Developed an enterprise mental performance platform featuring executive coaching modules and privacy-first wellbeing analytics.',
+          'Implemented backend APIs, role-based access control, and analytics dashboards for a corporate coaching platform.',
       },
     ],
   },
@@ -38,42 +38,42 @@ export const techDomains: TechDomain[] = [
     category: 'Cybersecurity',
     stack: 'Endpoint Security / Forensics / RBAC / Intrusion Detection',
     description:
-      'Applied endpoint defenses, simulated intrusion frameworks (RIFT), and engineered zero-leakage PII sanitizers (RakshaNetra).',
+      'Endpoint hardening, intrusion simulation frameworks (RIFT), and client-side LLM PII redaction proxies (RakshaNetra).',
   },
   {
     id: 'ai-ml',
     category: 'Artificial Intelligence',
     stack: 'Multi-Agent LLMs / Computer Vision / Edge NLP',
     description:
-      'Engineered edge vision and LLM reasoning for blind navigation (Springer Nature) and built client-side PII redaction proxies.',
+      'Edge computer vision and LLM pipelines for assistive navigation and automated RFP compliance extraction.',
   },
   {
     id: 'iot',
     category: 'IoT & Embedded Systems',
     stack: 'Raspberry Pi / Sensor Fusion / Microcontrollers',
     description:
-      'Integrated camera and audio sensor loops on Raspberry Pi edge devices for assistive navigation with 0.6s wake-word latency.',
+      'Camera and audio sensor pipelines on Raspberry Pi for real-time assistive navigation (0.6s latency).',
   },
   {
     id: 'programming',
     category: 'Programming',
-    stack: 'Python / C++ / TypeScript',
+    stack: 'Python / C++ / TypeScript / Go',
     description:
-      'Systems programming in C++, distributed services in Go and Python, and responsive web apps in TypeScript.',
+      'Backend services in Python and Go, systems tooling in C++, and type-safe web interfaces in TypeScript.',
   },
   {
     id: 'cloud',
     category: 'Cloud & Big Data',
     stack: 'Kafka / TimescaleDB / Oracle OCI / Redis / AWS S3',
     description:
-      'High-throughput event streaming with Kafka and Spark, partitioned time-series storage in TimescaleDB, and cloud deployments.',
+      'Event streaming with Apache Kafka and Spark, time-series indexing in TimescaleDB, and cloud deployments.',
   },
   {
     id: 'stacks',
     category: 'Stacks & Tools',
     stack: 'FastAPI / Django REST / React / Docker / Linux',
     description:
-      'Built multi-tenant enterprise backends with FastAPI and Django REST, modern UIs with React, and containerized deployments with Docker.',
+      'REST and WebSocket APIs with FastAPI and Django, React frontends, and containerized Linux deployments.',
   },
 ];
 

@@ -13,14 +13,14 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className={styles.hero}>
+    <section id="home" className={styles.hero} aria-label="Introduction">
       <div className={styles.glow} aria-hidden="true" />
       <h1 className={styles.title}>
         Cybersecurity &amp; Full-Stack Engineer
       </h1>
       <div className={styles.copy}>
-        <p className={styles.description}>
-          Hi, I'm Dhiraj. I build secure web systems, real-time data pipelines, and high-performance digital experiences with Python, React, Next.js, and Go.
+        <p id="hero-summary" className={styles.description}>
+          Hi, I'm <strong>Dhiraj Rajput</strong> - a software engineer in Pune building distributed Go &amp; Python backends, real-time data pipelines, and modern React web applications.
         </p>
         <div className={styles.actions}>
           <a href="#projects" onClick={(e) => handleCtaClick(e, '#projects')}>

@@ -1,12 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { contactInfo, contactDetailsList } from '../../data/contact';
 import styles from './ContactSection.module.css';
+
+const LINK_TARGET_INDICES: number[] = (() => {
+  let rank = 1; // 0 is reserved for the primary CTA button
+  return contactDetailsList.map((d) => (d.href ? rank++ : -1));
+})();
+const TOTAL_TOUR_TARGETS = 1 + contactDetailsList.filter((d) => Boolean(d.href)).length;
 
 /**
  * Contact Section
  *
  * Short, simple, direct contact links with an enchanting interactive
- * hand cursor that guides and clicks through each contact channel one by one!
+ * hand cursor that guides and clicks through each contact channel continuously!
  */
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,45 +22,15 @@ export function ContactSection() {
 
   const [activeTargetIdx, setActiveTargetIdx] = useState<number>(0);
   const [isClicking, setIsClicking] = useState<boolean>(false);
-  const [hasCompletedTour, setHasCompletedTour] = useState<boolean>(false);
   const [handPos, setHandPos] = useState<{ x: number; y: number; visible: boolean }>({
-    x: 0,
-    y: 0,
-    visible: false,
+    x: 24,
+    y: 160,
+    visible: true,
   });
   const [isUserHovering, setIsUserHovering] = useState<boolean>(false);
-  const [isInView, setIsInView] = useState<boolean>(false);
-
-  // Intersection Observer: Trigger animation when scrolled into view, reset when scrolled out
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-          if (entry.isIntersecting) {
-            // When scrolled into view, start tour afresh
-            setActiveTargetIdx(0);
-            setHasCompletedTour(false);
-          } else {
-            // When scrolled out of view, reset so it repeats when scrolled back in
-            setActiveTargetIdx(0);
-            setHasCompletedTour(false);
-            setHandPos((prev) => ({ ...prev, visible: false }));
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: '80px 0px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Update hand position to current target
-  const updateHandToCurrentTarget = () => {
+  const updateHandToCurrentTarget = useCallback(() => {
     const inner = innerRef.current;
     if (!inner) return;
 
@@ -62,9 +38,10 @@ export function ContactSection() {
       Boolean
     ) as HTMLElement[];
 
-    if (targets.length === 0 || activeTargetIdx >= targets.length) return;
+    if (targets.length === 0) return;
 
-    const currentEl = targets[activeTargetIdx];
+    const safeIdx = activeTargetIdx % targets.length;
+    const currentEl = targets[safeIdx];
     if (!currentEl) return;
 
     const innerRect = inner.getBoundingClientRect();
@@ -81,54 +58,52 @@ export function ContactSection() {
       y: targetY,
       visible: true,
     });
-  };
+  }, [activeTargetIdx]);
 
-  // Automated Tour Orchestration: Snappy, brisk glide through all options ONCE
+  // Automated Tour Orchestration: Starts immediately when the div is loaded and loops continuously
   useEffect(() => {
-    if (!isInView || isUserHovering || hasCompletedTour) {
-      setHandPos((prev) => ({ ...prev, visible: false }));
-      return;
+    if (isUserHovering) {
+      const hideTimer = setTimeout(() => {
+        setHandPos((prev) => ({ ...prev, visible: false }));
+      }, 0);
+      return () => clearTimeout(hideTimer);
     }
 
     // Step 1: Position hand to active target immediately
-    updateHandToCurrentTarget();
+    const moveTimer = setTimeout(() => {
+      updateHandToCurrentTarget();
+    }, 0);
 
-    // Step 2: After brisk glide (320ms), perform the click down
+    // Step 2: Perform the click down
     const clickTimer = setTimeout(() => {
       setIsClicking(true);
-    }, 320);
+    }, 260);
 
-    // Step 3: Release click after snappy tactile depression (200ms)
+    // Step 3: Release click after snappy tactile depression
     const releaseTimer = setTimeout(() => {
       setIsClicking(false);
-    }, 520);
+    }, 450);
 
-    // Step 4: Advance to next target after brief pause (200ms)
+    // Step 4: Advance to next target (wrapping around continuously)
     const nextTimer = setTimeout(() => {
-      const targets = [ctaBtnRef.current, ...detailLinkRefs.current.filter(Boolean)].filter(
-        Boolean
-      );
-      if (activeTargetIdx + 1 < targets.length) {
-        setActiveTargetIdx((prev) => prev + 1);
-      } else {
-        // Finished the full tour across all contact channels: stop and hide hand until scrolled out!
-        setHasCompletedTour(true);
-        setHandPos((prev) => ({ ...prev, visible: false }));
+      if (TOTAL_TOUR_TARGETS > 0) {
+        setActiveTargetIdx((prev) => (prev + 1) % TOTAL_TOUR_TARGETS);
       }
     }, 720);
 
     return () => {
+      clearTimeout(moveTimer);
       clearTimeout(clickTimer);
       clearTimeout(releaseTimer);
       clearTimeout(nextTimer);
     };
-  }, [activeTargetIdx, isInView, isUserHovering, hasCompletedTour]);
+  }, [activeTargetIdx, isUserHovering, updateHandToCurrentTarget]);
 
   // Keep hand aligned on window resize
   useEffect(() => {
     window.addEventListener('resize', updateHandToCurrentTarget);
     return () => window.removeEventListener('resize', updateHandToCurrentTarget);
-  }, [activeTargetIdx]);
+  }, [updateHandToCurrentTarget]);
 
   return (
     <section id="contact" ref={sectionRef} className={styles.section} aria-label="Contact">
@@ -220,14 +195,14 @@ export function ContactSection() {
           <p className={styles.subtitle}>
             Open to engineering roles, security research, and ambitious projects.
             <br />
-            Reach out—I reply within 24 hours.
+            Reach out - I reply within 24 hours.
           </p>
 
           <a
             ref={ctaBtnRef}
             href={contactInfo.email.href}
             className={`${styles.ctaBtn} ${
-              !hasCompletedTour && activeTargetIdx === 0 && isClicking ? styles.handClickedBtn : ''
+              !isUserHovering && activeTargetIdx === 0 && isClicking ? styles.handClickedBtn : ''
             }`}
             aria-label="Send me an email"
           >
@@ -238,14 +213,9 @@ export function ContactSection() {
         <div className={styles.right}>
           <ul className={styles.detailList} role="list">
             {contactDetailsList.map((d, index) => {
-              const activeLinks = detailLinkRefs.current.filter(Boolean);
-              const currentTargetLink =
-                activeTargetIdx > 0 ? activeLinks[activeTargetIdx - 1] : null;
+              const targetIdxForRow = LINK_TARGET_INDICES[index];
               const isTargeted =
-                !hasCompletedTour &&
-                Boolean(d.href) &&
-                Boolean(detailLinkRefs.current[index]) &&
-                detailLinkRefs.current[index] === currentTargetLink;
+                !isUserHovering && targetIdxForRow !== -1 && activeTargetIdx === targetIdxForRow;
               const isThisClicked = isTargeted && isClicking;
 
               return (
@@ -263,7 +233,7 @@ export function ContactSection() {
                       }}
                       href={d.href}
                       target={d.href.startsWith('mailto') ? undefined : '_blank'}
-                      rel="noreferrer"
+                      rel={d.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                       className={`${styles.detailLink} ${
                         isThisClicked ? styles.handClickedLink : ''
                       }`}
