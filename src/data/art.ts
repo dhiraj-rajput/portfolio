@@ -16,10 +16,10 @@ export interface ArtPiece {
 }
 
 export const artPieces: ArtPiece[] = [
-  { id: 'arceus', title: 'Arceus', caption: 'Arceus-ly? Yes, I drew a god, and all it took was one pen.', year: '2018', file: 'arceus', width: 1280, height: 1280 },
-  { id: 'darkrai', title: 'Darkrai', caption: 'Darkrai-ding the night shift: zero nightmares, just clean lines.', year: '2017', file: 'darkrai', width: 900, height: 1600 },
-  { id: 'latias', title: 'Latias', caption: 'Latias than never: caught mid-flight on a Monday.', year: '2017', file: 'latias', width: 900, height: 1600 },
-  { id: 'moltres', title: 'Moltres', caption: 'Moltres than meets the eye: one fire bird, zero smoke alarms harmed.', year: '2017', file: 'moltres', width: 690, height: 768 },
-  { id: 'sheet', title: 'Pokédex Sketch Sheet', caption: "Gotta draw 'em all? Eight down, only a few hundred to go.", year: '2017', file: 'sheet', width: 900, height: 1600 },
-  { id: 'trainer', title: 'The Trainer', caption: "Hat's off to this trainer: gotta catch 'em all, starting with your attention.", year: '2017', file: 'trainer', width: 720, height: 1280 },
+  { id: 'arceus', title: 'Arceus', caption: 'Pen, no eraser. Bold move for a legendary Pokémon, or for me.', year: '2018', file: 'arceus', width: 1280, height: 1280 },
+  { id: 'darkrai', title: 'Darkrai', caption: 'Darkrai, minus the nightmares. Those teeth, though.', year: '2017', file: 'darkrai', width: 900, height: 1600 },
+  { id: 'latias', title: 'Latias', caption: 'Monday, 14/8/17, dated on the page and everything. Better Latias than never.', year: '2017', file: 'latias', width: 900, height: 1600 },
+  { id: 'moltres', title: 'Moltres', caption: 'Moltres in marker. Hot take: fire birds are easier to draw than they look.', year: '2017', file: 'moltres', width: 690, height: 768 },
+  { id: 'sheet', title: 'Pokédex Sketch Sheet', caption: "Eight tiny Pokémon on one page. Gotta draw 'em all, but I ran out of boxes.", year: '2017', file: 'sheet', width: 900, height: 1600 },
+  { id: 'trainer', title: 'The Trainer', caption: 'Just a trainer saying hi, in pencil. Hat stays on, wave stays up.', year: '2017', file: 'trainer', width: 720, height: 1280 },
 ];
