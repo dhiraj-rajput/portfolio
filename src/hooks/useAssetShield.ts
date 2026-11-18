@@ -5,7 +5,7 @@ import { useEffect } from 'react';
  * no drag-out, no long-press save sheet. This does NOT stop someone using DevTools,
  * the network tab or a screenshot - nothing a browser can display can be made
  * undownloadable. The real protection is baked-in watermarks, reduced resolution
- * and not publishing originals (see docs/SECURITY.md).
+ * and not publishing originals.
  */
 export function useAssetShield(): void {
   useEffect(() => {

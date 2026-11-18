@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite-react-ssg build && node scripts/inject-csp.mjs",
+    "build": "tsc -b && vite-react-ssg build",
     "lint": "oxlint src",
     "preview": "vite preview"
   },
