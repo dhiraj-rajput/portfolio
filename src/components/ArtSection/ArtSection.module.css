@@ -66,23 +66,27 @@
 .panel {
   display: grid;
   grid-template-rows: 0fr;
+  opacity: 0;
   visibility: hidden;
-  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.45s;
+  transition:
+    grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.6s;
 }
 
 .panelOpen {
   grid-template-rows: 1fr;
+  opacity: 1;
   visibility: visible;
-  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s;
+  transition:
+    grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+    visibility 0s;
 }
 
 .panelInner {
   min-height: 0;
   overflow: hidden;
-}
-
-.panelOpen .panelInner {
-  padding-top: clamp(18px, 2.4vw, 28px);
 }
 
 @media (max-width: 640px) {
@@ -125,7 +129,7 @@
 /* Uniform 4:5 tiles: tidy rhythm on every screen (2 columns on phones, 3 from tablets up) */
 .grid {
   list-style: none;
-  padding: 0;
+  padding: clamp(18px, 2.4vw, 28px) 0 0;
   margin: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -168,7 +172,14 @@
 
 .card .shielded img {
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  opacity: 0;
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card .shieldedLoaded img {
+  opacity: 1;
 }
 
 @media (hover: hover) {
@@ -177,7 +188,7 @@
     border-color: var(--color-accent);
   }
 
-  .card:hover .shielded img {
+  .card:hover .shieldedLoaded img {
     transform: scale(1.05);
   }
 }
@@ -268,7 +279,7 @@
   place-items: center;
   padding: clamp(56px, 8vh, 72px) clamp(12px, 5vw, 72px) clamp(12px, 3vh, 28px);
   background: rgba(8, 6, 4, 0.92);
-  animation: lbIn 0.2s ease;
+  animation: lbIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .stage {
@@ -279,6 +290,60 @@
   max-width: 100%;
   max-height: 100%;
   min-height: 0;
+}
+
+.stageMedia {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  will-change: grid-template-rows, opacity, transform;
+  transition:
+    grid-template-rows 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.58s cubic-bezier(0.22, 1, 0.36, 1) 0.06s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stageMediaOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stageMediaInner {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.stageLine {
+  display: block;
+  width: min(260px, 68vw);
+  height: 2px;
+  overflow: hidden;
+  opacity: 1;
+  transform: scaleX(1);
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stageLineOpen {
+  opacity: 0;
+  height: 0;
+  transform: scaleX(1.35);
+}
+
+.stageLineBar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--color-accent, #ff6600), transparent);
+  opacity: 0.9;
+  animation: linePulse 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .stage .shielded {
@@ -307,6 +372,29 @@
   color: #e8e2da;
   font-size: 14px;
   line-height: 1.5;
+  animation: captionIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes linePulse {
+  from {
+    opacity: 0;
+    transform: scaleX(0.25);
+  }
+  to {
+    opacity: 0.9;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes captionIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .caption strong {
