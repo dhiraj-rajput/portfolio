@@ -16,10 +16,10 @@ export interface ArtPiece {
 }
 
 export const artPieces: ArtPiece[] = [
-  { id: 'arceus', title: 'Arceus', caption: 'The Alpha Pokémon, drawn in pen.', year: '2018', file: 'arceus', width: 1280, height: 1280 },
-  { id: 'darkrai', title: 'Darkrai', caption: 'The Nightmare Pokémon, sketchbook page.', year: '2017', file: 'darkrai', width: 900, height: 1600 },
-  { id: 'latias', title: 'Latias', caption: 'The Eon Pokémon, sketchbook page dated 14 Aug 2017.', year: '2017', file: 'latias', width: 900, height: 1600 },
-  { id: 'moltres', title: 'Moltres', caption: 'The Flame Pokémon in marker outline.', year: '2017', file: 'moltres', width: 690, height: 768 },
-  { id: 'sheet', title: 'Pokédex Sketch Sheet', caption: 'Eight quick studies on a single page.', year: '2017', file: 'sheet', width: 900, height: 1600 },
-  { id: 'trainer', title: 'The Trainer', caption: 'Anime-style trainer study in pencil.', year: '2017', file: 'trainer', width: 720, height: 1280 },
+  { id: 'arceus', title: 'Arceus', caption: 'Arceus-ly? Yes, I drew a god, and all it took was one pen.', year: '2018', file: 'arceus', width: 1280, height: 1280 },
+  { id: 'darkrai', title: 'Darkrai', caption: 'Darkrai-ding the night shift: zero nightmares, just clean lines.', year: '2017', file: 'darkrai', width: 900, height: 1600 },
+  { id: 'latias', title: 'Latias', caption: 'Latias than never: caught mid-flight on a Monday.', year: '2017', file: 'latias', width: 900, height: 1600 },
+  { id: 'moltres', title: 'Moltres', caption: 'Moltres than meets the eye: one fire bird, zero smoke alarms harmed.', year: '2017', file: 'moltres', width: 690, height: 768 },
+  { id: 'sheet', title: 'Pokédex Sketch Sheet', caption: "Gotta draw 'em all? Eight down, only a few hundred to go.", year: '2017', file: 'sheet', width: 900, height: 1600 },
+  { id: 'trainer', title: 'The Trainer', caption: "Hat's off to this trainer: gotta catch 'em all, starting with your attention.", year: '2017', file: 'trainer', width: 720, height: 1280 },
 ];

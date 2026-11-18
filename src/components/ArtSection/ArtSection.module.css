@@ -234,12 +234,29 @@
   z-index: 1;
 }
 
-.note {
-  margin: 18px 0 0;
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* The pun is shown on the tile from tablets up (tiles are too narrow on phones; it is in the viewer there) */
+.tagline {
+  display: none;
   font-size: 13px;
-  line-height: 1.55;
-  color: var(--text-muted);
-  max-width: 78ch;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 720px) {
+  .tagline {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 /* ---------- Lightbox ---------- */

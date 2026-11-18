@@ -118,18 +118,16 @@ export function ArtSection() {
                     >
                       <ArtImage piece={piece} thumb />
                       <span className={styles.overlay}>
-                        <span className={styles.name}>{piece.title}</span>
+                        <span className={styles.nameBlock}>
+                          <span className={styles.name}>{piece.title}</span>
+                          <span className={styles.tagline}>{piece.caption}</span>
+                        </span>
                         <span className={styles.year}>{piece.year}</span>
                       </span>
                     </button>
                   </li>
                 ))}
               </ul>
-
-              <p className={styles.note}>
-                &copy; Dhiraj Rajput. These drawings are my original work and are not licensed for reuse. The
-                characters belong to Nintendo, Game Freak and The Pokémon Company.
-              </p>
             </>
           )}
         </div>
