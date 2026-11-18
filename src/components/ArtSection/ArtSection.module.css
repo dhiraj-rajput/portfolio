@@ -389,6 +389,13 @@
   justify-content: center;
 }
 
+.stageFrame {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+
 .stageLine {
   display: block;
   width: min(260px, 68vw);
@@ -507,20 +514,54 @@
 }
 
 .likeCtrl {
-  top: max(12px, env(safe-area-inset-top, 0px));
-  left: max(12px, env(safe-area-inset-left, 0px));
-  width: auto;
-  min-width: 44px;
-  height: 44px;
-  padding: 0 15px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 8px;
+  min-width: 68px;
+  min-height: 46px;
+  padding: 0 16px;
   border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(12, 10, 8, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.48);
+  color: #f4f1ea;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (hover: hover) {
+  .likeCtrl:hover {
+    background: rgba(24, 20, 17, 0.92);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+.likeCtrl:active {
+  transform: scale(0.95);
+}
+
+.likeCtrl.likeActive {
+  border-color: rgba(239, 68, 68, 0.65);
+  background: rgba(36, 12, 14, 0.88);
+  color: #fff;
 }
 
 .likeCtrl .likeCount {
-  font-size: 13.5px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .prev,

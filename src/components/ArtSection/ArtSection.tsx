@@ -330,7 +330,32 @@ export function ArtSection() {
             <div key={active.id} className={styles.stage} onClick={(e) => e.stopPropagation()}>
               <div className={`${styles.stageMedia} ${revealed ? styles.stageMediaOpen : ''}`}>
                 <div className={styles.stageMediaInner}>
-                  <ArtImage piece={active} eager highPriority onReady={handleLightboxImageReady} />
+                  <div className={styles.stageFrame}>
+                    <ArtImage piece={active} eager highPriority onReady={handleLightboxImageReady} />
+                    <button
+                      type="button"
+                      className={`${styles.likeCtrl} ${liked[active.id] ? styles.likeActive : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(active.id);
+                      }}
+                      aria-pressed={Boolean(liked[active.id])}
+                      aria-label={
+                        liked[active.id]
+                          ? `Unlike ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
+                          : `Like ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
+                      }
+                    >
+                      <HeartIcon
+                        className={styles.heartIcon}
+                        filled={Boolean(liked[active.id])}
+                        width={20}
+                        height={20}
+                        aria-hidden="true"
+                      />
+                      <span className={styles.likeCount}>{counts[active.id] ?? 0}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <span
@@ -348,29 +373,6 @@ export function ArtSection() {
               </div>
             </div>
 
-            <button
-              type="button"
-              className={`${styles.ctrl} ${styles.likeCtrl} ${liked[active.id] ? styles.likeActive : ''}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleLike(active.id);
-              }}
-              aria-pressed={Boolean(liked[active.id])}
-              aria-label={
-                liked[active.id]
-                  ? `Unlike ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
-                  : `Like ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
-              }
-            >
-              <HeartIcon
-                className={styles.heartIcon}
-                filled={Boolean(liked[active.id])}
-                width={18}
-                height={18}
-                aria-hidden="true"
-              />
-              <span className={styles.likeCount}>{counts[active.id] ?? 0}</span>
-            </button>
             <button
               ref={closeRef}
               type="button"
