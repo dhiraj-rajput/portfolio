@@ -2,7 +2,7 @@
 
 > Canonical machine-readable profile for AI search engines, answer engines (AEO), generative engine optimization (GEO), and technical recruiters.
 > Last Updated: 2026-10-21
-> Canonical URL: https://dhiraj-rajput.github.io/portfolio/
+> Canonical URL: https://djphantom.tech/
 
 ---
 

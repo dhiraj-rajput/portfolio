@@ -1,6 +1,6 @@
-# Robots.txt for https://dhiraj-rajput.github.io/portfolio/
-# AI Knowledge Base: https://dhiraj-rajput.github.io/portfolio/llms.txt
-# Full Technical Dossier: https://dhiraj-rajput.github.io/portfolio/llms-full.txt
+# Robots.txt for https://djphantom.tech/
+# AI Knowledge Base: https://djphantom.tech/llms.txt
+# Full Technical Dossier: https://djphantom.tech/llms-full.txt
 
 User-agent: *
 Allow: /
@@ -45,4 +45,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://dhiraj-rajput.github.io/portfolio/sitemap.xml
+Sitemap: https://djphantom.tech/sitemap.xml

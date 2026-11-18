@@ -2,7 +2,7 @@
 
 Personal portfolio of **Dhiraj Rajput**, Cybersecurity & Full-Stack Engineer and published researcher from Pune, India.
 
-🌐 **Live:** [dhiraj-rajput.github.io/portfolio](https://dhiraj-rajput.github.io/portfolio/)
+🌐 **Live:** [djphantom.tech](https://djphantom.tech/)
 
 ---
 

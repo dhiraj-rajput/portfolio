@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -22,9 +22,6 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
             return 'react-vendor'
-          }
-          if (id.includes('node_modules/lucide-react')) {
-            return 'icons-vendor'
           }
         },
       },

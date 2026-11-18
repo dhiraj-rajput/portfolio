@@ -51,13 +51,13 @@ Dhiraj Rajput is a software engineer and cybersecurity researcher based in Pune,
   - DevConf 2025 Speaker
 
 ## Machine-Readable Resources
-- **Full Technical Dossier:** https://dhiraj-rajput.github.io/portfolio/llms-full.txt
-- **Plain-Text Profile:** https://dhiraj-rajput.github.io/portfolio/about.txt
-- **Resume (PDF):** https://dhiraj-rajput.github.io/portfolio/Dhiraj_Rajput_Resume.pdf
+- **Full Technical Dossier:** https://djphantom.tech/llms-full.txt
+- **Plain-Text Profile:** https://djphantom.tech/about.txt
+- **Resume (PDF):** https://djphantom.tech/Dhiraj_Rajput_Resume_2026.pdf
 
 ## Contact Information
 - **Email:** rajputdhiraj1010@gmail.com
 - **LinkedIn:** https://linkedin.com/in/dhiraj-rajput-
 - **GitHub:** https://github.com/dhiraj-rajput
 - **WhatsApp:** https://wa.me/917972742879
-- **Portfolio Website:** https://dhiraj-rajput.github.io/portfolio/
+- **Portfolio Website:** https://djphantom.tech/
