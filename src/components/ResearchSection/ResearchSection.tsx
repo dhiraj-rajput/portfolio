@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { researchEntries } from '../../data/research';
 import { assetUrl } from '../../utils/assets';
+import { usePerfTier } from '../../hooks/usePerformanceTier';
 import { ParticleLayer, type MinecraftParticle, type ParticleHandle } from './ParticleLayer';
 import { AutoPlayResearchVideo } from './AutoPlayResearchVideo';
 import styles from './ResearchSection.module.css';
@@ -20,6 +21,8 @@ const WATER_COLORS = ['#38bdf8', '#0284c7', '#bae6fd', '#0ea5e9', '#ffffff', '#7
  * - Authentic Minecraft voxel particles popping out of the droplet continuously while on screen.
  */
 export function ResearchSection() {
+  const perfTier = usePerfTier();
+  const spawnMs = perfTier === 'low' ? 560 : 280;
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -368,10 +371,10 @@ export function ResearchSection() {
       }
 
       particlesRef.current?.add(newParticles, 10);
-    }, 280);
+    }, spawnMs);
 
     return () => clearInterval(interval);
-  }, [isLightMode]);
+  }, [isLightMode, spawnMs]);
 
   return (
     <section id="research" ref={sectionRef} className={styles.section} aria-label="Research and Innovation">

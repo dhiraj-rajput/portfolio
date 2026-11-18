@@ -30,12 +30,10 @@ export function ContactSection() {
   const [isUserHovering, setIsUserHovering] = useState<boolean>(false);
   const [isInView, setIsInView] = useState<boolean>(false);
 
-  // Only run the guided hand tour while the section is on screen and a fine pointer exists.
+  // Run the guided hand tour only while the section is on screen (all devices).
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!finePointer) return;
     const io = new IntersectionObserver(([entry]) => setIsInView(entry.isIntersecting), { threshold: 0.2 });
     io.observe(el);
     return () => io.disconnect();
@@ -122,8 +120,9 @@ export function ContactSection() {
       <div
         ref={innerRef}
         className={styles.inner}
-        onMouseEnter={() => setIsUserHovering(true)}
-        onMouseLeave={() => setIsUserHovering(false)}
+        // Mouse only: touch taps emit synthetic mouseenter with no mouseleave, which froze the tour on phones
+        onPointerEnter={(e) => e.pointerType === 'mouse' && setIsUserHovering(true)}
+        onPointerLeave={(e) => e.pointerType === 'mouse' && setIsUserHovering(false)}
       >
         {/* Floating Smooth Pixel Hand Pointer */}
         <div

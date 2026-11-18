@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { usePerfTier } from '../../hooks/usePerformanceTier';
 import styles from './MeteorShower.module.css';
 
 interface Meteor {
@@ -44,7 +45,10 @@ function generateMeteors(count: number): Meteor[] {
  * Meteors fall diagonally top-left → bottom-right.
  */
 export function MeteorShower({ count = 20 }: { count?: number }) {
-  const meteors = useMemo(() => generateMeteors(count), [count]);
+  const tier = usePerfTier();
+  const all = useMemo(() => generateMeteors(count), [count]);
+  // Low-end devices get a third of the streaks (same look, far fewer animated layers)
+  const meteors = tier === 'low' ? all.slice(0, Math.max(5, Math.round(count / 3))) : all;
 
   return (
     <div className={styles.canvas} aria-hidden="true">

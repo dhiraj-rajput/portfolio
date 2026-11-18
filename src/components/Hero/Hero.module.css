@@ -26,6 +26,12 @@
   pointer-events: none;
   z-index: -1;
   animation: glowBreathe 6s ease-in-out infinite alternate;
+  will-change: opacity, transform;
+}
+
+:global([data-perf="low"]) .glow {
+  animation: none;
+  will-change: auto;
 }
 
 @keyframes glowBreathe {

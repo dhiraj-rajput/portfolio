@@ -90,3 +90,22 @@ bun run lint
 ## License
 
 © 2026 Dhiraj Rajput. All rights reserved.
+
+## License
+
+This repository is **dual-licensed**:
+
+- **Code & template structure: MIT.** Fork it and use it as the starting point for your own portfolio.
+- **Personal content: All Rights Reserved.** My text, photos, logo, resume, video and identity (`src/data/`, `public/`, `index.html` copy) may not be copied or reused. Replace them with your own.
+
+See [LICENSE](./LICENSE) for the full terms.
+
+### Using it as a template
+
+```bash
+bun install
+bun run dev      # local dev server
+bun run build    # prerendered production build in dist/
+```
+
+Edit `src/data/*` for content, swap `public/logo.svg`, `public/profile.webp`, `public/og.png`, update `index.html` meta/JSON-LD, `public/CNAME`, `robots.txt` and `sitemap.xml` with your own domain.

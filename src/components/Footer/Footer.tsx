@@ -210,6 +210,7 @@ export function Footer() {
             &copy; {CURRENT_YEAR} Dhiraj Rajput. Built with React &amp; TypeScript.
           </p>
 
+          <div className={styles.bottomActions}>
           <MotionToggle />
           <button
             type="button"
@@ -220,6 +221,7 @@ export function Footer() {
             <span>Back to top</span>
             <ArrowUpIcon />
           </button>
+          </div>
         </div>
       </div>
     </footer>

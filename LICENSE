@@ -1,0 +1,59 @@
+Dhiraj Rajput Portfolio - Dual License
+Copyright (c) 2026 Dhiraj Rajput
+
+This repository contains two kinds of material, licensed differently.
+
+------------------------------------------------------------------------
+1. SOURCE CODE AND TEMPLATE STRUCTURE  -  MIT License
+------------------------------------------------------------------------
+Covers: the React/TypeScript components, hooks, utilities, CSS modules,
+build configuration, animations and layout in this repository (everything
+EXCEPT the personal content listed in section 2).
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+You are welcome to fork this repository and use it as a template for your own
+portfolio. Replace all personal content (see section 2) with your own.
+
+------------------------------------------------------------------------
+2. PERSONAL CONTENT  -  All Rights Reserved
+------------------------------------------------------------------------
+The following is NOT covered by the MIT License above. It is the personal
+property of Dhiraj Rajput and is All Rights Reserved:
+
+  - All text content about the author: biography, experience, education,
+    projects, research summaries, certificates, leadership entries and
+    contact details (everything under src/data/, the copy inside
+    index.html, and public/*.txt, public/*.xml, public/site.webmanifest).
+  - The "DJ" logo and brand marks (public/logo.svg, icons, og.png).
+  - Photographs and images of the author (public/profile.*, public/projects/*).
+  - Resumes and documents (public/*.pdf) and the video public/vacars.mp4.
+  - The author's name, identity and the domain djphantom.tech.
+  - The published research referenced on the site, which belongs to its
+    respective publisher and authors.
+
+You may NOT copy, republish, redistribute or present this personal content as
+your own, nor use the author's name, likeness, logo or domain, without prior
+written permission. If you use this repository as a template, you must remove
+and replace all of it with your own content and branding.
+
+Third-party technology logos in public/tech/ belong to their respective
+owners and are used for identification only.
+
+Questions or permission requests: rajputdhiraj1010@gmail.com

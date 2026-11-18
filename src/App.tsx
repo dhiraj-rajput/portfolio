@@ -14,10 +14,12 @@ import { MeteorShower } from './components/MeteorShower/MeteorShower';
 import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { useOffscreenPause } from './hooks/useOffscreenPause';
+import { useAutoPerformanceTier } from './hooks/usePerformanceTier';
 import styles from './App.module.css';
 
 function App() {
   useOffscreenPause();
+  useAutoPerformanceTier();
 
   return (
     <>

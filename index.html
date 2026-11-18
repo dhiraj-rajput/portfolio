@@ -12,6 +12,7 @@
     <script>
       (function () {
         document.documentElement.setAttribute('data-loading', '1');
+        try { if (localStorage.getItem('perf-tier') === 'low') document.documentElement.setAttribute('data-perf', 'low'); } catch (e) {}
         try {
           if (localStorage.getItem('motion') === 'reduced') document.documentElement.setAttribute('data-motion', 'reduced');
           var t = localStorage.getItem('theme');

@@ -385,8 +385,24 @@
     display: none;
   }
 
+  /* Tablet/phone: keep Resume (with label), GitHub and LinkedIn in the bar; WhatsApp lives in the menu */
   .desktopSocials {
+    gap: 6px;
+  }
+
+  .whatsappExpandable {
     display: none;
+  }
+
+  .expandableButton:hover {
+    width: 44px;
+    padding: 0 10px;
+  }
+
+  .expandableButton:hover .expandLabel {
+    opacity: 0;
+    max-width: 0;
+    margin-left: 0;
   }
 
   .hamburgerBtn {
@@ -394,29 +410,70 @@
   }
 }
 
+/* Phones: everything must fit on one row at 360px */
 @media (max-width: 480px) {
   .inner {
-    padding: 8px 14px;
-    gap: 10px;
+    padding: 8px 10px;
+    gap: 6px;
   }
 
   .logoImg {
-    height: 44px;
-    max-width: 78px;
+    height: 34px;
+    max-width: 56px;
   }
 
+  .rightActions {
+    gap: 4px;
+  }
+
+  .desktopSocials {
+    gap: 4px;
+  }
+
+  .resumeButton,
+  .expandableButton,
+  .hamburgerBtn {
+    height: 40px;
+    border-radius: 9px;
+    position: relative;
+  }
+
+  .expandableButton,
+  .hamburgerBtn {
+    width: 40px;
+    padding: 0;
+  }
+
+  .expandableButton:hover {
+    width: 40px;
+    padding: 0;
+  }
+
+  .resumeButton {
+    padding: 0 10px;
+    gap: 5px;
+    font-size: 13px;
+  }
+
+  /* keep a 44px touch target around the 40px visuals */
+  .resumeButton::after,
+  .expandableButton::after,
+  .hamburgerBtn::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+  }
+}
+
+/* Very narrow phones (<=350px): Resume collapses to its icon so the row still fits */
+@media (max-width: 350px) {
   .resumeText {
     display: none;
   }
 
   .resumeButton {
-    padding: 0 10px;
-    width: 44px;
+    width: 40px;
+    padding: 0;
     justify-content: center;
-  }
-
-  .hamburgerBtn {
-    width: 44px;
-    height: 44px;
   }
 }

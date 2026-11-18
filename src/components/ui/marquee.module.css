@@ -41,6 +41,7 @@
 
 .horizontalContent {
   animation: scrollX var(--duration, 65s) linear infinite;
+  will-change: transform;
 }
 
 .verticalContent {

@@ -26,6 +26,9 @@
   --hero-gradient-mid: #f4f4f5;
   --card-shadow: 0 16px 36px rgba(var(--shadow-rgb), 0.55);
   --glow-opacity: 0.32;
+  --btn-grad-start: #ffb26b;
+  --btn-grad-mid: #fb923c;
+  --btn-grad-end: #f2741a;
   --border-strong: #52525c;
   --color-accent-contrast: #1a0e04; /* dark warm ink on amber: 8.5:1 (white was 2.3:1) */
   --hero-gradient-end: #fb923c;
@@ -91,6 +94,9 @@
     0 1px 2px rgba(var(--shadow-rgb), 0.08),
     0 8px 24px -8px rgba(var(--shadow-rgb), 0.16);
   --glow-opacity: 0.06;
+  --btn-grad-start: #d9500f;
+  --btn-grad-mid: #c2410c;
+  --btn-grad-end: #a8380a;
   --status-green: #166534;
 }
 
@@ -243,4 +249,17 @@ html[data-motion="reduced"] *::after {
 html[data-loading] [data-page],
 html[data-loading] [data-page] * {
   animation-play-state: paused !important;
+}
+
+/*
+ * GPU hints: continuously animated layers are promoted once and only animate
+ * transform/opacity. On low-end devices (data-perf="low", chosen automatically)
+ * decorative extras are trimmed while every animation keeps running.
+ */
+[data-perf="low"] * {
+  text-shadow: none !important;
+}
+
+[data-perf="low"] [data-page] * {
+  filter: none !important;
 }
