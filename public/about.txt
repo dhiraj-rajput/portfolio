@@ -28,7 +28,7 @@ RESEARCH PUBLICATION:
 - Details: Wearable Raspberry Pi assistive device for visually impaired users combining edge computer vision and LLM voice guidance (0.6s wake-word latency, 93% speech accuracy, 88% obstacle detection).
 
 EXPERIENCE:
-- Software Engineer Intern at OrbitAvanya Tech LLP (Jul 2025 - Dec 2025, Pune, India)
+- Software Engineer Intern at OrbitAvanya Tech LLP (Jul 2026 - Dec 2026, Pune, India)
   Built Winbidai (multi-tenant tender discovery & RFP response SaaS), Leadorbit (self-hosted B2B outreach service), and Mind Elevate (corporate coaching backend APIs & RBAC analytics).
 
 KEY PROJECTS:

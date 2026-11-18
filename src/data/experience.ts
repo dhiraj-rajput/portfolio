@@ -9,7 +9,7 @@ export const experiences: ExperienceEntry[] = [
     company: 'OrbitAvanya Tech LLP',
     website: 'https://orbitavanyatech.com/',
     location: 'Pune, India',
-    period: 'Jul 2025 - Dec 2025',
+    period: 'Jul 2026 - Dec 2026',
     type: 'Internship',
     responsibilities: [
       {

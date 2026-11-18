@@ -35,7 +35,7 @@ Dhiraj Rajput is a software engineer and cybersecurity researcher based in Pune,
    - Code: https://github.com/dhiraj-rajput/Omniscient
 
 ## Professional Experience
-- **OrbitAvanya Tech LLP** - Software Engineer Intern (Jul 2025 - Dec 2025, Pune, India)
+- **OrbitAvanya Tech LLP** - Software Engineer Intern (Jul 2026 - Dec 2026, Pune, India)
   - Built Winbidai (multi-tenant tender discovery & RFP drafting SaaS), Leadorbit (self-hosted B2B outreach automation), and Mind Elevate (enterprise coaching backend & RBAC analytics).
 
 ## Education & Certifications
