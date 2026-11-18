@@ -5,11 +5,95 @@
   padding: 0 clamp(16px, 3vw, 24px);
 }
 
+/* Header bar: title on the left, open/hide button on the right (stacked on phones) */
 .header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+  padding: clamp(16px, 2.4vw, 26px) clamp(16px, 2.6vw, 30px);
+  border: 1px solid var(--border-subtle);
+  border-radius: clamp(14px, 1.8vw, 20px);
+  background: var(--bg-surface);
+  box-shadow: var(--card-shadow);
+}
+
+.headerText {
+  display: flex;
   flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-  margin-bottom: clamp(24px, 3vw, 36px);
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 12px;
+  border: 1px solid var(--color-accent-border);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-text, var(--color-accent));
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+@media (hover: hover) {
+  .toggle:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-contrast, #fff);
+    transform: translateY(-1px);
+  }
+}
+
+.chevron {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+.chevronOpen {
+  transform: rotate(-90deg);
+}
+
+/* Smooth open / close without measuring heights */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.45s;
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s;
+}
+
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.panelOpen .panelInner {
+  padding-top: clamp(18px, 2.4vw, 28px);
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toggle {
+    width: 100%;
+  }
 }
 
 .kicker {
