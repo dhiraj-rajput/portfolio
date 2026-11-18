@@ -50,7 +50,7 @@ export function AutoPlayResearchVideo({
         playsInline
         loop
         controls
-        controlsList="nodownload"
+        controlsList="nodownload noplaybackrate"
         disablePictureInPicture
         onContextMenu={(e) => e.preventDefault()}
         preload="metadata"

@@ -48,3 +48,8 @@ lerna-debug.log*
 
 # npm lockfile - this project uses Bun (bun.lock is authoritative)
 package-lock.json
+
+# Unwatermarked working copies of artwork must never be committed
+public/art/ash-trainer*
+public/art/latios*
+public/art/starter-sheet*

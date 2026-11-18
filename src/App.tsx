@@ -9,17 +9,20 @@ import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 import { ResearchSection } from './components/ResearchSection/ResearchSection';
 import { LeadershipSection } from './components/LeadershipSection/LeadershipSection';
 import { BeyondSection } from './components/BeyondSection/BeyondSection';
+import { ArtSection } from './components/ArtSection/ArtSection';
 import { ContactSection } from './components/ContactSection/ContactSection';
 import { MeteorShower } from './components/MeteorShower/MeteorShower';
 import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { useOffscreenPause } from './hooks/useOffscreenPause';
+import { useAssetShield } from './hooks/useAssetShield';
 import { useAutoPerformanceTier } from './hooks/usePerformanceTier';
 import styles from './App.module.css';
 
 function App() {
   useOffscreenPause();
   useAutoPerformanceTier();
+  useAssetShield();
 
   return (
     <>
@@ -45,6 +48,7 @@ function App() {
             <ResearchSection />
             <LeadershipSection />
             <BeyondSection />
+            <ArtSection />
             <ContactSection />
           </main>
         </div>

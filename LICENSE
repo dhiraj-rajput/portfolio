@@ -42,7 +42,7 @@ property of Dhiraj Rajput and is All Rights Reserved:
     contact details (everything under src/data/, the copy inside
     index.html, and public/*.txt, public/*.xml, public/site.webmanifest).
   - The "DJ" logo and brand marks (public/logo.svg, icons, og.png).
-  - Photographs and images of the author (public/profile.*, public/projects/*).
+  - Photographs and images of the author (public/profile.*, public/projects/*, public/art/*).
   - Resumes and documents (public/*.pdf) and the video public/vacars.mp4.
   - The author's name, identity and the domain djphantom.tech.
   - The published research referenced on the site, which belongs to its

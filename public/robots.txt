@@ -4,6 +4,8 @@
 
 User-agent: *
 Allow: /
+# Artwork files are not for indexing or reuse
+Disallow: /art/*.webp$
 
 # OpenAI Search & Assistants
 User-agent: OAI-SearchBot
@@ -14,6 +16,7 @@ Allow: /
 
 User-agent: GPTBot
 Allow: /
+Disallow: /art/
 
 # Anthropic Claude Search & Assistants
 User-agent: Claude-SearchBot
@@ -24,9 +27,11 @@ Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /art/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /art/
 
 # Perplexity AI Search & Assistants
 User-agent: PerplexityBot
@@ -38,11 +43,21 @@ Allow: /
 # Google, Apple & Common Crawl AI Agents
 User-agent: Google-Extended
 Allow: /
+Disallow: /art/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /art/
 
 User-agent: CCBot
 Allow: /
+Disallow: /art/
+
+# Training crawlers: no scraping of the artwork
+User-agent: Bytespider
+Disallow: /art/
+
+User-agent: Meta-ExternalAgent
+Disallow: /art/
 
 Sitemap: https://djphantom.tech/sitemap.xml
