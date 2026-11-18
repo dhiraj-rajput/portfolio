@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { artPieces, type ArtPiece } from '../../data/art';
+import { useArtLikes } from '../../hooks/useArtLikes';
 import { useScrollLock } from '../../hooks/useScrollLock';
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from '../icons';
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, HeartIcon } from '../icons';
 import styles from './ArtSection.module.css';
 
 const blockDefault = (e: React.SyntheticEvent) => e.preventDefault();
@@ -131,6 +132,7 @@ export function ArtSection() {
   const touchStartX = useRef<number | null>(null);
   const open = index !== null;
   useScrollLock(open);
+  const { counts, liked, toggleLike } = useArtLikes(mounted);
 
   const closeLightbox = useCallback(() => {
     setIndex(null);
@@ -249,31 +251,58 @@ export function ArtSection() {
           {mounted && (
             <>
               <ul className={styles.grid}>
-                {artPieces.map((piece, i) => (
-                  <li key={piece.id} className={styles.item}>
-                    <button
-                      type="button"
-                      className={styles.card}
-                      onMouseEnter={() => {
-                        void preloadFullArt(piece.file);
-                      }}
-                      onFocus={() => {
-                        void preloadFullArt(piece.file);
-                      }}
-                      onClick={(e) => openPiece(i, e.currentTarget)}
-                      aria-label={`View ${piece.title}, ${piece.year}`}
-                    >
-                      <ArtImage piece={piece} thumb eager />
-                      <span className={styles.overlay}>
-                        <span className={styles.nameBlock}>
-                          <span className={styles.name}>{piece.title}</span>
-                          <span className={styles.tagline}>{piece.caption}</span>
+                {artPieces.map((piece, i) => {
+                  const isLiked = Boolean(liked[piece.id]);
+                  const likeCount = counts[piece.id] ?? 0;
+                  return (
+                    <li key={piece.id} className={styles.item}>
+                      <button
+                        type="button"
+                        className={styles.card}
+                        onMouseEnter={() => {
+                          void preloadFullArt(piece.file);
+                        }}
+                        onFocus={() => {
+                          void preloadFullArt(piece.file);
+                        }}
+                        onClick={(e) => openPiece(i, e.currentTarget)}
+                        aria-label={`View ${piece.title}, ${piece.year}`}
+                      >
+                        <ArtImage piece={piece} thumb eager />
+                        <span className={styles.overlay}>
+                          <span className={styles.nameBlock}>
+                            <span className={styles.name}>{piece.title}</span>
+                            <span className={styles.tagline}>{piece.caption}</span>
+                          </span>
+                          <span className={styles.year}>{piece.year}</span>
                         </span>
-                        <span className={styles.year}>{piece.year}</span>
-                      </span>
-                    </button>
-                  </li>
-                ))}
+                      </button>
+                      <button
+                        type="button"
+                        className={`${styles.likeBtn} ${isLiked ? styles.likeActive : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleLike(piece.id);
+                        }}
+                        aria-pressed={isLiked}
+                        aria-label={
+                          isLiked
+                            ? `Unlike ${piece.title} (${likeCount} ${likeCount === 1 ? 'like' : 'likes'})`
+                            : `Like ${piece.title} (${likeCount} ${likeCount === 1 ? 'like' : 'likes'})`
+                        }
+                      >
+                        <HeartIcon
+                          className={styles.heartIcon}
+                          filled={isLiked}
+                          width={16}
+                          height={16}
+                          aria-hidden="true"
+                        />
+                        <span className={styles.likeCount}>{likeCount}</span>
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             </>
           )}
@@ -319,6 +348,29 @@ export function ArtSection() {
               </div>
             </div>
 
+            <button
+              type="button"
+              className={`${styles.ctrl} ${styles.likeCtrl} ${liked[active.id] ? styles.likeActive : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleLike(active.id);
+              }}
+              aria-pressed={Boolean(liked[active.id])}
+              aria-label={
+                liked[active.id]
+                  ? `Unlike ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
+                  : `Like ${active.title} (${counts[active.id] ?? 0} ${(counts[active.id] ?? 0) === 1 ? 'like' : 'likes'})`
+              }
+            >
+              <HeartIcon
+                className={styles.heartIcon}
+                filled={Boolean(liked[active.id])}
+                width={18}
+                height={18}
+                aria-hidden="true"
+              />
+              <span className={styles.likeCount}>{counts[active.id] ?? 0}</span>
+            </button>
             <button
               ref={closeRef}
               type="button"

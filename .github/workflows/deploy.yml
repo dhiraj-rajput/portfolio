@@ -37,6 +37,8 @@ jobs:
         run: bun run lint
 
       - name: Build project
+        env:
+          VITE_LIKES_API_URL: ${{ vars.VITE_LIKES_API_URL }}
         run: bun run build
 
       - name: Setup Pages

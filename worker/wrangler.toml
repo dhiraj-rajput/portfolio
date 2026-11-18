@@ -1,0 +1,11 @@
+name = "portfolio-art-likes"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://djphantom.tech"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio-art-likes"
+database_id = "5c5670f0-d5c5-4fb0-aca6-72e58bd3bef9"

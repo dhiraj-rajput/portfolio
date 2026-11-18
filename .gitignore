@@ -53,3 +53,6 @@ package-lock.json
 public/art/ash-trainer*
 public/art/latios*
 public/art/starter-sheet*
+
+# Cloudflare Wrangler local state
+.wrangler/

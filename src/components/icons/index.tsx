@@ -89,3 +89,18 @@ export function ArrowUpIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+/** Heart icon for drawing likes */
+export function HeartIcon({ filled, ...props }: SVGProps<SVGSVGElement> & { filled?: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M12 20.5s-7.5-4.7-9.4-9.3C1.2 7.8 3.2 4.5 6.8 4.5c2 0 3.7 1 5.2 2.8 1.5-1.8 3.2-2.8 5.2-2.8 3.6 0 5.6 3.3 4.2 6.7-1.9 4.6-9.4 9.3-9.4 9.3Z"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
