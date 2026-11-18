@@ -9,7 +9,17 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 36px;
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-text, var(--color-accent));
 }
 
 .title {
@@ -21,42 +31,60 @@
 }
 
 .subtitle {
-  font-size: clamp(16.5px, 1.15vw, 18.5px);
+  font-size: clamp(16px, 1.1vw, 18.5px);
   color: var(--text-secondary);
   line-height: 1.65;
   margin: 0;
-  max-width: 640px;
+  max-width: 62ch;
 }
 
-/* Masonry columns keep each drawing at its natural aspect ratio */
+/* Uniform 4:5 tiles: tidy rhythm on every screen (2 columns on phones, 3 from tablets up) */
 .grid {
   list-style: none;
   padding: 0;
   margin: 0;
-  columns: 3;
-  column-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 22px);
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .item {
-  break-inside: avoid;
-  margin: 0 0 20px;
+  min-width: 0;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: block;
   width: 100%;
   padding: 0;
-  text-align: left;
-  color: inherit;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  cursor: zoom-in;
+  border: 1px solid var(--border-subtle);
+  border-radius: clamp(12px, 1.6vw, 20px);
+  background: var(--bg-surface-elevated);
   box-shadow: var(--card-shadow);
-  transition: transform 0.25s ease, border-color 0.2s ease;
+  color: #fff;
+  text-align: left;
+  cursor: zoom-in;
   -webkit-tap-highlight-color: transparent;
+  transition: transform 0.28s ease, border-color 0.2s ease;
+}
+
+.card .shielded,
+.card .shielded img {
+  width: 100%;
+  height: 100%;
+}
+
+.card .shielded img {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 @media (hover: hover) {
@@ -64,21 +92,52 @@
     transform: translateY(-4px);
     border-color: var(--color-accent);
   }
+
+  .card:hover .shielded img {
+    transform: scale(1.05);
+  }
 }
 
-/* Protection layer: image cannot be dragged, selected or long-pressed */
+/* Caption lives on the picture: dark gradient so white text is readable on any photo */
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 36px clamp(10px, 1.6vw, 18px) clamp(10px, 1.4vw, 16px);
+  background: linear-gradient(to top, rgba(10, 8, 6, 0.82) 0%, rgba(10, 8, 6, 0.45) 55%, rgba(10, 8, 6, 0) 100%);
+  pointer-events: none;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(14px, 1.3vw, 18px);
+  line-height: 1.2;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.year {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Image protection layer */
 .shielded {
   position: relative;
+  display: block;
   line-height: 0;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
-  background: #fff;
 }
 
 .shielded img {
-  width: 100%;
-  height: auto;
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
@@ -91,100 +150,131 @@
   z-index: 1;
 }
 
-.meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px 14px;
-}
-
-.name {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.year {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-
 .note {
-  margin: 8px 0 0;
+  margin: 18px 0 0;
   font-size: 13px;
   line-height: 1.55;
   color: var(--text-muted);
   max-width: 78ch;
 }
 
+/* ---------- Lightbox ---------- */
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 200;
   display: grid;
   place-items: center;
-  padding: clamp(12px, 3vw, 32px);
-  background: rgba(var(--shadow-rgb), 0.82);
+  padding: clamp(56px, 8vh, 72px) clamp(12px, 5vw, 72px) clamp(12px, 3vh, 28px);
+  background: rgba(8, 6, 4, 0.92);
   animation: lbIn 0.2s ease;
 }
 
-.lightboxBody {
-  position: relative;
-  max-width: min(94vw, 880px);
-  max-height: 94dvh;
+.stage {
   display: flex;
   flex-direction: column;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.lightboxBody .shielded {
-  max-height: calc(94dvh - 84px);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.lightboxBody .shielded img {
-  width: auto;
+  align-items: center;
+  gap: 12px;
   max-width: 100%;
-  max-height: calc(94dvh - 84px);
+  max-height: 100%;
+  min-height: 0;
+}
+
+.stage .shielded {
+  min-height: 0;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.stage .shielded img {
+  width: auto;
+  height: auto;
+  max-width: min(100%, 94vw);
+  max-height: calc(100dvh - 190px);
   object-fit: contain;
 }
 
-.lightboxCaption {
+.caption {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 12px 18px 14px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 14px;
+  text-align: center;
+  color: #e8e2da;
   font-size: 14px;
-  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
-.lightboxCaption strong {
-  color: var(--text-primary);
+.caption strong {
   font-family: var(--font-heading);
-  font-size: 16px;
+  font-size: 17px;
+  color: #fff;
 }
 
-.close {
+.counter {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: #b9b1a6;
+}
+
+.ctrl {
   position: absolute;
-  top: 10px;
-  right: 10px;
   z-index: 3;
   width: 44px;
   height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 12px;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(30, 26, 22, 0.8);
+  color: #fff;
   cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ctrl:hover {
+  background: rgba(60, 52, 44, 0.95);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.close {
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+}
+
+.prev,
+.next {
+  top: 50%;
+  margin-top: -22px;
+}
+
+.prev {
+  left: max(8px, env(safe-area-inset-left, 0px));
+}
+
+.next {
+  right: max(8px, env(safe-area-inset-right, 0px));
+}
+
+/* Phones: arrows sit on the bottom corners so they never cover the drawing; swipe also works */
+@media (max-width: 719px) {
+  .prev,
+  .next {
+    top: auto;
+    margin-top: 0;
+    bottom: max(14px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .stage .shielded img {
+    max-height: calc(100dvh - 210px);
+  }
+
+  .lightbox {
+    padding-bottom: 72px;
+  }
 }
 
 @keyframes lbIn {
@@ -193,17 +283,5 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    columns: 2;
-  }
-}
-
-@media (max-width: 560px) {
-  .grid {
-    columns: 1;
   }
 }

@@ -11,7 +11,6 @@ import styles from './Navbar.module.css';
 
 const SECTION_IDS = [
   'contact',
-  'art',
   'beyond',
   'leadership',
   'research',
