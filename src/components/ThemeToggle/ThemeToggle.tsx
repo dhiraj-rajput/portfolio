@@ -1,27 +1,26 @@
-import { useLayoutEffect, useState, startTransition } from 'react';
+import { useSyncExternalStore } from 'react';
 import styles from './ThemeToggle.module.css';
 
-export function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window === 'undefined') return 'dark';
-    try {
-      const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
-      if (saved === 'light' || saved === 'dark') return saved;
-    } catch {
-      // Fallback safely when localStorage is blocked
-    }
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  });
+type Theme = 'dark' | 'light';
 
-  useLayoutEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+/** The theme lives on <html data-theme>; it is set before first paint by an inline script in index.html. */
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
+}
+
+const getSnapshot = (): Theme =>
+  document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+const getServerSnapshot = (): Theme => 'dark';
+
+export function ThemeToggle() {
+  // useSyncExternalStore keeps server HTML and hydration identical, then syncs to the real theme.
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggleTheme = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    startTransition(() => {
-      setTheme(next);
-    });
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
     try {
       localStorage.setItem('theme', next);
     } catch {

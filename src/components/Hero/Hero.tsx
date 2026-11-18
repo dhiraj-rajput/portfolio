@@ -16,21 +16,24 @@ export function Hero() {
     <section id="home" className={styles.hero} aria-label="Introduction">
       <div className={styles.glow} aria-hidden="true" />
       <h1 className={styles.title}>
-        Cybersecurity &amp; Full-Stack Engineer
+        Cybersecurity &amp; <span style={{ whiteSpace: 'nowrap' }}>Full-Stack</span> Engineer
       </h1>
       <div className={styles.copy}>
         <p id="hero-summary" className={styles.description}>
           Hi, I'm <strong>Dhiraj Rajput</strong> - a software engineer in Pune building distributed Go &amp; Python backends, real-time data pipelines, and modern React web applications.
         </p>
         <div className={styles.actions}>
-          <a href="#projects" onClick={(e) => handleCtaClick(e, '#projects')}>
-            <Button variant="primary" icon={<ArrowUpRightIcon width={20} height={20} />}>
-              Explore Projects
-            </Button>
-          </a>
-          <a href="#contact" onClick={(e) => handleCtaClick(e, '#contact')}>
-            <Button variant="secondary">Get in touch</Button>
-          </a>
+          <Button
+            href="#projects"
+            variant="primary"
+            icon={<ArrowUpRightIcon width={20} height={20} />}
+            onClick={(e) => handleCtaClick(e, "#projects")}
+          >
+            Explore Projects
+          </Button>
+          <Button href="#contact" variant="secondary" onClick={(e) => handleCtaClick(e, "#contact")}>
+            Get in touch
+          </Button>
         </div>
       </div>
     </section>
