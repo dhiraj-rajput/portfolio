@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUpIcon } from '../icons';
 import { flutterScrollTo } from '../../utils/flutterScroll';
 import styles from './ScrollToTop.module.css';
 
@@ -43,7 +43,7 @@ export function ScrollToTop() {
       aria-label="Scroll back to top"
       title="Scroll to top"
     >
-      <ArrowUp size={18} strokeWidth={2.4} />
+      <ArrowUpIcon width={18} height={18} aria-hidden="true" />
     </button>
   );
 }

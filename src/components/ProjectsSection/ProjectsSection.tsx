@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { projects } from '../../data/projects';
 import { CodeIcon, LinkIcon, ChevronLeftIcon, ChevronRightIcon } from '../icons';
+import { ProjectDots } from './ProjectDots';
 import styles from './ProjectsSection.module.css';
 
 /**
@@ -94,7 +95,7 @@ export function ProjectsSection() {
 
     // Prevent drag when clicking on interactive links, buttons, or dots
     const target = e.target as HTMLElement;
-    if (target.closest('a, button, input, [role="tab"]')) {
+    if (target.closest('a, button, input')) {
       return;
     }
 
@@ -189,6 +190,13 @@ export function ProjectsSection() {
     currentDxRef.current = 0;
   };
 
+  // Cancel any pending drag frame on unmount
+  useEffect(() => {
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -200,13 +208,10 @@ export function ProjectsSection() {
         return;
       }
 
+      // Only react when keyboard focus is inside the projects section (don't hijack page keys).
       const sectionEl = document.getElementById('projects');
-      if (sectionEl) {
-        const rect = sectionEl.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) {
-          return;
-        }
-      }
+      if (!sectionEl || !sectionEl.contains(document.activeElement)) return;
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
 
       if (e.key === 'ArrowRight') {
         handleNext();
@@ -278,24 +283,14 @@ export function ProjectsSection() {
                 <span className={styles.yearBadge}>{currentProject.year}</span>
               </div>
 
-              <div className={styles.stepDots} role="tablist" aria-label="Projects navigation dots">
-                {projects.map((p, idx) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={idx === currentIndex}
-                    aria-label={`Go to ${p.title}`}
-                    className={`${styles.stepDot} ${
-                      idx === currentIndex ? styles.stepDotActive : ''
-                    }`}
-                    onClick={() => {
-                      if (idx > currentIndex) throwCard('left', idx);
-                      else if (idx < currentIndex) throwCard('right', idx);
-                    }}
-                  />
-                ))}
-              </div>
+              <ProjectDots
+                projects={projects}
+                currentIndex={currentIndex}
+                onSelect={(idx) => {
+                  if (idx > currentIndex) throwCard('left', idx);
+                  else if (idx < currentIndex) throwCard('right', idx);
+                }}
+              />
             </div>
 
             {/* Card Body */}

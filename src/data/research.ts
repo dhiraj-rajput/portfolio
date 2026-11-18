@@ -31,7 +31,7 @@ export const researchEntries: ResearchEntry[] = [
     tags: ['LLM Security', 'PII Redaction', 'Data Privacy', 'Python', 'FastAPI', 'Token Sanitization'],
     link: 'https://github.com/dhiraj-rajput/rakshak-pii',
     actionLabel: 'View Project ↗',
-    image: '/projects/rakshanetra.png',
+    image: '/projects/rakshanetra.webp',
   },
   {
     id: 'bidforge',
@@ -44,6 +44,6 @@ export const researchEntries: ResearchEntry[] = [
     tags: ['Multi-Agent', 'LLM', 'RFP Automation', 'Orchestration', 'Python', 'Document AI'],
     link: 'https://github.com/dhiraj-rajput/BidForge',
     actionLabel: 'View Project ↗',
-    image: '/projects/bidforge.png',
+    image: '/projects/bidforge.webp',
   },
 ];

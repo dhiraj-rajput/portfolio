@@ -28,6 +28,18 @@ export function ContactSection() {
     visible: true,
   });
   const [isUserHovering, setIsUserHovering] = useState<boolean>(false);
+  const [isInView, setIsInView] = useState<boolean>(false);
+
+  // Only run the guided hand tour while the section is on screen and a fine pointer exists.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!finePointer) return;
+    const io = new IntersectionObserver(([entry]) => setIsInView(entry.isIntersecting), { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // Update hand position to current target
   const updateHandToCurrentTarget = useCallback(() => {
@@ -62,7 +74,7 @@ export function ContactSection() {
 
   // Automated Tour Orchestration: Starts immediately when the div is loaded and loops continuously
   useEffect(() => {
-    if (isUserHovering) {
+    if (isUserHovering || !isInView) {
       const hideTimer = setTimeout(() => {
         setHandPos((prev) => ({ ...prev, visible: false }));
       }, 0);
@@ -97,7 +109,7 @@ export function ContactSection() {
       clearTimeout(releaseTimer);
       clearTimeout(nextTimer);
     };
-  }, [activeTargetIdx, isUserHovering, updateHandToCurrentTarget]);
+  }, [activeTargetIdx, isUserHovering, isInView, updateHandToCurrentTarget]);
 
   // Keep hand aligned on window resize
   useEffect(() => {

@@ -1,11 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { engineerData } from '../../data/about';
 import { assetUrl } from '../../utils/assets';
+import { BioText } from './BioText';
 import styles from './AboutSection.module.css';
-
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
 
 /**
  * Modern Developer Bento About Section
@@ -13,29 +10,6 @@ function escapeRegExp(string: string) {
  */
 export function AboutSection() {
   const [imgError, setImgError] = useState(false);
-  const principlesRef = useRef<HTMLElement>(null);
-  const [isTideFlowing, setIsTideFlowing] = useState(true);
-
-  useEffect(() => {
-    const el = principlesRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsTideFlowing(true);
-          }
-        });
-      },
-      {
-        threshold: 0.08,
-      }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const {
     title,
@@ -48,35 +22,6 @@ export function AboutSection() {
     principlesHeading,
     principles,
   } = engineerData;
-
-  const renderBioText = (text: string) => {
-    if (!bioHighlightKeywords || bioHighlightKeywords.length === 0) {
-      return text;
-    }
-
-    const sortedKeywords = [...bioHighlightKeywords].sort(
-      (a, b) => b.length - a.length
-    );
-    const pattern = new RegExp(
-      `(${sortedKeywords.map(escapeRegExp).join('|')})`,
-      'g'
-    );
-    const parts = text.split(pattern);
-
-    return parts.map((part, index) => {
-      const isMatch = bioHighlightKeywords.some(
-        (kw) => kw.toLowerCase() === part.toLowerCase()
-      );
-      if (isMatch) {
-        return (
-          <strong key={index} className={styles.bioHighlight}>
-            {part}
-          </strong>
-        );
-      }
-      return part;
-    });
-  };
 
   return (
     <section id="about" className={styles.section} aria-label="About Me">
@@ -99,7 +44,7 @@ export function AboutSection() {
             <div className={styles.storyContent}>
               {bioParagraphs.map((paragraph, idx) => (
                 <p key={idx} className={styles.paragraph}>
-                  {renderBioText(paragraph)}
+                  <BioText text={paragraph} keywords={bioHighlightKeywords} />
                 </p>
               ))}
             </div>
@@ -203,8 +148,7 @@ export function AboutSection() {
 
         {/* Row 2: Core Engineering Principles with Always-On Tidal Water Wave Animation */}
         <section
-          ref={principlesRef}
-          className={`${styles.principlesSection} ${isTideFlowing ? styles.tideActive : ''}`}
+          className={styles.principlesSection}
           aria-label="Core Engineering Principles"
         >
           {/* Luminous Ocean Tide Water Wave Surge Background */}
@@ -230,9 +174,7 @@ export function AboutSection() {
               return (
                 <div
                   key={p.id}
-                  className={`${styles.principleCard} ${
-                    isTideFlowing ? styles.cardCarried : styles.cardSubmerged
-                  }`}
+                  className={`${styles.principleCard} ${styles.cardCarried}`}
                   style={{ '--card-tide-delay': `${delayMs}ms` } as React.CSSProperties}
                 >
                   <span className={styles.principleNumber}>{p.number}</span>

@@ -4,7 +4,7 @@ import type { EngineerProfile } from '../types';
  * About & Engineer Profile Data
  * 
  * Customize any information here to update your about section.
- * To use a photo, place an image file in the /public folder (e.g. /public/profile.jpg).
+ * To use a photo, place an image file in the /public folder (e.g. /public/profile.webp).
  */
 export const engineerData: EngineerProfile = {
   title: 'About Me',
@@ -13,7 +13,7 @@ export const engineerData: EngineerProfile = {
   profile: {
     name: 'Dhiraj Rajput',
     role: 'Cybersecurity & Full-Stack Developer',
-    avatarUrl: '/profile.jpg',
+    avatarUrl: '/profile.webp',
     status: 'Available for work',
   },
 

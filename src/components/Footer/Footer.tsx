@@ -3,6 +3,7 @@ import { contactInfo } from '../../data/contact';
 import { flutterScrollTo } from '../../utils/flutterScroll';
 import { assetUrl } from '../../utils/assets';
 import styles from './Footer.module.css';
+import { MotionToggle } from './MotionToggle';
 
 const ArrowUpIcon = () => (
   <svg
@@ -53,7 +54,7 @@ export function Footer() {
               className={styles.logoLink}
               aria-label="Scroll to home"
             >
-              <img src={assetUrl('logo.svg')} alt="DJ Logo" className={styles.logoImg} />
+              <img src={assetUrl('logo.svg')} alt="" aria-hidden="true" width={48} height={27} className={styles.logoImg} />
             </a>
             <div className={styles.brandText}>
               <h3 className={styles.brandName}>Dhiraj Rajput</h3>
@@ -209,7 +210,9 @@ export function Footer() {
             &copy; {CURRENT_YEAR} Dhiraj Rajput. Built with React &amp; TypeScript.
           </p>
 
+          <MotionToggle />
           <button
+            type="button"
             onClick={scrollToTop}
             className={styles.backToTop}
             aria-label="Back to top of page"

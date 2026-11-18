@@ -10,8 +10,8 @@
   right: 0;
   height: 800px;
   background-image:
-    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
   background-size: 240px 160px;
   mask-image: linear-gradient(to bottom, black, transparent);
   pointer-events: none;
@@ -36,4 +36,22 @@
 .meteorZone {
   position: relative;
   overflow: hidden;
+}
+
+.skipLink {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10000;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast, #fff);
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
 }

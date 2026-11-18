@@ -1,10 +1,8 @@
 /**
  * Beyond Engineering - Hobbies & Interests
- * iconName must be a valid Lucide icon name (PascalCase).
  */
 export interface HobbyItem {
   id: string;
-  iconName: string;
   category: string;
   title: string;
   description: string;
@@ -14,7 +12,6 @@ export interface HobbyItem {
 export const hobbies: HobbyItem[] = [
   {
     id: 'h1',
-    iconName: 'Clapperboard',
     category: 'Cinema & Anime',
     title: 'Cinephile & Anime Lover',
     description:
@@ -23,7 +20,6 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h2',
-    iconName: 'Cpu',
     category: 'Tech Exploration',
     title: 'Exploring New Technologies',
     description:
@@ -32,7 +28,6 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h3',
-    iconName: 'BookOpen',
     category: 'Reading',
     title: 'Reading & Systems Thinking',
     description:
@@ -41,7 +36,6 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h4',
-    iconName: 'Gamepad2',
     category: 'Gaming',
     title: 'MOBA & Video Games',
     description:
@@ -50,7 +44,6 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h5',
-    iconName: 'Volleyball',
     category: 'Sports',
     title: 'Volleyball',
     description:
@@ -59,7 +52,6 @@ export const hobbies: HobbyItem[] = [
   },
   {
     id: 'h6',
-    iconName: 'Medal',
     category: 'Martial Arts',
     title: 'Karate Kid & Junior Black Belt',
     description:

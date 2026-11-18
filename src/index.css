@@ -24,30 +24,36 @@
 
   --hero-gradient-start: #ffffff;
   --hero-gradient-mid: #f4f4f5;
-  --card-bg: #111114;
-  --card-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --card-shadow: 0 16px 36px rgba(var(--shadow-rgb), 0.55);
   --glow-opacity: 0.32;
-
-  /* Legacy design tokens compatibility */
-  --color-orange-500: var(--color-accent);
-  --color-orange-50: #fff0e6;
-  --color-grey-100: var(--text-secondary);
-  --color-grey-200: var(--text-muted);
-  --color-grey-300: var(--text-muted);
-  --color-grey-400: #3f3f46;
-  --color-black-900: var(--bg-canvas);
-  --color-black-400: var(--border-subtle);
-  --color-black-200: var(--text-secondary);
-  --color-black-100: var(--text-muted);
-  --color-black-50: #ffffff;
-  --color-white: var(--text-primary);
-  --color-border-subtle: var(--border-subtle);
+  --border-strong: #52525c;
+  --color-accent-contrast: #1a0e04; /* dark warm ink on amber: 8.5:1 (white was 2.3:1) */
+  --hero-gradient-end: #fb923c;
+  --shadow-rgb: 0, 0, 0;
+  --status-green: #22c55e;
 
   /* Modern Engineering Typography Trio: Outfit + Inter + JetBrains Mono */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-heading: 'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+  /* Fluid type scale (~1.2 ratio): use these for new text styles */
+  --fs-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
+  --fs-sm: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --fs-md: clamp(1rem, 0.92rem + 0.22vw, 1.125rem);
+  --fs-lg: clamp(1.15rem, 1.05rem + 0.4vw, 1.4rem);
+  --fs-xl: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem);
+  --fs-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.6rem);
+  --fs-3xl: clamp(2.1rem, 1.6rem + 2.2vw, 3.6rem);
+  --measure: 68ch;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
   --content-max-width: 1380px;
   --section-gap: clamp(68px, 8vw, 108px);
 }
@@ -55,54 +61,37 @@
 [data-theme="light"] {
   color-scheme: light;
   /*
-   * Calibrated Architectural Light Theme (60-30-10 Color Theory + WCAG AA/AAA):
-   * - 60% Canvas (#f3f5f9): Soft alabaster-pearl reduces large-monitor glare and creates
-   *   unmistakable figure-ground separation against pure white (#ffffff) cards.
-   * - 30% Surfaces & Structure (#ffffff cards, #eaeef5 elevated chips, #d8e0ed borders).
-   * - 10% Split Accent System:
-   *     • Fill Accent (--color-accent: #ea580c) for buttons, active indicators, and glows.
-   *     • Text Accent (--color-accent-text: #c2410c) delivering 5.42:1 WCAG AA contrast on white!
+   * Warm-paper light theme (60-30-10): stone canvas (OKLCH L ~0.93, never pure white),
+   * paper surfaces, soft ink text (12.6:1) and a single burnt-orange accent.
    */
-  --bg-canvas: #f3f5f9;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #eaeef5;
-  --border-subtle: #d8e0ed;
-  --border-hover: #b4c2d8;
+  --bg-canvas: #ebe7df;
+  --bg-surface: #f4f1ea;
+  --bg-surface-elevated: #e1dcd2;
+  --border-subtle: #cbc4b7;
+  --border-hover: #a39b8c;
+  --border-strong: #8f8878;
 
-  --text-primary: #0f172a;
-  --text-secondary: #2d3d52;
-  --text-muted: #52637a;
+  --text-primary: #1f2430;
+  --text-secondary: #3b4252;
+  --text-muted: #575d6b;
 
-  --color-accent-rgb: 234, 88, 12;
-  --color-accent: #ea580c;
-  --color-accent-text: #c2410c;
-  --color-accent-hover: #c2410c;
-  --color-accent-subtle: rgba(234, 88, 12, 0.09);
-  --color-accent-border: rgba(194, 65, 12, 0.24);
+  --color-accent-rgb: 194, 65, 12;
+  --color-accent: #c2410c;
+  --color-accent-text: #a8380a;
+  --color-accent-hover: #9a3412;
+  --color-accent-contrast: #ffffff;
+  --color-accent-subtle: rgba(194, 65, 12, 0.08);
+  --color-accent-border: rgba(168, 56, 10, 0.28);
 
-  --hero-gradient-start: #0f172a;
-  --hero-gradient-mid: #1e293b;
-  --card-bg: #ffffff;
+  --hero-gradient-start: #1f2430;
+  --hero-gradient-mid: #2a3140;
+  --hero-gradient-end: #a8380a;
+  --shadow-rgb: 74, 56, 36;
   --card-shadow:
-    0 1px 3px 0 rgba(15, 23, 42, 0.04),
-    0 12px 32px -4px rgba(15, 23, 42, 0.07),
-    0 0 0 1px rgba(15, 23, 42, 0.03);
-  --glow-opacity: 0.14;
-
-  /* Legacy design tokens mapped for Light Theme */
-  --color-orange-500: var(--color-accent);
-  --color-orange-50: #fff7ed;
-  --color-grey-100: var(--text-secondary);
-  --color-grey-200: var(--text-muted);
-  --color-grey-300: var(--text-muted);
-  --color-grey-400: #d8e0ed;
-  --color-black-900: var(--bg-canvas);
-  --color-black-400: var(--border-subtle);
-  --color-black-200: var(--text-secondary);
-  --color-black-100: var(--text-muted);
-  --color-black-50: #0f172a;
-  --color-white: var(--text-primary);
-  --color-border-subtle: var(--border-subtle);
+    0 1px 2px rgba(var(--shadow-rgb), 0.08),
+    0 8px 24px -8px rgba(var(--shadow-rgb), 0.16);
+  --glow-opacity: 0.06;
+  --status-green: #166534;
 }
 
 * {
@@ -111,10 +100,8 @@
   padding: 0;
 }
 
-html,
 body {
-  overflow-x: hidden;
-  max-width: 100vw;
+  overflow-x: clip;
 }
 
 html {
@@ -131,9 +118,12 @@ body {
   background-color: var(--bg-canvas);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: clamp(16px, 1.06vw, 18px);
-  line-height: 1.72;
-  letter-spacing: -0.008em;
+  font-size: clamp(16px, 0.92rem + 0.22vw, 18px);
+  line-height: 1.65;
+  letter-spacing: 0;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -142,8 +132,23 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  text-wrap: balance;
   color: var(--text-primary);
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+/* Long URLs / emails must never push the layout wider */
+a, p, li {
+  overflow-wrap: break-word;
+}
+
+main:focus {
+  outline: none;
 }
 
 p, span, li {
@@ -175,6 +180,7 @@ ul {
 
 #root {
   min-height: 100vh;
+  min-height: 100svh;
 }
 
 .container {
@@ -189,100 +195,52 @@ ul {
   }
 }
 
-/* Utilities for Marquee Logos */
-.fill-cyan-500 {
-  fill: #06b6d4;
-}
-
-.fill-primary {
-  fill: var(--color-accent);
-}
-
-.fill-gray-900,
-.dark\:fill-white {
-  fill: var(--text-primary);
-}
-
-.h-\[20px\] {
-  height: 20px;
-}
-
-.h-\[22px\] {
-  height: 22px;
-}
-
-.h-\[24px\] {
-  height: 24px;
-}
-
-.h-\[28px\] {
-  height: 28px;
-}
-
-.h-\[30px\] {
-  height: 30px;
-}
-
-.h-\[40px\] {
-  height: 40px;
-}
-
-.w-\[120px\] {
-  width: 120px;
-}
-
-.w-\[140px\] {
-  width: 140px;
-}
-
-.w-fit {
-  width: fit-content;
-}
-
-.h-full {
-  height: 100%;
-}
-
-.h-fit {
-  height: fit-content;
-}
-
-.relative {
-  position: relative;
-}
-
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.gap-3 {
-  gap: 0.75rem;
-}
-
-.mx-\[4rem\] {
-  margin-left: 4rem;
-  margin-right: 4rem;
-}
-
-@media (min-width: 640px) {
-  .sm\:w-auto {
-    width: auto;
+@media (min-width: 1280px) {
+  [data-theme="light"] {
+    --bg-canvas: #e8e4db;
+    --bg-surface: #f1eee6;
+    --glow-opacity: 0.04;
   }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --content-max-width: 1560px;
+  }
+  body {
+    font-size: 19px;
+  }
+}
+
+/* Keyboard focus: visible ring on every interactive element */
+:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/*
+ * Motion is ON by default for everyone. Only an explicit in-site opt-out
+ * (html[data-motion="reduced"], set by the footer toggle) calms the page.
+ */
+html[data-motion="reduced"] *,
+html[data-motion="reduced"] *::before,
+html[data-motion="reduced"] *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Off-screen sections do not burn GPU/CPU: animations resume before they scroll into view */
+[data-offscreen="true"],
+[data-offscreen="true"] *,
+[data-offscreen="true"] *::before,
+[data-offscreen="true"] *::after {
+  animation-play-state: paused !important;
+}
+
+/* While the logo intro plays, page animations wait (smoother intro, no hidden GPU work) */
+html[data-loading] [data-page],
+html[data-loading] [data-page] * {
+  animation-play-state: paused !important;
 }

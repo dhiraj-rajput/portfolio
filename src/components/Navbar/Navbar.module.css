@@ -3,20 +3,18 @@
   top: 0;
   z-index: 50;
   width: 100%;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(9, 9, 11, 0.88);
+  background: rgba(9, 9, 11, 0.96);
   border-bottom: 1px solid var(--border-subtle);
   transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 [data-theme="light"] .wrapper {
-  background: rgba(243, 245, 249, 0.9);
+  background: rgba(235, 231, 223, 0.96);
 }
 
 .inner {
   width: 100%;
-  max-width: 1380px;
+  max-width: var(--content-max-width, 1380px);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -89,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  height: 40px;
+  height: 44px;
   padding: 0 15px;
   border-radius: 10px;
   background: var(--bg-surface-elevated, #18181c);
@@ -99,7 +97,7 @@
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   text-decoration: none;
   flex-shrink: 0;
   box-sizing: border-box;
@@ -108,7 +106,7 @@
 .resumeButton:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-accent-contrast, #fff);
   transform: translateY(-1px);
   box-shadow: 0 4px 14px var(--color-accent-subtle);
 }
@@ -122,8 +120,8 @@
 
 /* Expandable social icons on desktop */
 .expandableButton {
-  height: 40px;
-  width: 40px;
+  height: 44px;
+  width: 44px;
   border-radius: 10px;
   background: var(--bg-surface-elevated, #18181c);
   border: 1px solid var(--border-subtle);
@@ -186,8 +184,8 @@
 .whatsappExpandable:hover {
   width: 124px;
   background: rgba(37, 211, 102, 0.12);
-  border-color: #16a34a;
-  color: #16a34a;
+  border-color: var(--status-green);
+  color: var(--status-green);
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2);
 }
 
@@ -205,14 +203,14 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
   background: var(--bg-surface-elevated, #18181c);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   flex-shrink: 0;
 }
 
@@ -228,9 +226,7 @@
   inset: 0;
   top: 58px;
   height: calc(100dvh - 58px);
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(var(--shadow-rgb), 0.6);
   z-index: 49;
   animation: fadeIn 0.2s ease;
 }
@@ -251,12 +247,12 @@
   flex-direction: column;
   gap: 12px;
   animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 40px rgba(var(--shadow-rgb), 0.6);
 }
 
 [data-theme="light"] .mobileDrawer {
   background: var(--bg-surface);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px rgba(var(--shadow-rgb), 0.12);
 }
 
 /* Mobile Nav List */
@@ -277,7 +273,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all 0.18s ease;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
 }
 
 .mobileNavLink:hover {
@@ -338,7 +334,7 @@
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   min-height: 42px;
 }
 
@@ -350,7 +346,7 @@
 
 .mobileWhatsappCard {
   border-color: rgba(37, 211, 102, 0.35);
-  color: #16a34a;
+  color: var(--status-green);
 }
 
 :root:not([data-theme="light"]) .mobileWhatsappCard {
@@ -405,7 +401,7 @@
   }
 
   .logoImg {
-    height: 34px;
+    height: 44px;
     max-width: 78px;
   }
 
@@ -415,12 +411,12 @@
 
   .resumeButton {
     padding: 0 10px;
-    width: 38px;
+    width: 44px;
     justify-content: center;
   }
 
   .hamburgerBtn {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
 }

@@ -1,7 +1,7 @@
 /* Beyond Engineering Section */
 .section {
   position: relative;
-  max-width: 1372px;
+  max-width: var(--content-max-width, 1380px);
   margin: 0 auto;
   padding: 0 clamp(16px, 3vw, 24px);
   overflow: visible;
@@ -57,7 +57,7 @@
   overflow: hidden;
   cursor: pointer;
   transform-style: preserve-3d;
-  will-change: transform, box-shadow, border-color;
+  will-change: transform;
   transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
               box-shadow 0.25s ease,
               border-color 0.25s ease;
@@ -95,7 +95,7 @@
 
 .card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4), 0 0 20px var(--color-accent-subtle);
+  box-shadow: 0 20px 44px rgba(var(--shadow-rgb), 0.4), 0 0 20px var(--color-accent-subtle);
   z-index: 10;
 }
 
@@ -108,12 +108,12 @@
 }
 
 [data-theme='light'] .card {
-  background: #ffffff;
+  background: var(--bg-surface);
 }
 
 [data-theme='light'] .card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.1), 0 0 18px var(--color-accent-subtle);
+  box-shadow: 0 20px 44px rgba(var(--shadow-rgb), 0.1), 0 0 18px var(--color-accent-subtle);
 }
 
 [data-theme='light'] .cardSpotlight {
@@ -161,7 +161,7 @@
 
 .category {
   font-family: var(--font-heading);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -386,13 +386,11 @@
     stroke-dashoffset: 0;
     opacity: 1;
     stroke: var(--color-accent);
-    filter: drop-shadow(0 0 5px var(--color-accent));
   }
   65% {
     stroke-dashoffset: 0;
     opacity: 1;
     stroke: #38bdf8;
-    filter: drop-shadow(0 0 6px #38bdf8);
   }
   85% {
     stroke-dashoffset: -24;
@@ -408,7 +406,6 @@
   25%, 65% {
     transform: scale(1.5);
     opacity: 1;
-    filter: drop-shadow(0 0 6px var(--color-accent));
   }
 }
 
@@ -420,12 +417,10 @@
   25% {
     opacity: 1;
     transform: scale(1.22);
-    filter: drop-shadow(0 0 10px var(--color-accent));
   }
   60% {
     opacity: 1;
     transform: scale(1.18);
-    filter: drop-shadow(0 0 8px #38bdf8);
   }
 }
 
@@ -562,8 +557,6 @@
   }
   48% {
     transform: rotateY(-90deg) scaleX(0.85);
-    filter: brightness(1.2);
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.25);
   }
   82% {
     transform: rotateY(-155deg);
@@ -745,11 +738,9 @@
 @keyframes comboBtnFlash {
   0%, 25%, 100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 0 transparent);
   }
   10% {
     transform: scale(1.7);
-    filter: drop-shadow(0 0 8px currentColor) brightness(1.6);
   }
 }
 
@@ -892,7 +883,6 @@
   }
   50% {
     transform: translateY(3px) scale(1.18);
-    filter: drop-shadow(0 0 8px var(--color-accent));
   }
   75% {
     transform: translateY(1px) scale(1.1);
@@ -945,7 +935,7 @@
   }
 
   .category {
-    font-size: 10.5px;
+    font-size: 12px;
     padding: 2.5px 8px;
     letter-spacing: 0.03em;
   }
@@ -965,7 +955,7 @@
   }
 
   .tag {
-    font-size: 11px;
+    font-size: 12px;
     padding: 2.5px 7.5px;
     border-radius: 5px;
   }

@@ -13,13 +13,19 @@ import { ContactSection } from './components/ContactSection/ContactSection';
 import { MeteorShower } from './components/MeteorShower/MeteorShower';
 import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
+import { useOffscreenPause } from './hooks/useOffscreenPause';
 import styles from './App.module.css';
 
 function App() {
+  useOffscreenPause();
+
   return (
     <>
+      <a href="#main" className={styles.skipLink}>
+        Skip to content
+      </a>
       <LoadingScreen />
-      <div className={styles.page}>
+      <div className={styles.page} data-page>
         <div className={styles.backgroundGrid} aria-hidden="true" />
         <Navbar />
         <Hero />
@@ -29,7 +35,7 @@ function App() {
         <div className={styles.meteorZone}>
           <MeteorShower count={18} />
 
-          <main className={styles.sections}>
+          <main id="main" tabIndex={-1} className={styles.sections}>
             <AboutSection />
             <ExperienceSection />
             <TechExpertiseSection />

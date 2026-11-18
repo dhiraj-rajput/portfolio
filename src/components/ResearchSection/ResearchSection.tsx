@@ -1,78 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { researchEntries } from '../../data/research';
 import { assetUrl } from '../../utils/assets';
+import { ParticleLayer, type MinecraftParticle, type ParticleHandle } from './ParticleLayer';
+import { AutoPlayResearchVideo } from './AutoPlayResearchVideo';
 import styles from './ResearchSection.module.css';
-
-interface MinecraftParticle {
-  id: number;
-  dx: number;
-  dy: number;
-  size: number;
-  color: string;
-}
 
 const LAVA_COLORS = ['#ffd700', '#ff6600', '#ff2200', '#ff8c00', '#ffffff', '#4a1103'];
 const WATER_COLORS = ['#38bdf8', '#0284c7', '#bae6fd', '#0ea5e9', '#ffffff', '#7dd3fc'];
-
-/**
- * Auto-playing Video with Intersection Observer:
- * Automatically plays muted when scrolled into view, pauses when out of view,
- * with full controls available for unmute/scrubbing.
- */
-function AutoPlayResearchVideo({
-  src,
-  poster,
-  caption,
-}: {
-  src: string;
-  poster?: string;
-  caption?: string;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className={styles.mediaWrap} onContextMenu={(e) => e.preventDefault()}>
-      <video
-        ref={videoRef}
-        src={src}
-        poster={poster}
-        muted
-        playsInline
-        loop
-        controls
-        controlsList="nodownload"
-        disablePictureInPicture
-        onContextMenu={(e) => e.preventDefault()}
-        preload="auto"
-        className={styles.mediaVideo}
-      />
-      {caption && <span className={styles.mediaCaption}>{caption}</span>}
-    </div>
-  );
-}
 
 /**
  * Research & Innovation Section
@@ -106,7 +40,7 @@ export function ResearchSection() {
   const scrollDirRef = useRef<'down' | 'up'>('down');
   const entryModeRef = useRef<'flow-with-scroll' | 'fall-to-last'>('flow-with-scroll');
 
-  const [particles, setParticles] = useState<MinecraftParticle[]>([]);
+  const particlesRef = useRef<ParticleHandle>(null);
 
   const [isLightMode, setIsLightMode] = useState<boolean>(() => {
     if (typeof document === 'undefined') return false;
@@ -153,10 +87,7 @@ export function ResearchSection() {
         color: palette[Math.floor(Math.random() * palette.length)],
       });
     }
-    setParticles((prev) => [...prev.slice(-14), ...burst]);
-    setTimeout(() => {
-      setParticles((prev) => prev.filter((p) => !burst.some((bp) => bp.id === p.id)));
-    }, 750);
+    particlesRef.current?.add(burst, 14);
   };
 
   // 120fps GPU-Accelerated Viscous Fluid Engine
@@ -236,7 +167,7 @@ export function ResearchSection() {
           dot.classList.remove(styles.spineDotIgnited);
         });
       }
-      setParticles([]);
+      particlesRef.current?.clear();
     };
 
     const resetDots = (el: HTMLElement | null) => {
@@ -249,7 +180,22 @@ export function ResearchSection() {
     };
 
     // Continuous 120fps RAF loop: Synchronously samples scroll & computes viscous fluid LERP
+    // Cheap "is the section anywhere near the viewport" flag so the loop does
+    // zero layout reads while the section is far away (animations stay as-is).
+    let nearView = true;
+    const nearObserver = new IntersectionObserver(
+      ([entry]) => {
+        nearView = entry.isIntersecting;
+      },
+      { rootMargin: '200px 0px 200px 0px' },
+    );
+    if (sectionRef.current) nearObserver.observe(sectionRef.current);
+
     const fluidLoop = () => {
+      if (!nearView && !wasInViewRef.current) {
+        animId = requestAnimationFrame(fluidLoop);
+        return;
+      }
       const sectionEl = sectionRef.current;
       const el = timelineRef.current;
       const stream = streamRef.current;
@@ -391,6 +337,7 @@ export function ResearchSection() {
       window.removeEventListener('resize', measureLayout);
       window.removeEventListener('load', measureLayout);
       resizeObserver.disconnect();
+      nearObserver.disconnect();
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
@@ -420,11 +367,7 @@ export function ResearchSection() {
         });
       }
 
-      setParticles((prev) => [...prev.slice(-10), ...newParticles]);
-
-      setTimeout(() => {
-        setParticles((prev) => prev.filter((p) => !newParticles.some((np) => np.id === p.id)));
-      }, 750);
+      particlesRef.current?.add(newParticles, 10);
     }, 280);
 
     return () => clearInterval(interval);
@@ -503,20 +446,7 @@ export function ResearchSection() {
 
             {/* Minecraft Voxel Particle Pop Spawner */}
             <div className={styles.particleEmitter}>
-              {particles.map((p) => (
-                <span
-                  key={p.id}
-                  className={styles.minecraftPixel}
-                  style={
-                    {
-                      '--dx': `${p.dx}px`,
-                      '--dy': `${p.dy}px`,
-                      '--size': `${p.size}px`,
-                      '--color': p.color,
-                    } as React.CSSProperties
-                  }
-                />
-              ))}
+              <ParticleLayer handleRef={particlesRef} />
             </div>
           </div>
         </div>
